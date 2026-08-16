@@ -1,0 +1,15 @@
+name: Bug report
+description: Report a reproducible Pocket Teleprompter problem
+title: "[Bug] "
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Browser / device
+  - type: textarea
+    attributes:
+      label: Steps to reproduce

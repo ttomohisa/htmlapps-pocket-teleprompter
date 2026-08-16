@@ -1,0 +1,22 @@
+{
+  "$schema": "./schemas/app-config.schema.json",
+  "name": "Pocket Teleprompter",
+  "nameJa": "Pocket Teleprompter",
+  "slug": "pocket-teleprompter",
+  "version": "1.0.0",
+  "description": "A privacy-friendly, installation-free teleprompter that runs entirely in the browser.",
+  "descriptionJa": "原稿を貼り付けてすぐ使える、インストール不要・端末内処理のテレプロンプターです。",
+  "defaultLanguage": "auto",
+  "repository": {
+    "owner": "ttomohisa",
+    "name": "htmlapps-pocket-teleprompter"
+  },
+  "build": {
+    "output": "dist/index.html",
+    "blockRuntimeNetwork": true,
+    "selfExtract": {
+      "enabled": true,
+      "output": "dist/index.self-extract.html"
+    }
+  }
+}

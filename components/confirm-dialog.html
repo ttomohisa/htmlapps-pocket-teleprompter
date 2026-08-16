@@ -1,0 +1,25 @@
+<!--
+  Pocket Teleprompter adaptation of htmlapps-template/components/confirm-dialog.html.
+  Source snippet only; not loaded at runtime.
+  API: await AppConfirm.ask({ title, message, confirmLabel, cancelLabel, tone })
+
+  The live application keeps the equivalent CSS, dialog markup, focus restoration,
+  Esc/backdrop cancellation, and AppConfirm API inline in src/index.template.html.
+-->
+<dialog class="confirm-dialog" id="confirmDialog" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+  <div class="dialog-header">
+    <h2 id="confirmTitle">Confirm</h2>
+    <button class="dialog-close" id="confirmClose" type="button" aria-label="Close">…</button>
+  </div>
+  <div class="dialog-body"><p id="confirmMessage"></p></div>
+  <div class="confirm-actions">
+    <button class="button" id="confirmCancel" type="button">Cancel</button>
+    <button class="button" id="confirmOk" type="button">OK</button>
+  </div>
+</dialog>
+
+<script>
+  // See src/index.template.html for the complete embedded implementation.
+  // Public API shape intentionally matches the htmlapps-template component:
+  // AppConfirm.ask({ title, message, confirmLabel, cancelLabel, tone: 'danger' })
+</script>

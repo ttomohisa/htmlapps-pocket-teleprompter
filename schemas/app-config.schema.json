@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["name", "slug", "version", "repository", "build"],
+  "properties": {
+    "name": {"type": "string"},
+    "nameJa": {"type": "string"},
+    "slug": {"type": "string"},
+    "version": {"type": "string"},
+    "description": {"type": "string"},
+    "descriptionJa": {"type": "string"},
+    "defaultLanguage": {"type": "string"},
+    "repository": {"type": "object", "required": ["owner", "name"]},
+    "build": {"type": "object", "required": ["output", "blockRuntimeNetwork"]}
+  }
+}
