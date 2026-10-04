@@ -25,6 +25,8 @@ A user can paste a script, tune the reading experience, start a distraction-free
 ## 4. Functional requirements
 
 - Large responsive script editor with local auto-save.
+- Open local UTF-8 `.txt` scripts (optional BOM, up to 1 MiB), with replacement confirmation and stale-read protection. Invalid, binary, or blank files leave the script intact.
+- Save the current script as UTF-8 `.txt` using an editable, sanitized download filename.
 - Character count and approximate reading units.
 - Two pace modes:
   - **Speed:** simple 0.5x–2.0x multiplier.
