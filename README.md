@@ -30,18 +30,25 @@ The initial HTML is delivered by GitHub Pages. Script editing, scrolling, local 
 - Elapsed time, estimated remaining time, and progress
 - Progressive Screen Wake Lock and Fullscreen support
 - Local auto-save with no account or server storage
+- Open local UTF-8 `.txt` files and save scripts with your own filename
 - Japanese and English UI in the same HTML
 - No runtime dependencies or network requests
 
 ## Quick start
 
 1. Open the web demo or `dist/index.html`.
-2. Paste or type a script.
+2. Paste, type, or use **Open .txt** to load a script.
 3. Adjust the pace and display settings if needed.
 4. Tap **Start teleprompter**.
 5. Tap the center to pause/resume. Use the left/right edge to adjust pace.
 
 Core functions can run from a local `file://` copy. Screen Wake Lock and Fullscreen support depend on the browser and page context.
+
+## Local script files
+
+**Open .txt** accepts UTF-8 (with or without BOM) up to 1 MiB (1,048,576 bytes). Existing different text requires confirmation before replacement. Canceling or choosing an invalid, binary, or blank file keeps the current script. Windows/Mac line endings are normalized to LF; Japanese, emoji, paragraphs, and literal markup remain text.
+
+**Save .txt** downloads the current script as UTF-8. Edit the download filename beside the button; unsafe filename characters are sanitized. The filename starts with the imported basename or `pocket-teleprompter.txt`. Files stay on your device, and these operations also work without localStorage.
 
 ## Target time mode
 
@@ -88,6 +95,8 @@ On Windows, run:
 ```bat
 build-standalone.bat
 ```
+
+For the full check, with Node.js 24 installed, run `powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\scripts\check-repository.ps1`. It rebuilds both variants and runs the Node tests.
 
 The repository intentionally has no third-party runtime dependencies.
 
