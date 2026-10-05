@@ -32,6 +32,8 @@ $assetB64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($assetJson)
 $html = $template.Replace('__APP_CONFIG_JSON__', $configJson).Replace('__BUILD_MANIFEST_JSON__', $manifestJson).Replace('__EMBEDDED_ASSET_BUNDLE_BASE64__', $assetB64)
 $outputPath = Join-Path $Root $config.build.output
 [IO.File]::WriteAllText($outputPath, $html, [Text.UTF8Encoding]::new($false))
+# Keep the root download identical to the readable release.
+[IO.File]::WriteAllText((Join-Path $Root 'pocket-teleprompter.html'), $html, [Text.UTF8Encoding]::new($false))
 [IO.File]::WriteAllText((Join-Path $Dist 'build-manifest.json'), ($manifest | ConvertTo-Json -Depth 20), [Text.UTF8Encoding]::new($false))
 [IO.File]::WriteAllText((Join-Path $Dist 'dependency-manifest.json'), (@{ dependencies = @($deps.dependencies) } | ConvertTo-Json -Depth 20), [Text.UTF8Encoding]::new($false))
 [IO.File]::WriteAllText((Join-Path $Dist '.nojekyll'), '', [Text.UTF8Encoding]::new($false))

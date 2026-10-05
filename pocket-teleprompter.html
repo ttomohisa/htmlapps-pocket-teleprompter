@@ -31,6 +31,7 @@
     .main{width:min(1080px,100%);margin:0 auto;padding:20px clamp(14px,2.8vw,30px) 64px}.page-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:0 2px 16px}.page-intro h2{margin:0;font-size:clamp(21px,4vw,27px);line-height:1.3;letter-spacing:-.025em}.page-intro p{margin:5px 0 0;max-width:710px;color:var(--muted);font-size:13px}.privacy-badge{display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;padding:7px 10px;border:1px solid color-mix(in srgb,var(--accent) 24%,var(--line));border-radius:999px;color:var(--accent);background:var(--accent-soft);font-size:11px;font-weight:750;white-space:nowrap}.privacy-badge svg{width:14px;height:14px}
     .workspace{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}.card{border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow-sm)}.editor-card{overflow:hidden}.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:16px 17px 12px}.card-head h3{margin:0;font-size:17px;letter-spacing:-.02em}.card-head p{margin:3px 0 0;color:var(--muted);font-size:12px}.stats{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.stat-chip{padding:6px 8px;border-radius:9px;background:var(--surface-muted);text-align:center;min-width:68px}.stat-chip strong{display:block;font-size:13px;line-height:1.15}.stat-chip span{display:block;color:var(--muted);font-size:9px;margin-top:2px}
     .script-wrap{padding:0 16px 16px}.script-input{width:100%;min-height:440px;resize:vertical;padding:18px;border:1px solid var(--line);border-radius:14px;background:#fbfbf9;color:var(--text);font-size:16px;line-height:1.75}.script-input::placeholder{color:#999d96}.script-input:hover{border-color:var(--line-strong)}.editor-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}.save-status{color:var(--muted);font-size:11px}.text-button{min-height:36px;padding:6px 8px;border:0;background:transparent;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer}.text-button:hover{color:var(--text)}.text-button.danger:hover{color:var(--danger)}
+    .file-toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:8px;margin-bottom:10px}.file-toolbar .button{font-size:12px;min-height:42px;padding:8px 10px}.file-name{flex:1 1 170px;min-width:0}.file-name label{display:block;margin-bottom:3px;color:var(--muted);font-size:11px}.file-name input{width:100%;min-width:0;min-height:42px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.file-status{min-height:18px;margin:0 0 8px;color:var(--muted);font-size:11px;overflow-wrap:anywhere}.button:disabled{opacity:.5;cursor:default}
     .control-panel{display:grid;gap:12px;position:sticky;top:calc(var(--header-height) + 14px)}.settings-card{padding:15px}.settings-card h3{margin:0 0 12px;font-size:15px}.setting-block{padding:13px 0;border-top:1px solid color-mix(in srgb,var(--line) 78%,transparent)}.setting-block:first-of-type{border-top:0;padding-top:0}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.setting-copy{min-width:0}.setting-copy strong{display:block;font-size:12px}.setting-copy span{display:block;margin-top:2px;color:var(--muted);font-size:10px;line-height:1.45}.segmented{display:grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:10px;background:var(--surface-muted);margin-top:9px}.segmented button{min-height:36px;padding:5px 8px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:11px;font-weight:750;cursor:pointer}.segmented button.active{background:var(--surface);color:var(--text);box-shadow:0 1px 4px rgba(25,28,24,.10)}
     .range-row{display:grid;grid-template-columns:38px 1fr 38px;gap:8px;align-items:center;margin-top:9px}.range-value{text-align:center;font-size:11px;font-weight:800}.round-small{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);border-radius:9px;background:var(--surface);cursor:pointer;font-size:18px}.round-small:hover{background:var(--surface-hover)}input[type=range]{width:100%;accent-color:var(--accent)}
     .toggle-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.switch{position:relative;display:inline-flex;flex:0 0 auto}.switch input{position:absolute;opacity:0;pointer-events:none}.switch-track{width:42px;height:24px;border-radius:999px;background:#c9cbc5;padding:3px;transition:background .16s ease}.switch-thumb{display:block;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.18);transition:transform .16s ease}.switch input:checked+.switch-track{background:var(--accent)}.switch input:checked+.switch-track .switch-thumb{transform:translateX(18px)}
@@ -41,7 +42,7 @@
     .toast{position:fixed;z-index:260;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translate(-50%,18px);max-width:min(420px,calc(100vw - 28px));padding:10px 13px;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow-md);font-size:12px;font-weight:650;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:translate(-50%,0)}
 
     /* Reader */
-    .reader-view{position:fixed;inset:0;z-index:200;display:none;background:#f8f8f5;color:#171816;overflow:hidden}.reader-view.open{display:block}.reader-scroller{position:absolute;inset:0;overflow:auto;overscroll-behavior:none;scrollbar-width:none;touch-action:pan-y}.reader-scroller::-webkit-scrollbar{display:none}.reader-content{width:min(840px,88vw);margin:0 auto;padding:38vh 0 62vh;font-size:var(--reader-font,52px);line-height:1.58;letter-spacing:.003em;white-space:pre-wrap;overflow-wrap:anywhere;transform-origin:center top}.reader-content.center{text-align:center}.reader-content.mirror{transform:scaleX(-1)}
+    .reader-view{position:fixed;inset:0;z-index:200;display:none;background:#f8f8f5;color:#171816;overflow:hidden}.reader-view.open{display:block}.reader-scroller{position:absolute;inset:0;overflow:auto;overscroll-behavior:none;scrollbar-width:none;touch-action:pan-y}.reader-navigation{position:absolute;z-index:212;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(520px,calc(100% - 24px));padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.96);box-shadow:var(--shadow-sm)}.reader-navigation-header{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:700}.reader-navigation output{font-variant-numeric:tabular-nums}.reader-navigation input{display:block;width:100%;min-height:36px;margin:3px 0 0;accent-color:var(--accent);touch-action:pan-y}.reader-view.paused .tap-hint{display:none}.reader-scroller::-webkit-scrollbar{display:none}.reader-content{width:min(840px,88vw);margin:0 auto;padding:38vh 0 62vh;font-size:var(--reader-font,52px);line-height:1.58;letter-spacing:.003em;white-space:pre-wrap;overflow-wrap:anywhere;transform-origin:center top}.reader-content.center{text-align:center}.reader-content.mirror{transform:scaleX(-1)}
     .cue-line{position:absolute;z-index:204;left:5vw;right:5vw;top:38vh;height:1px;background:color-mix(in srgb,var(--accent) 55%,transparent);pointer-events:none;opacity:.82}.cue-line::before{content:"";position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--accent)}.reader-view.hide-cue .cue-line{display:none}
     .reader-topbar{position:absolute;z-index:210;left:0;right:0;top:0;display:flex;align-items:center;gap:10px;padding:max(10px,env(safe-area-inset-top)) 12px 10px;background:linear-gradient(180deg,rgba(248,248,245,.98),rgba(248,248,245,.82),rgba(248,248,245,0));transition:opacity .2s ease}.reader-view.playing .reader-topbar{opacity:.28}.reader-view.playing .reader-topbar:hover{opacity:1}.reader-exit,.reader-icon-button{display:grid;place-items:center;width:42px;height:42px;border:1px solid color-mix(in srgb,var(--line) 80%,transparent);border-radius:12px;background:rgba(255,255,255,.82);cursor:pointer}.reader-exit svg,.reader-icon-button svg{width:20px;height:20px}.reader-status{flex:1;min-width:0;text-align:center}.reader-status strong{display:block;font-size:12px}.reader-status span{display:block;margin-top:1px;color:var(--muted);font-size:10px}.reader-time{font-variant-numeric:tabular-nums;white-space:nowrap}
     .reader-progress{position:absolute;z-index:211;left:0;right:0;bottom:0;height:4px;background:#dedfd9}.reader-progress span{display:block;height:100%;width:0;background:var(--accent)}
@@ -88,6 +89,13 @@
           </div>
         </div>
         <div class="script-wrap">
+          <div class="file-toolbar">
+            <button type="button" class="button" id="openTextButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h7l2 2h9l-3 11H3V7Zm0 0V4h7l2 3h7v2" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span data-i18n="openText">.txtを開く</span></button>
+            <input type="file" id="textFileInput" accept=".txt,text/plain" hidden>
+            <div class="file-name"><label for="fileNameInput" data-i18n="fileName">保存ファイル名</label><input type="text" id="fileNameInput" value="pocket-teleprompter.txt" maxlength="240" autocomplete="off" spellcheck="false"></div>
+            <button type="button" class="button" id="saveTextButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v4h16v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="saveText">.txtを保存</span></button>
+          </div>
+          <p class="file-status" id="fileStatus" role="status" aria-live="polite"></p>
           <textarea class="script-input" id="scriptInput" data-i18n-placeholder="scriptPlaceholder" placeholder="本日はご覧いただきありがとうございます。&#10;&#10;ここに原稿を貼り付けてください。"></textarea>
           <div class="editor-actions"><span class="save-status" id="saveStatus" aria-live="polite" data-i18n="savedLocally">端末内に自動保存</span><button type="button" class="text-button danger" id="clearButton" data-i18n="clearScript">原稿を消去</button></div>
         </div>
@@ -127,7 +135,7 @@
 
   <footer><div class="footer-inner"><p data-i18n="footerPrivacy">原稿と設定はこの端末内だけで扱われます。</p><p>HTML Apps · Pocket Teleprompter</p></div></footer>
 
-  <div class="reader-view" id="readerView" aria-hidden="true">
+  <div class="reader-view" id="readerView" aria-hidden="true" tabindex="-1">
     <div class="reader-scroller" id="readerScroller"><div class="reader-content" id="readerContent"></div></div>
     <div class="cue-line" aria-hidden="true"></div>
     <div class="reader-topbar">
@@ -139,6 +147,10 @@
     </div>
     <div class="reader-progress"><span id="readerProgressBar"></span></div>
     <div class="reader-pause-card"><svg viewBox="0 0 24 24" fill="none"><path d="M8 6h3v12H8zM13 6h3v12h-3z" fill="currentColor"/></svg><strong data-i18n="paused">一時停止</strong><span data-i18n="tapToResume">中央をタップして再開</span></div>
+    <div class="reader-navigation" id="readerNavigation" hidden>
+      <div class="reader-navigation-header"><label id="readingPositionLabel" for="readingPosition" data-i18n="readingPosition">読み位置</label><output id="readingPositionValue" for="readingPosition">0%</output></div>
+      <input id="readingPosition" type="range" min="0" max="100" step="1" value="0" disabled>
+    </div>
     <div class="tap-hint" id="tapHint"><div data-i18n="slowerTap">左：遅く</div><div data-i18n="pauseTap">中央：停止 / 再開</div><div data-i18n="fasterTap">右：速く</div></div>
     <div class="reader-feedback" id="readerFeedback"></div>
     <div class="countdown" id="countdownLayer"><div class="countdown-number" id="countdownNumber">3</div></div>
@@ -151,6 +163,8 @@
     <div class="dialog-body">
       <!-- APP:HELP:BEGIN -->
       <h3 data-i18n="helpBasicTitle">基本操作</h3><ul><li data-i18n="helpBasic1">原稿を貼り付け、速度や文字サイズを調整して「テレプロンプターを開始」を押します。</li><li data-i18n="helpBasic2">本番画面の中央をタップすると停止・再開。左端で遅く、右端で速くできます。</li><li data-i18n="helpBasic3">「目標時間」では、原稿の最後が指定時間に来るようスクロール速度を自動計算します。</li></ul>
+      <p data-i18n="helpPosition">一時停止中は「読み位置」で0〜100%の位置へ移動できます。経過時間はそのままで、目標時間モードは残り時間から速度を再計算します。100%で終了し、「最初から」でやり直せます。位置は保存されません。スライダー操作中は矢印キーで位置を調整できます。</p>
+      <h3 data-i18n="helpFilesTitle">原稿ファイル</h3><p data-i18n="helpFilesText">「.txtを開く」で1 MiBまでのUTF-8テキストを読み込めます。現在の原稿と異なる場合は置き換える前に確認します。改行は編集用に統一され、文字や段落はそのまま残ります。「.txtを保存」で現在の原稿をUTF-8で保存できます。ファイル名は変更でき、原稿は外部送信されません。</p>
       <h3 data-i18n="helpDisplayTitle">表示</h3><p data-i18n="helpDisplayText">左右反転はハーフミラー式のテレプロンプター向けです。視線ガイドは読み位置をカメラ寄りに保つための補助線です。全画面が使えないブラウザーでも固定の本番画面は動作します。</p>
       <h3 data-i18n="helpPrivacyTitle">プライバシー</h3><p data-i18n="helpPrivacyText">原稿と設定はLocalStorageが利用できる場合のみ端末内へ自動保存されます。外部送信、解析、広告用通信、カメラ・マイク・位置情報の利用はありません。</p>
       <h3 data-i18n="helpLimitTitle">注意事項</h3><ul><li data-i18n="helpLimit1">画面起動ロックやFull Screen APIはブラウザーや開き方によって利用できない場合があります。その場合もテレプロンプター本体は使えます。</li><li data-i18n="helpLimit2">共有端末では原稿がLocalStorageに残る可能性があります。利用後に「原稿を消去」するかブラウザーのサイトデータを削除してください。</li><li data-i18n="helpLimit3">目標時間はスクロール完了時刻の目安です。実際の話速や間の取り方までは判定しません。</li></ul>
@@ -163,20 +177,29 @@
     <div class="dialog-body"><p id="confirmMessage" data-i18n="clearConfirmMessage">端末内に保存された原稿も削除されます。この操作は元に戻せません。</p><div class="confirm-actions"><button type="button" class="button" id="confirmCancel" data-i18n="cancel">キャンセル</button><button type="button" class="button danger" id="confirmOk" data-i18n="clear">消去する</button></div></div>
   </dialog>
 
+  <dialog id="replaceDialog" class="confirm-dialog" aria-labelledby="replaceTitle" aria-describedby="replaceMessage">
+    <div class="dialog-header"><h2 id="replaceTitle" data-i18n="replaceTitle">原稿を置き換えますか？</h2><button type="button" class="dialog-close" id="replaceClose" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+    <div class="dialog-body"><p id="replaceMessage" data-i18n="replaceMessage">現在の原稿と端末内の自動保存を、選んだファイルの内容で置き換えます。残したい原稿は先に.txtで保存してください。</p><div class="confirm-actions"><button type="button" class="button" id="replaceCancel" data-i18n="cancel" autofocus>キャンセル</button><button type="button" class="button primary" id="replaceOk" data-i18n="replace">置き換える</button></div></div>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <style>.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}</style>
 
   <script id="appConfig" type="application/json">{"$schema":"./schemas/app-config.schema.json","name":"Pocket Teleprompter","nameJa":"Pocket Teleprompter","slug":"pocket-teleprompter","version":"1.0.0","description":"A privacy-friendly, installation-free teleprompter that runs entirely in the browser.","descriptionJa":"原稿を貼り付けてすぐ使える、インストール不要・端末内処理のテレプロンプターです。","defaultLanguage":"auto","repository":{"owner":"ttomohisa","name":"htmlapps-pocket-teleprompter"},"build":{"output":"dist/index.html","blockRuntimeNetwork":true,"selfExtract":{"enabled":true,"output":"dist/index.self-extract.html"}}}</script>
-  <script id="buildManifest" type="application/json">{"name":"Pocket Teleprompter","version":"1.0.0","generatedAt":"2026-08-23T14:23:34.5469198+00:00","dependencyCount":0,"source":"src/index.template.html"}</script>
+  <script id="buildManifest" type="application/json">{"name":"Pocket Teleprompter","version":"1.0.0","generatedAt":"2026-10-05T13:20:50.2398367+00:00","dependencyCount":0,"source":"src/index.template.html"}</script>
   <script id="embeddedAssetBundle" type="application/octet-stream">e30=</script>
   <script>
   (()=>{
     'use strict';
     const I18N={
       ja:{
+        readingPosition:'読み位置',helpPosition:'一時停止中は「読み位置」で0〜100%の位置へ移動できます。経過時間はそのままで、目標時間モードは残り時間から速度を再計算します。100%で終了し、「最初から」でやり直せます。位置は保存されません。スライダー操作中は矢印キーで位置を調整できます。',
+        openText:'.txtを開く',saveText:'.txtを保存',fileName:'保存ファイル名',close:'閉じる',replaceTitle:'原稿を置き換えますか？',replaceMessage:'現在の原稿と端末内の自動保存を、選んだファイルの内容で置き換えます。残したい原稿は先に.txtで保存してください。',replace:'置き換える',fileReading:'ファイルを読み込んでいます…',fileOpened:'原稿ファイルを開きました。',fileReview:'置き換えるか確認してください。',fileCanceled:'読み込みをキャンセルしました。現在の原稿はそのままです。',fileType:'.txtファイルを選んでください。',fileLarge:'1 MiB（1,048,576バイト）以下のファイルを選んでください。',fileInvalid:'UTF-8テキストとして読み込めません。UTF-8で保存した.txtファイルを選んでください。',fileEmpty:'ファイルに原稿がありません。現在の原稿はそのままです。',fileReadFailed:'ファイルを読み込めませんでした。もう一度選んでください。',fileDownloaded:'UTF-8テキストのダウンロードを開始しました。',fileSaveFailed:'保存を開始できませんでした。もう一度お試しください。',helpFilesTitle:'原稿ファイル',helpFilesText:'「.txtを開く」で1 MiBまでのUTF-8テキストを読み込めます。現在の原稿と異なる場合は置き換える前に確認します。改行は編集用に統一され、文字や段落はそのまま残ります。「.txtを保存」で現在の原稿をUTF-8で保存できます。ファイル名は変更でき、原稿は外部送信されません。',
         brandMeta:'原稿を貼って、すぐ読む。',pageTitle:'原稿を貼るだけ。スマホがテレプロンプターに。',pageLead:'動画撮影、スピーチ、プレゼン練習に。原稿は端末内に保存され、外部へ送信されません。',localOnly:'端末内だけで処理',scriptTitle:'原稿',scriptHelp:'ここに貼り付けるか入力してください。自動保存されます。',scriptPlaceholder:'本日はご覧いただきありがとうございます。\n\nここに原稿を貼り付けてください。',characters:'文字',lines:'行',estimated:'目安時間',savedLocally:'端末内に自動保存',savedNow:'保存しました',clearScript:'原稿を消去',readingSettings:'読み上げ設定',paceMode:'スクロールの決め方',paceModeHelp:'通常の速度指定か、読み切りたい時間から自動計算します。',speedMode:'速度',durationMode:'目標時間',fontSize:'文字サイズ',fontSizeHelp:'本番画面の文字サイズを調整します。',alignment:'文字揃え',alignLeft:'左',alignCenter:'中央',mirror:'左右反転',mirrorHelp:'ハーフミラー式プロンプター向け。',cueLine:'視線ガイド',cueLineHelp:'カメラに近い位置へ薄いガイド線を表示。',countdown:'3秒カウントダウン',countdownHelp:'開始前に姿勢を整える時間を作ります。',wakeLock:'画面を消さない',wakeLockHelp:'対応環境では再生中に画面スリープを防ぎます。',fullscreen:'全画面を試す',fullscreenHelp:'未対応でもテレプロンプター自体は利用できます。',startTeleprompter:'テレプロンプターを開始',footerPrivacy:'原稿と設定はこの端末内だけで扱われます。',ready:'準備完了',playing:'再生中',paused:'一時停止',tapToResume:'中央をタップして再開',slowerTap:'左：遅く',pauseTap:'中央：停止 / 再開',fasterTap:'右：速く',finished:'最後まで到達しました',finishedHelp:'もう一度読むか、原稿画面へ戻れます。',restart:'最初から',backToEditor:'原稿へ戻る',helpTitle:'使い方と注意事項',helpBasicTitle:'基本操作',helpBasic1:'原稿を貼り付け、速度や文字サイズを調整して「テレプロンプターを開始」を押します。',helpBasic2:'本番画面の中央をタップすると停止・再開。左端で遅く、右端で速くできます。',helpBasic3:'「目標時間」では、原稿の最後が指定時間に来るようスクロール速度を自動計算します。',helpDisplayTitle:'表示',helpDisplayText:'左右反転はハーフミラー式のテレプロンプター向けです。視線ガイドは読み位置をカメラ寄りに保つための補助線です。全画面が使えないブラウザーでも固定の本番画面は動作します。',helpPrivacyTitle:'プライバシー',helpPrivacyText:'原稿と設定はLocalStorageが利用できる場合のみ端末内へ自動保存されます。外部送信、解析、広告用通信、カメラ・マイク・位置情報の利用はありません。',helpLimitTitle:'注意事項',helpLimit1:'画面起動ロックやFull Screen APIはブラウザーや開き方によって利用できない場合があります。その場合もテレプロンプター本体は使えます。',helpLimit2:'共有端末では原稿がLocalStorageに残る可能性があります。利用後に「原稿を消去」するかブラウザーのサイトデータを削除してください。',helpLimit3:'目標時間はスクロール完了時刻の目安です。実際の話速や間の取り方までは判定しません。',clearConfirmTitle:'原稿を消去しますか？',clearConfirmMessage:'端末内に保存された原稿も削除されます。この操作は元に戻せません。',cancel:'キャンセル',clear:'消去する',emptyScript:'原稿を入力してから開始してください。',cleared:'原稿を消去しました',wakeUnavailable:'この環境では画面起動ロックを利用できません',fullscreenUnavailable:'この環境では全画面表示を利用できません',slower:'少し遅く',faster:'少し速く',targetLonger:'目標時間を30秒長く',targetShorter:'目標時間を30秒短く',endReached:'原稿の最後まで到達しました',languageName:'EN'
       },
       en:{
+        readingPosition:'Reading position',helpPosition:'While paused, use Reading position to move from 0–100% without resetting elapsed reading time. Target time recalculates the pace for the time left. At 100% the session ends; use Restart to begin again. Position is not saved. Arrow keys adjust position when the slider is focused.',
+        openText:'Open .txt',saveText:'Save .txt',fileName:'Download filename',close:'Close',replaceTitle:'Replace the script?',replaceMessage:'This replaces the current script and its local auto-save with the selected file. Save the current script as .txt first if you want to keep it.',replace:'Replace',fileReading:'Reading file…',fileOpened:'Script file opened.',fileReview:'Confirm whether to replace the current script.',fileCanceled:'Import canceled. Your current script is unchanged.',fileType:'Choose a .txt file.',fileLarge:'Choose a file of 1 MiB (1,048,576 bytes) or less.',fileInvalid:'This is not valid UTF-8 text. Choose a .txt file saved as UTF-8.',fileEmpty:'The file contains no script. Your current script is unchanged.',fileReadFailed:'Could not read the file. Please select it again.',fileDownloaded:'UTF-8 text download started.',fileSaveFailed:'Could not start the download. Please try again.',helpFilesTitle:'Script files',helpFilesText:'Open .txt reads UTF-8 text up to 1 MiB, with or without a BOM. Replacing different existing text asks for confirmation. Line endings are normalized for editing; characters and paragraphs are preserved. Save .txt downloads the current script as UTF-8 with an editable filename. Files are never uploaded.',
         brandMeta:'Paste your script. Start reading.',pageTitle:'Paste a script. Turn your phone into a teleprompter.',pageLead:'For video, speeches, and rehearsal. Your script stays on this device and is never uploaded.',localOnly:'Processed on device',scriptTitle:'Script',scriptHelp:'Paste or type here. It is saved automatically on this device.',scriptPlaceholder:'Thanks for watching.\n\nPaste your script here.',characters:'Characters',lines:'Lines',estimated:'Est. time',savedLocally:'Auto-saved on device',savedNow:'Saved',clearScript:'Clear script',readingSettings:'Reading settings',paceMode:'Scroll pacing',paceModeHelp:'Choose a simple speed or calculate the rate from a target finish time.',speedMode:'Speed',durationMode:'Target time',fontSize:'Text size',fontSizeHelp:'Adjust the text size in the reader.',alignment:'Alignment',alignLeft:'Left',alignCenter:'Center',mirror:'Mirror horizontally',mirrorHelp:'For beam-splitter teleprompter rigs.',cueLine:'Eye-line guide',cueLineHelp:'Show a subtle guide near the camera eye-line.',countdown:'3-second countdown',countdownHelp:'Gives you a moment to settle before scrolling starts.',wakeLock:'Keep screen awake',wakeLockHelp:'Prevents sleep while playing when supported.',fullscreen:'Try fullscreen',fullscreenHelp:'The teleprompter still works when fullscreen is unavailable.',startTeleprompter:'Start teleprompter',footerPrivacy:'Your script and settings stay on this device.',ready:'Ready',playing:'Playing',paused:'Paused',tapToResume:'Tap the center to resume',slowerTap:'Left: slower',pauseTap:'Center: pause / resume',fasterTap:'Right: faster',finished:'Reached the end',finishedHelp:'Restart the script or return to the editor.',restart:'Restart',backToEditor:'Back to editor',helpTitle:'How to use & notes',helpBasicTitle:'Basic use',helpBasic1:'Paste a script, adjust speed and text size, then tap “Start teleprompter”.',helpBasic2:'In the reader, tap the center to pause/resume. Tap the left edge to slow down and the right edge to speed up.',helpBasic3:'Target time automatically calculates the scroll rate so the end of the script arrives at the selected duration.',helpDisplayTitle:'Display',helpDisplayText:'Horizontal mirror mode is for beam-splitter rigs. The eye-line guide helps keep your reading position near the camera. The fixed reader works even if the browser cannot enter fullscreen.',helpPrivacyTitle:'Privacy',helpPrivacyText:'The script and preferences are stored only in localStorage when available. There is no upload, analytics, ad tracking, camera, microphone, or location access.',helpLimitTitle:'Important notes',helpLimit1:'Screen Wake Lock and Fullscreen APIs vary by browser and page context. The core teleprompter remains usable if either feature is unavailable.',helpLimit2:'On shared devices, the script may remain in localStorage. Use “Clear script” after use or clear the browser site data.',helpLimit3:'Target time controls when the scroll reaches the end. It cannot measure your actual speaking pace or pauses.',clearConfirmTitle:'Clear the script?',clearConfirmMessage:'This also removes the locally saved script. This cannot be undone.',cancel:'Cancel',clear:'Clear',emptyScript:'Enter a script before starting.',cleared:'Script cleared',wakeUnavailable:'Screen Wake Lock is not available in this environment',fullscreenUnavailable:'Fullscreen is not available in this environment',slower:'A little slower',faster:'A little faster',targetLonger:'Target time +30 sec',targetShorter:'Target time -30 sec',endReached:'Reached the end of the script',languageName:'日本語'
       }
     };
@@ -190,43 +213,151 @@
       text:typeof stored.text==='string'?stored.text:'',paceMode:stored.paceMode==='duration'?'duration':'speed',
       speed:clamp(Number(stored.speed)||1,.5,2),duration:clamp(Number(stored.duration)||180,60,1200),fontSize:clamp(Number(stored.fontSize)||52,30,82),
       align:stored.align==='center'?'center':'left',mirror:!!stored.mirror,cue:stored.cue!==false,countdown:stored.countdown!==false,wake:stored.wake!==false,fullscreen:stored.fullscreen!==false,
-      readerOpen:false,playing:false,ended:false,raf:0,lastFrame:0,elapsedMs:0,startScroll:0,endScroll:0,pxPerSec:36,wakeLock:null,feedbackTimer:0,tapHintTimer:0,saveTimer:0
+      readerOpen:false,starting:false,readerGeneration:0,measureRaf:0,playing:false,ended:false,raf:0,lastFrame:0,elapsedMs:0,startScroll:0,endScroll:0,readingRatio:0,travelHeight:0,viewportHeight:0,pxPerSec:36,wakeLock:null,feedbackTimer:0,tapHintTimer:0,saveTimer:0
     };
+
+    const MAX_TEXT_BYTES=1048576,DEFAULT_FILE_NAME='pocket-teleprompter.txt';
+    let importGeneration=0,pendingImport=null;
+
+    function fileStatus(key){$('fileStatus').textContent=key?t(key):''}
+    function cancelImport(announce=false){
+      // A newer selection, edit, Clear, or reader start owns the editor now.
+      importGeneration++;pendingImport=null;
+      if($('replaceDialog').open)$('replaceDialog').close();
+      fileStatus(announce?'fileCanceled':'');
+    }
+    function textFileName(value){
+      let name=String(value||'').split(/[\\/]/).pop().replace(/[\x00-\x1f\x7f\u202a-\u202e\u2066-\u2069]/g,'').replace(/[<>:"|?*]/g,'_').trim();
+      name=name.replace(/\.txt$/i,'').replace(/[. ]+$/g,'').trim();
+      if(!name)return DEFAULT_FILE_NAME;
+      if(/^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/i.test(name))name='_'+name;
+      // Leave room for .txt within common byte-based filename limits.
+      const encoder=new TextEncoder();let bounded='',bytes=0;
+      for(const character of [...name].slice(0,100)){const size=encoder.encode(character).length;if(bytes+size>236)break;bounded+=character;bytes+=size}
+      return bounded.replace(/[. ]+$/g,'')+'.txt';
+    }
+    function applyImportedText(imported){
+      if(imported.generation!==importGeneration||state.readerOpen)return;
+      pendingImport=null;$('replaceDialog').close();
+      state.text=imported.text;$('scriptInput').value=state.text;$('fileNameInput').value=imported.name;
+      clearTimeout(state.saveTimer);save();updateStats();fileStatus('fileOpened');$('scriptInput').focus();
+    }
+    async function openTextFile(file){
+      cancelImport();const generation=importGeneration;
+      if(!file||state.readerOpen)return;
+      if(!/\.txt$/i.test(file.name)){fileStatus('fileType');return}
+      if(file.size>MAX_TEXT_BYTES){fileStatus('fileLarge');return}
+      fileStatus('fileReading');
+      let bytes;
+      try{bytes=await file.arrayBuffer()}catch{if(generation===importGeneration)fileStatus('fileReadFailed');return}
+      if(generation!==importGeneration||state.readerOpen)return;
+      if(bytes.byteLength>MAX_TEXT_BYTES){fileStatus('fileLarge');return}
+      let text;
+      try{text=new TextDecoder('utf-8',{fatal:true}).decode(bytes).replace(/\r\n?/g,'\n')}catch{fileStatus('fileInvalid');return}
+      if(text.includes('\0')){fileStatus('fileInvalid');return}
+      if(!text.trim()){fileStatus('fileEmpty');return}
+      const imported={text,name:textFileName(file.name),generation};
+      if(state.text.trim()&&state.text!==text){pendingImport=imported;fileStatus('fileReview');$('replaceDialog').showModal()}
+      else applyImportedText(imported);
+    }
+    function saveTextFile(){
+      if(!state.text.trim()){toast(t('emptyScript'));return}
+      let url,link;
+      try{
+        const name=textFileName($('fileNameInput').value);
+        url=URL.createObjectURL(new Blob([state.text],{type:'text/plain;charset=utf-8'}));
+        link=document.createElement('a');link.href=url;link.download=name;document.body.append(link);link.click();
+        $('fileNameInput').value=name;fileStatus('fileDownloaded');
+      }catch{fileStatus('fileSaveFailed')}
+      finally{link?.remove();if(url)setTimeout(()=>URL.revokeObjectURL(url),1000)}
+    }
 
     function clamp(v,min,max){return Math.min(max,Math.max(min,v))}
     function t(key){return I18N[state.lang][key]??key}
     function formatTime(sec){if(!Number.isFinite(sec)||sec<0)return '—';sec=Math.round(sec);const m=Math.floor(sec/60),s=sec%60;return `${m}:${String(s).padStart(2,'0')}`}
     function save(){try{localStorage.setItem(storageKey,JSON.stringify({lang:state.lang,text:state.text,paceMode:state.paceMode,speed:state.speed,duration:state.duration,fontSize:state.fontSize,align:state.align,mirror:state.mirror,cue:state.cue,countdown:state.countdown,wake:state.wake,fullscreen:state.fullscreen}));$('saveStatus').textContent=t('savedNow');clearTimeout(state.saveTimer);state.saveTimer=setTimeout(()=>$('saveStatus').textContent=t('savedLocally'),1000)}catch{$('saveStatus').textContent=t('savedLocally')}}
     function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),1900)}
-    function updateLanguage(){document.documentElement.lang=state.lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(I18N[state.lang][key]!=null)el.textContent=t(key)});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder)});$('languageButton').textContent=t('languageName');$('helpButton').ariaLabel=t('helpTitle');updateSummary();updateReaderLabels()}
-    function updateStats(){const text=state.text;const chars=[...text].length;const lines=text?text.split(/\r?\n/).length:0;$('charCount').textContent=chars.toLocaleString();$('lineCount').textContent=lines.toLocaleString();$('estimateDisplay').textContent=estimateEditorTime()}
+    function updateLanguage(){document.documentElement.lang=state.lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(I18N[state.lang][key]!=null)el.textContent=t(key)});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder)});$('languageButton').textContent=t('languageName');$('helpButton').ariaLabel=t('helpTitle');$('replaceClose').ariaLabel=t('close');updateSummary();updateReaderLabels()}
+    function updateStats(){$('saveTextButton').disabled=!state.text.trim();const text=state.text;const chars=[...text].length;const lines=text?text.split(/\r?\n/).length:0;$('charCount').textContent=chars.toLocaleString();$('lineCount').textContent=lines.toLocaleString();$('estimateDisplay').textContent=estimateEditorTime()}
     function estimateEditorTime(){if(!state.text.trim())return '—';if(state.paceMode==='duration')return formatTime(state.duration);const units=Math.max(1,estimateUnits(state.text));const sec=units/(230*state.speed)*60;return formatTime(sec)}
     function estimateUnits(text){const cjk=(text.match(/[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/g)||[]).length;const latin=text.replace(/[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/g,' ').trim().match(/[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g)?.length||0;return latin+cjk/2.1}
     function updateSummary(){const speedLabel=state.paceMode==='duration'?`${t('durationMode')} ${formatTime(state.duration)}`:`${state.speed.toFixed(1)}×`;$('modeSummary').textContent=speedLabel;$('fontSummary').textContent=`${state.fontSize} px`;$('speedValue').textContent=`${state.speed.toFixed(1)}×`;$('durationValue').textContent=formatTime(state.duration);$('fontValue').textContent=state.fontSize;$('speedControls').hidden=state.paceMode!=='speed';$('speedValue').hidden=state.paceMode!=='speed';$('durationControls').hidden=state.paceMode!=='duration';$('durationValue').hidden=state.paceMode!=='duration';document.querySelectorAll('#paceModeButtons button').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.paceMode));document.querySelectorAll('#alignButtons button').forEach(b=>b.classList.toggle('active',b.dataset.align===state.align));$('speedRange').value=state.speed;$('durationRange').value=state.duration;$('fontRange').value=state.fontSize;$('mirrorToggle').checked=state.mirror;$('cueToggle').checked=state.cue;$('countdownToggle').checked=state.countdown;$('wakeToggle').checked=state.wake;$('fullscreenToggle').checked=state.fullscreen;updateStats()}
-    function updateReaderLabels(){if(!state.readerOpen)return;$('readerStateLabel').textContent=state.ended?t('finished'):(state.playing?t('playing'):t('paused'));$('readerPaceLabel').textContent=state.paceMode==='duration'?`${t('durationMode')} ${formatTime(state.duration)}`:`${state.speed.toFixed(1)}×`}
+    function updateReaderLabels(){updatePositionControl();if(!state.readerOpen)return;$('readerStateLabel').textContent=state.ended?t('finished'):(state.playing?t('playing'):t('paused'));$('readerPaceLabel').textContent=state.paceMode==='duration'?`${t('durationMode')} ${formatTime(state.duration)}`:`${state.speed.toFixed(1)}×`}
 
-    function prepareReader(){
-      const reader=$('readerContent');reader.textContent=state.text.trim();reader.style.setProperty('--reader-font',`${state.fontSize}px`);reader.style.fontSize=`${state.fontSize}px`;reader.classList.toggle('center',state.align==='center');reader.classList.toggle('mirror',state.mirror);$('readerView').classList.toggle('hide-cue',!state.cue);$('readerScroller').scrollTop=0;state.elapsedMs=0;state.ended=false;state.lastFrame=0;state.startScroll=0;$('finishLayer').classList.remove('show');$('readerProgressBar').style.width='0%';$('elapsedDisplay').textContent='0:00';requestAnimationFrame(calculateTravel)
+    function readerProgress(){if(state.ended)return 1;return clamp($('readerScroller').scrollTop/Math.max(1,state.endScroll),0,1)}
+    function updatePositionControl(){
+      const available=state.readerOpen&&!state.starting&&!state.playing&&!state.ended;
+      const percent=Math.round(readerProgress()*100);
+      $('readerNavigation').hidden=!available;$('readingPosition').disabled=!available;
+      $('readingPosition').value=percent;$('readingPositionValue').textContent=`${percent}%`;
     }
-    function calculateTravel(){const scroller=$('readerScroller'),content=$('readerContent');const cueY=scroller.clientHeight*.38;const style=getComputedStyle(content);const bottomPad=parseFloat(style.paddingBottom)||0;state.endScroll=Math.max(1,content.offsetTop+content.scrollHeight-bottomPad-cueY);applyPace();updateTimeDisplays()}
-    function applyPace(){if(state.paceMode==='duration'){const remainingPx=Math.max(1,state.endScroll-$('readerScroller').scrollTop);const remainingTarget=Math.max(5,state.duration-state.elapsedMs/1000);state.pxPerSec=remainingPx/remainingTarget}else{state.pxPerSec=36*state.speed}}
-    async function openReader(){if(!state.text.trim()){toast(t('emptyScript'));$('scriptInput').focus();return}state.readerOpen=true;$('readerView').classList.add('open','paused');$('readerView').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';prepareReader();showTapHint();if(state.fullscreen){try{if(document.documentElement.requestFullscreen&&!document.fullscreenElement)await document.documentElement.requestFullscreen()}catch{toast(t('fullscreenUnavailable'))}}if(state.countdown)await runCountdown();startPlayback();if(state.wake)requestWakeLock()}
-    async function runCountdown(){const layer=$('countdownLayer');layer.classList.add('show');for(let n=3;n>=1;n--){$('countdownNumber').textContent=n;await new Promise(r=>setTimeout(r,700))}layer.classList.remove('show')}
-    function startPlayback(){if(!state.readerOpen||state.ended)return;state.playing=true;state.lastFrame=performance.now();$('readerView').classList.add('playing');$('readerView').classList.remove('paused');updateReaderLabels();cancelAnimationFrame(state.raf);state.raf=requestAnimationFrame(tick)}
-    function pausePlayback(){if(!state.readerOpen)return;state.playing=false;$('readerView').classList.remove('playing');$('readerView').classList.add('paused');cancelAnimationFrame(state.raf);updateReaderLabels();$('readerLive').textContent=t('paused')}
+    function prepareReader(){
+      const reader=$('readerContent');reader.textContent=state.text.trim();reader.style.setProperty('--reader-font',`${state.fontSize}px`);reader.style.fontSize=`${state.fontSize}px`;reader.classList.toggle('center',state.align==='center');reader.classList.toggle('mirror',state.mirror);$('readerView').classList.toggle('hide-cue',!state.cue);$('readerScroller').scrollTop=0;state.elapsedMs=0;state.ended=false;state.lastFrame=0;state.startScroll=0;$('finishLayer').classList.remove('show');calculateTravel(0);
+      // A late layout callback must not reset a new session or a newer seek.
+      const generation=state.readerGeneration;cancelAnimationFrame(state.measureRaf);
+      state.measureRaf=requestAnimationFrame(()=>{if(state.readerOpen&&generation===state.readerGeneration)calculateTravel()});
+    }
+    function travelChanged(){return state.travelHeight!==$('readerContent').scrollHeight||state.viewportHeight!==$('readerScroller').clientHeight}
+    function calculateTravel(ratio=state.readingRatio){
+      const scroller=$('readerScroller'),content=$('readerContent');const cueY=scroller.clientHeight*.38;const style=getComputedStyle(content);const bottomPad=parseFloat(style.paddingBottom)||0;
+      state.endScroll=Math.max(1,content.offsetTop+content.scrollHeight-bottomPad-cueY);state.travelHeight=content.scrollHeight;state.viewportHeight=scroller.clientHeight;
+      // Restore the normalized position before calculating remaining distance/time.
+      scroller.scrollTop=clamp(ratio,0,1)*state.endScroll;applyPace();updateTimeDisplays();
+    }
+    function applyPace(){if(state.paceMode==='duration'){const remainingPx=Math.max(0,state.endScroll-$('readerScroller').scrollTop);const remainingTarget=Math.max(5,state.duration-state.elapsedMs/1000);state.pxPerSec=remainingPx/remainingTarget}else{state.pxPerSec=36*state.speed}}
+    async function openReader(){
+      if(state.readerOpen)return;cancelImport();if(!state.text.trim()){toast(t('emptyScript'));$('scriptInput').focus();return}
+      const generation=++state.readerGeneration;state.readerOpen=true;state.starting=true;
+      $('readerView').classList.add('open','paused');$('readerView').setAttribute('aria-hidden','false');$('readerView').focus({preventScroll:true});document.body.style.overflow='hidden';prepareReader();showTapHint();
+      if(state.fullscreen){try{if(document.documentElement.requestFullscreen&&!document.fullscreenElement)await document.documentElement.requestFullscreen()}catch{if(generation===state.readerGeneration)toast(t('fullscreenUnavailable'))}}
+      if(!state.readerOpen||generation!==state.readerGeneration)return;
+      if(state.countdown)await runCountdown(generation);
+      if(!state.readerOpen||generation!==state.readerGeneration)return;
+      calculateTravel();state.starting=false;startPlayback();if(state.wake)requestWakeLock();
+    }
+    async function runCountdown(generation){
+      const layer=$('countdownLayer');layer.classList.add('show');
+      for(let n=3;n>=1;n--){$('countdownNumber').textContent=n;await new Promise(r=>setTimeout(r,700));if(!state.readerOpen||generation!==state.readerGeneration)return}
+      layer.classList.remove('show');
+    }
+    function startPlayback(){if(!state.readerOpen||state.starting||state.ended)return;if(travelChanged())calculateTravel();applyPace();state.playing=true;state.lastFrame=performance.now();$('readerView').classList.add('playing');$('readerView').classList.remove('paused');updateReaderLabels();cancelAnimationFrame(state.raf);state.raf=requestAnimationFrame(tick)}
+    function pausePlayback(){if(!state.readerOpen||state.starting)return;if(travelChanged())calculateTravel();state.playing=false;$('readerView').classList.remove('playing');$('readerView').classList.add('paused');cancelAnimationFrame(state.raf);updateTimeDisplays();updateReaderLabels();$('readerLive').textContent=t('paused')}
     function togglePlayback(){state.playing?pausePlayback():startPlayback()}
-    function tick(now){if(!state.playing)return;const dt=Math.min(80,Math.max(0,now-state.lastFrame));state.lastFrame=now;state.elapsedMs+=dt;const scroller=$('readerScroller');scroller.scrollTop=Math.min(state.endScroll,scroller.scrollTop+state.pxPerSec*(dt/1000));updateTimeDisplays();if(scroller.scrollTop>=state.endScroll-1){finishReader();return}state.raf=requestAnimationFrame(tick)}
-    function updateTimeDisplays(){if(!state.readerOpen)return;const scroll=$('readerScroller').scrollTop;const remainingPx=Math.max(0,state.endScroll-scroll);const remainingSec=state.pxPerSec>0?remainingPx/state.pxPerSec:0;const progress=clamp(scroll/state.endScroll*100,0,100);$('elapsedDisplay').textContent=formatTime(state.elapsedMs/1000);$('remainingDisplay').textContent=formatTime(remainingSec);$('readerProgressBar').style.width=`${progress}%`}
-    function finishReader(){state.playing=false;state.ended=true;$('readerView').classList.remove('playing');$('readerView').classList.add('paused');$('finishLayer').classList.add('show');$('readerProgressBar').style.width='100%';updateReaderLabels();$('readerLive').textContent=t('endReached');releaseWakeLock()}
-    function restartReader(){state.ended=false;$('finishLayer').classList.remove('show');$('readerScroller').scrollTop=0;state.elapsedMs=0;calculateTravel();startPlayback()}
-    async function closeReader(){state.readerOpen=false;state.playing=false;cancelAnimationFrame(state.raf);releaseWakeLock();$('readerView').classList.remove('open','playing','paused');$('readerView').setAttribute('aria-hidden','true');document.body.style.overflow='';try{if(document.fullscreenElement)await document.exitFullscreen()}catch{}$('startButton').focus({preventScroll:true})}
+    function tick(now){if(!state.playing)return;if(travelChanged())calculateTravel();const dt=Math.min(80,Math.max(0,now-state.lastFrame));state.lastFrame=now;state.elapsedMs+=dt;const scroller=$('readerScroller');scroller.scrollTop=Math.min(state.endScroll,scroller.scrollTop+state.pxPerSec*(dt/1000));updateTimeDisplays();if(scroller.scrollTop>=state.endScroll-1){finishReader();return}state.raf=requestAnimationFrame(tick)}
+    function updateTimeDisplays(){if(!state.readerOpen)return;const scroll=$('readerScroller').scrollTop;const remainingPx=state.ended?0:Math.max(0,state.endScroll-scroll);const remainingSec=state.pxPerSec>0?remainingPx/state.pxPerSec:0;const progress=readerProgress()*100;state.readingRatio=progress/100;$('elapsedDisplay').textContent=formatTime(state.elapsedMs/1000);$('remainingDisplay').textContent=formatTime(remainingSec);$('readerProgressBar').style.width=`${progress}%`;updatePositionControl()}
+    function syncPausedPosition(){
+      if(!state.readerOpen||state.starting||state.playing||state.ended)return;
+      // Reflow may clamp scrollTop before resize/scroll events are delivered.
+      if(travelChanged())calculateTravel();
+      const scroller=$('readerScroller');scroller.scrollTop=clamp(scroller.scrollTop,0,state.endScroll);
+      applyPace();updateTimeDisplays();
+      const atPhysicalEnd=scroller.scrollTop>=scroller.scrollHeight-scroller.clientHeight;
+      if(scroller.scrollTop>=state.endScroll||(atPhysicalEnd&&scroller.scrollTop>=state.endScroll-1))finishReader();
+    }
+    function seekReader(percent){
+      if(!state.readerOpen||state.starting||state.playing||state.ended||!Number.isFinite(percent))return;
+      if(travelChanged())calculateTravel();
+      const bounded=clamp(percent,0,100);$('readerScroller').scrollTop=bounded/100*state.endScroll;
+      // Native scrolling may stop a fractional pixel before the measured endpoint.
+      if(bounded===100)finishReader();else syncPausedPosition();
+    }
+    function finishReader(){state.playing=false;state.ended=true;cancelAnimationFrame(state.raf);$('readerScroller').scrollTop=state.endScroll;$('readerView').classList.remove('playing');$('readerView').classList.add('paused');$('finishLayer').classList.add('show');updateTimeDisplays();updateReaderLabels();$('readerLive').textContent=t('endReached');releaseWakeLock()}
+    function restartReader(){if(!state.readerOpen||state.starting)return;state.ended=false;$('finishLayer').classList.remove('show');state.elapsedMs=0;calculateTravel(0);startPlayback()}
+    async function closeReader(){state.readerGeneration++;state.readerOpen=false;state.starting=false;state.playing=false;cancelAnimationFrame(state.raf);cancelAnimationFrame(state.measureRaf);releaseWakeLock();$('countdownLayer').classList.remove('show');$('readerView').classList.remove('open','playing','paused');$('readerView').setAttribute('aria-hidden','true');updatePositionControl();document.body.style.overflow='';try{if(document.fullscreenElement)await document.exitFullscreen()}catch{}$('startButton').focus({preventScroll:true})}
     async function requestWakeLock(){if(!('wakeLock'in navigator)){toast(t('wakeUnavailable'));return}try{state.wakeLock=await navigator.wakeLock.request('screen');state.wakeLock.addEventListener('release',()=>{state.wakeLock=null},{once:true})}catch{toast(t('wakeUnavailable'))}}
     function releaseWakeLock(){try{state.wakeLock?.release()}catch{}state.wakeLock=null}
     function changePace(direction){if(state.paceMode==='speed'){state.speed=clamp(Math.round((state.speed+direction*.1)*10)/10,.5,2);applyPace();showReaderFeedback(direction<0?t('slower'):t('faster'))}else{state.duration=clamp(state.duration+(direction<0?30:-30),60,1200);calculateTravel();showReaderFeedback(direction<0?t('targetLonger'):t('targetShorter'))}updateSummary();updateReaderLabels();save()}
     function showReaderFeedback(msg){const el=$('readerFeedback');el.textContent=msg;el.classList.add('show');clearTimeout(state.feedbackTimer);state.feedbackTimer=setTimeout(()=>el.classList.remove('show'),850)}
     function showTapHint(){$('tapHint').classList.add('show');clearTimeout(state.tapHintTimer);state.tapHintTimer=setTimeout(()=>$('tapHint').classList.remove('show'),3300)}
 
-    $('scriptInput').value=state.text;$('scriptInput').addEventListener('input',e=>{state.text=e.target.value;updateStats();clearTimeout(state.saveTimer);state.saveTimer=setTimeout(save,450)});
+    $('scriptInput').value=state.text;$('scriptInput').addEventListener('input',e=>{cancelImport();state.text=e.target.value;updateStats();clearTimeout(state.saveTimer);state.saveTimer=setTimeout(save,450)});
+    $('openTextButton').addEventListener('click',()=>{cancelImport();$('textFileInput').value='';$('textFileInput').click()});
+    $('textFileInput').addEventListener('change',e=>{const file=e.target.files?.[0];e.target.value='';return openTextFile(file)});
+    $('saveTextButton').addEventListener('click',saveTextFile);
+    $('replaceOk').addEventListener('click',()=>{if(pendingImport)applyImportedText(pendingImport)});
+    ['replaceCancel','replaceClose'].forEach(id=>$(id).addEventListener('click',()=>cancelImport(true)));
+    $('replaceDialog').addEventListener('cancel',()=>cancelImport(true));
+    $('replaceDialog').addEventListener('click',e=>{if(e.target!==e.currentTarget||!e.currentTarget.open)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)cancelImport(true)});
     $('languageButton').addEventListener('click',()=>{state.lang=state.lang==='ja'?'en':'ja';updateLanguage();save()});
     $('helpButton').addEventListener('click',()=>$('helpDialog').showModal());document.querySelectorAll('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.closeDialog).close()));
     $('helpDialog').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close()});
@@ -240,13 +371,15 @@
     $('fontRange').addEventListener('input',e=>{state.fontSize=Number(e.target.value);updateSummary()});$('fontRange').addEventListener('change',save);
     [['mirrorToggle','mirror'],['cueToggle','cue'],['countdownToggle','countdown'],['wakeToggle','wake'],['fullscreenToggle','fullscreen']].forEach(([id,key])=>$(id).addEventListener('change',e=>{state[key]=e.target.checked;updateSummary();save()}));
     $('startButton').addEventListener('click',openReader);$('readerExit').addEventListener('click',closeReader);$('readerPause').addEventListener('click',e=>{e.stopPropagation();togglePlayback()});$('restartButton').addEventListener('click',e=>{e.stopPropagation();restartReader()});$('finishRestart').addEventListener('click',restartReader);$('finishExit').addEventListener('click',closeReader);
-    $('readerView').addEventListener('click',e=>{if(e.target.closest('button')||e.target.closest('.reader-topbar')||e.target.closest('.finish-card'))return;const x=e.clientX/window.innerWidth;if(x<.18)changePace(-1);else if(x>.82)changePace(1);else togglePlayback()});
-    $('readerScroller').addEventListener('scroll',()=>{if(state.readerOpen&&!state.playing)updateTimeDisplays()},{passive:true});
-    $('clearButton').addEventListener('click',()=>$('confirmDialog').showModal());$('confirmClose').addEventListener('click',()=>$('confirmDialog').close());$('confirmCancel').addEventListener('click',()=>$('confirmDialog').close());$('confirmOk').addEventListener('click',()=>{state.text='';$('scriptInput').value='';save();updateStats();$('confirmDialog').close();toast(t('cleared'));$('scriptInput').focus()});
+    $('readerView').addEventListener('click',e=>{if(state.starting||e.target.closest('.reader-navigation')||e.target.closest('input')||e.target.closest('button')||e.target.closest('.reader-topbar')||e.target.closest('.finish-card'))return;const x=e.clientX/window.innerWidth;if(x<.18)changePace(-1);else if(x>.82)changePace(1);else togglePlayback()});
+    $('readerScroller').addEventListener('scroll',syncPausedPosition,{passive:true});
+    $('readingPosition').addEventListener('input',e=>seekReader(Number(e.target.value)));
+    $('readerNavigation').addEventListener('click',e=>e.stopPropagation());
+    $('clearButton').addEventListener('click',()=>{cancelImport();$('confirmDialog').showModal()});$('confirmClose').addEventListener('click',()=>$('confirmDialog').close());$('confirmCancel').addEventListener('click',()=>$('confirmDialog').close());$('confirmOk').addEventListener('click',()=>{cancelImport();$('fileNameInput').value=DEFAULT_FILE_NAME;state.text='';$('scriptInput').value='';save();updateStats();$('confirmDialog').close();toast(t('cleared'));$('scriptInput').focus()});
     $('confirmDialog').addEventListener('cancel',()=>{});$('confirmDialog').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close()});
-    document.addEventListener('keydown',e=>{if(!state.readerOpen)return;if(e.key===' '){e.preventDefault();togglePlayback()}else if(e.key==='ArrowLeft'){e.preventDefault();changePace(-1)}else if(e.key==='ArrowRight'){e.preventDefault();changePace(1)}else if(e.key.toLowerCase()==='r'){e.preventDefault();restartReader()}else if(e.key.toLowerCase()==='f'){e.preventDefault();document.documentElement.requestFullscreen?.().catch(()=>{})}else if(e.key==='Escape'&&!document.fullscreenElement){closeReader()}});
+    document.addEventListener('keydown',e=>{if(!state.readerOpen||e.isComposing||e.defaultPrevented||e.ctrlKey||e.metaKey||e.altKey||e.target?.closest?.('input,textarea,select,[contenteditable]'))return;if(e.target?.closest?.('button')&&(e.key===' '||e.key==='Enter'))return;if(state.starting){if(e.key==='Escape'&&!document.fullscreenElement)closeReader();return}if(e.key===' '){e.preventDefault();togglePlayback()}else if(e.key==='ArrowLeft'){e.preventDefault();changePace(-1)}else if(e.key==='ArrowRight'){e.preventDefault();changePace(1)}else if(e.key.toLowerCase()==='r'){e.preventDefault();restartReader()}else if(e.key.toLowerCase()==='f'){e.preventDefault();document.documentElement.requestFullscreen?.().catch(()=>{})}else if(e.key==='Escape'&&!document.fullscreenElement){closeReader()}});
     document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&state.readerOpen&&state.playing&&state.wake)requestWakeLock()});
-    window.addEventListener('resize',()=>{if(state.readerOpen){const ratio=$('readerScroller').scrollTop/Math.max(1,state.endScroll);calculateTravel();$('readerScroller').scrollTop=ratio*state.endScroll}});
+    window.addEventListener('resize',()=>{if(state.readerOpen)calculateTravel()});
 
     $('versionBadge').textContent=`v${config.version||'1.0.0'}`;updateLanguage();updateSummary();
   })();

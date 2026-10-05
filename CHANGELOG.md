@@ -2,6 +2,19 @@
 
 All notable changes to Pocket Teleprompter are documented here.
 
+## Unreleased
+
+### Added
+
+- Japanese/English Reading position slider for paused rehearsal, keeping elapsed reading time.
+
+### Fixed
+
+- Target-time pace and remaining time are recalculated after paused navigation and after restoring progress on resize.
+- Startup/countdown callbacks cannot enable navigation or resume a closed/newer session.
+- Range/input controls keep native keyboard handling without triggering reader shortcuts or tap playback.
+- The root HTML download is rebuilt and checked against the readable release.
+
 ## 1.0.0 - 2026-08-17
 
 ### Added
