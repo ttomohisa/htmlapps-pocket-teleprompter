@@ -26,6 +26,7 @@ The initial HTML is delivered by GitHub Pages. Script editing, scrolling, local 
 - Optional eye-line guide near the camera
 - Optional 3-second countdown
 - Tap center to pause/resume
+- Paused-only Reading position slider to rehearse from any point without resetting elapsed time
 - Tap left/right edge to slow down/speed up
 - Elapsed time, estimated remaining time, and progress
 - Progressive Screen Wake Lock and Fullscreen support
@@ -55,6 +56,12 @@ Core functions can run from a local `file://` copy. Screen Wake Lock and Fullscr
 Instead of guessing a scroll speed, choose how long the whole script should take—for example **3:00**. Pocket Teleprompter measures the rendered script and calculates the scroll rate so the end reaches the eye-line at approximately that time.
 
 This controls scroll timing only; it does not analyze your voice or speaking pace.
+
+## Rehearse from the middle
+
+Pause the reader, then move **Reading position** from 0–100%. The reader stays paused and elapsed active-reading time is retained. In Target time mode, manual scrolling and seeking recalculate pace for the remaining target time (with a five-second minimum); resizing preserves progress before recalculating. Speed mode retains your selected multiplier.
+
+At 100% the session finishes. Use **Restart** to reset position and elapsed time, or exit and reopen to start afresh. Position is session-only and is not saved. The slider is unavailable during startup, countdown and playback. While focused on the slider, native arrow/Home/End keys adjust position; reader shortcuts ignore input controls and text composition.
 
 ## Keyboard shortcuts
 

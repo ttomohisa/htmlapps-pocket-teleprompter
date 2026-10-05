@@ -12,3 +12,14 @@ To verify:
 4. Test pause/resume, speed adjustment, mirror mode, and exit.
 5. Reload and confirm the script is restored when localStorage is available.
 6. Verify no runtime network request is made.
+
+## Reading position checks (manual browser/device verification)
+
+These are manual checks, separate from the deterministic Node runtime tests.
+
+- Check both Japanese and English at 320px/360px and landscape, with a real smartphone.
+- Pause, drag Reading position to 0/25/50/75/100%, resume, finish, restart, exit and reopen. Verify elapsed time remains unchanged by seeking and 100% shows the finish controls.
+- Focus the slider and use arrows/Home/End; confirm keys change position without changing pace or restarting. Clicking/touching its label or track must not resume playback.
+- With target 3:00 and elapsed 1:00, pause and move to 75%: remaining time should stay 2:00. Rotate/resize at 50% in paused and playing states and check position and remaining time.
+- Verify the slider is absent during startup/countdown/playback, and that canceling startup then reopening cannot resume an old session.
+- Recheck UTF-8 Open/Save, text composition, mirror/alignment, optional Fullscreen/Wake Lock, and offline loading for root/readable/self-extract files.

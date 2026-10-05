@@ -40,6 +40,7 @@ A user can paste a script, tune the reading experience, start a distraction-free
 - Optional Fullscreen API request when supported; the fixed reader view must still work if fullscreen fails.
 - Reader shows elapsed time, estimated remaining time, progress, and pace.
 - Tap center to pause/resume.
+- Paused-only 0–100% Reading position slider for rehearsal, preserving elapsed reading time. Seek/manual scroll recalculates target pace; resize preserves normalized progress before recalculation. Reaching 100% finishes; Restart resets the session. Position is not persisted.
 - Tap left/right edge to adjust pace without opening settings.
 - Keyboard shortcuts on desktop: Space pause/resume, Left/Right pace, R restart, F fullscreen, Esc exit.
 - Japanese and English UI in the same HTML.
