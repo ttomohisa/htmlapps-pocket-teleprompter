@@ -3,7 +3,7 @@
 ## 1. Product identity
 
 - **Name:** Pocket Teleprompter
-- **Version:** 1.0.0
+- **Version:** 1.0.1
 - **Purpose:** Turn a smartphone or browser window into an installation-free teleprompter for speeches, video recording, interviews, presentations, and rehearsal.
 - **Primary users:** Smartphone users who need a teleprompter occasionally and do not want to install an app or upload a script.
 - **Release artifacts:** `dist/index.html` and `dist/index.self-extract.html`
@@ -43,7 +43,7 @@ A user can paste a script, tune the reading experience, start a distraction-free
 - Paused-only 0–100% Reading position slider for rehearsal, preserving elapsed reading time. Seek/manual scroll recalculates target pace; resize preserves normalized progress before recalculation. Reaching 100% finishes; Restart resets the session. Position is not persisted.
 - Tap left/right edge to adjust pace without opening settings.
 - Keyboard shortcuts on desktop: Space pause/resume, Left/Right pace, R restart, F fullscreen, Esc exit.
-- Japanese and English UI in the same HTML.
+- Japanese and English UI in the same HTML; the header shows EN in Japanese and JA in English, with localized target-language and Help accessible names/titles.
 - Light-only application UI. The reader is a functional presentation surface, not a theme switcher.
 - No runtime network request.
 
