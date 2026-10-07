@@ -260,7 +260,7 @@ test('startup/countdown cannot seek or shortcut into playing; closed startup can
   assert.equal(h.el('countdownLayer').classList.contains('show'), false);
   h.probe.state.countdown = false;
   await h.el('startButton').click(); h.frame(); await pause(h, 12000);
-  await h.advanceCountdown(); await first;
+  await h.advanceTime(1000); await first;
   assert.equal(h.probe.state.playing, false); assert.equal(h.probe.state.elapsedMs, 12000);
   assert.equal(h.el('readingPosition').disabled, false);
 });
@@ -271,7 +271,7 @@ test('normal countdown and delayed fullscreen keep position disabled until playb
   const start = h.el('startButton').click();
   assert.equal(h.el('readingPosition').disabled, true); await seek(h, 50);
   assert.equal(h.probe.state.playing, false); resolve(); await Promise.resolve(); await Promise.resolve();
-  for (let n = 0; n < 3; n++) await h.advanceCountdown(); await start;
+  for (let n = 0; n < 3; n++) await h.advanceTime(1000); await start;
   assert.equal(h.probe.state.playing, true); assert.equal(h.el('readingPosition').disabled, true);
   await pause(h, 0); assert.equal(h.el('readingPosition').disabled, false);
 });
@@ -292,4 +292,63 @@ test('exit/reopen and import/Clear preserve literal text, settings, file behavio
   await h.el('clearButton').click(); await h.el('confirmOk').click(); assert.equal(h.el('scriptInput').value, '');
   assert.equal(h.el('fileNameInput').value, 'pocket-teleprompter.txt');
   assert.deepEqual(Object.keys(h.saved()).sort(), ['lang','text','paceMode','speed','duration','fontSize','align','mirror','cue','countdown','wake','fullscreen'].sort());
+});
+
+// Removing the one-second countdown interval must start playback too soon.
+test('the advertised three-second countdown holds each numeral for a full second', async () => {
+  const h = loadApp({ text: script, countdown: true });
+  const started = h.el('startButton').click(); h.frame();
+  for (const numeral of [3, 2, 1]) {
+    assert.equal(String(h.el('countdownNumber').textContent), String(numeral));
+    assert.equal(h.probe.state.playing, false);
+    await h.advanceTime(999);
+    assert.equal(String(h.el('countdownNumber').textContent), String(numeral));
+    assert.equal(h.probe.state.playing, false, 'scrolling must wait for all three seconds');
+    assert.equal(h.probe.state.elapsedMs, 0);
+    await h.advanceTime(1);
+  }
+  await started;
+  assert.equal(h.probe.state.playing, true);
+  assert.equal(h.el('countdownLayer').classList.contains('show'), false);
+  assert.equal(h.probe.state.elapsedMs, 0);
+  await h.el('readerPause').click(); assert.equal(h.probe.state.playing, false);
+  await h.el('readerPause').click(); assert.equal(h.probe.state.playing, true);
+  h.probe.state.elapsedMs = 4500; await h.el('restartButton').click();
+  assert.equal(h.probe.state.playing, true); assert.equal(h.probe.state.elapsedMs, 0);
+});
+
+for (const elapsed of [0, 999, 1999, 2999]) test(`exit at ${elapsed}ms cancels countdown and cannot resume the next session`, async () => {
+  const h = loadApp({ text: script, countdown: true });
+  const started = h.el('startButton').click(); h.frame(); await h.advanceTime(elapsed);
+  await h.el('readerExit').click();
+  assert.equal(h.probe.state.playing, false); assert.equal(h.el('countdownLayer').classList.contains('show'), false);
+  h.probe.state.countdown = false; await h.el('startButton').click(); h.frame();
+  await h.el('readerPause').click(); h.probe.state.elapsedMs = 5000;
+  await h.advanceTime(3000); await started;
+  assert.equal(h.probe.state.playing, false); assert.equal(h.probe.state.elapsedMs, 5000);
+  assert.equal(h.el('readerNavigation').hidden, false);
+});
+
+for (const initial of ['en', 'ja']) test(`header labels and privacy stay localized through repeated toggles from ${initial}`, async () => {
+  const h = loadApp({ text: script, lang: initial });
+  for (let i = 0; i < 4; i++) {
+    const ja = h.probe.state.lang === 'ja';
+    const target = ja ? '英語に切り替え' : 'Switch to Japanese';
+    const help = ja ? '使い方と注意事項' : 'How to use & notes';
+    assert.equal(h.document.documentElement.lang, ja ? 'ja' : 'en');
+    assert.equal(h.el('languageButton').textContent, ja ? 'EN' : 'JA');
+    assert.equal(h.el('languageButton').attrs['aria-label'], target);
+    assert.equal(h.el('languageButton').attrs.title, target);
+    assert.equal(h.el('helpButton').attrs['aria-label'], help);
+    assert.equal(h.el('helpButton').attrs.title, help);
+    const badge = h.document.querySelectorAll('[data-i18n]').find(el => el.dataset.i18n === 'localOnly');
+    assert.equal(badge.textContent, ja ? '完全ローカル処理' : 'Processed on device');
+    assert.equal(h.el('versionBadge').textContent, 'v1.0.1');
+    await h.el('helpButton').click(); assert.equal(h.el('helpDialog').open, true); h.el('helpDialog').close();
+    await h.el('languageButton').click();
+    assert.equal(h.saved().text, script); assert.equal(h.saved().lang, h.probe.state.lang);
+    const reloaded = loadApp(h.saved());
+    assert.equal(reloaded.document.documentElement.lang, h.probe.state.lang);
+    assert.equal(reloaded.el('languageButton').attrs['aria-label'], h.el('languageButton').attrs['aria-label']);
+  }
 });

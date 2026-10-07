@@ -1,5 +1,7 @@
 # Pocket Teleprompter
 
+ヘッダーの言語切替は EN / JA に統一し、切替先とヘルプの読み上げ・ツールチップも表示言語に合わせています。完全ローカル処理です。
+
 [![GitHub Pages](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Single HTML](https://img.shields.io/badge/distribution-single%20HTML-0ea5e9)](https://ttomohisa.github.io/htmlapps-pocket-teleprompter/)
