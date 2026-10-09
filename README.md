@@ -16,7 +16,7 @@ A privacy-friendly, installation-free teleprompter that runs entirely in the bro
 
 The initial HTML is delivered by GitHub Pages. Script editing, scrolling, local saving, mirroring, timing, and reader controls run on the device. The script is not uploaded by the app.
 
-[![Pocket Teleprompter screenshot](assets/screenshot.png)](https://ttomohisa.github.io/htmlapps-pocket-teleprompter/)
+[![Pocket Teleprompter screenshot](assets/screenshot-en.png)](https://ttomohisa.github.io/htmlapps-pocket-teleprompter/)
 
 ## Features
 
