@@ -29,13 +29,18 @@ function loadApp(saved = {}, storageUnavailable = false) {
   }
   for (const match of source.matchAll(/<([\w-]+)\b[^>]*\bid="([^"]+)"[^>]*>/g)) { const el = new Element(match[2], match[1]); for (const attr of match[0].matchAll(/([\w-]+)(?:="([^"]*)")?/g)) { el.attrs[attr[1]] = attr[2] ?? ''; if (attr[1] === 'class') el.classList.add(...attr[2].split(' ')); if (attr[1] === 'hidden' || attr[1] === 'disabled') el[attr[1]] = true; if (attr[1] === 'value') el.value = attr[2]; } elements.set(match[2], el); }
   if (elements.has('readingPosition')) { elements.get('readingPosition').parentElement = elements.get('readerNavigation'); elements.get('readingPositionLabel').parentElement = elements.get('readerNavigation'); }
-  for (const match of source.matchAll(/<([\w-]+)\b[^>]*data-i18n="([^"]+)"[^>]*>/g)) {
+  for (const match of source.matchAll(/<([\w-]+)\b[^>]*data-i18n(?:-aria-label)?="([^"]+)"[^>]*>/g)) {
     if (/\bid=/.test(match[0])) continue;
-    const el = new Element('', match[1]); el.attrs['data-i18n'] = match[2]; elements.set(`i18n:${match[2]}:${elements.size}`, el);
+    const el = new Element('', match[1]);
+    for (const attr of match[0].matchAll(/([\w-]+)="([^"]*)"/g)) el.attrs[attr[1]] = attr[2];
+    elements.set(`i18n:${match[2]}:${elements.size}`, el);
   }
   const config = source.match(/<script id="appConfig"[^>]*>([\s\S]*?)<\/script>/)[1];
   elements.get('appConfig').textContent = config.startsWith('__') ? fs.readFileSync(path.join(__dirname, '../../app.config.json'), 'utf8') : config;
-  const document = { body: new Element(), documentElement: new Element(), activeElement: null, querySelectorAll: selector => selector === '[data-i18n]' ? [...elements.values()].filter(el => { if (!el.attrs['data-i18n']) return false; el.dataset.i18n = el.attrs['data-i18n']; return true; }) : [], getElementById: id => elements.get(id), createElement: tag => new Element('', tag), addEventListener: (k, fn) => documentEvents[k] = fn };
+  const document = { body: new Element(), documentElement: new Element(), activeElement: null, querySelectorAll: selector => {
+    const attr = { '[data-i18n]': ['data-i18n', 'i18n'], '[data-i18n-aria-label]': ['data-i18n-aria-label', 'i18nAriaLabel'] }[selector];
+    return attr ? [...elements.values()].filter(el => { if (!el.attrs[attr[0]]) return false; el.dataset[attr[1]] = el.attrs[attr[0]]; return true; }) : [];
+  }, getElementById: id => elements.get(id), createElement: tag => new Element('', tag), addEventListener: (k, fn) => documentEvents[k] = fn };
   const sandbox = { document, navigator: { language: 'en' }, console, Blob, TextDecoder, TextEncoder, Uint8Array, ArrayBuffer, URL: { createObjectURL(blob) { const url = `blob:test-${++nextId}`; blobs.set(url, blob); return url; }, revokeObjectURL(url) { revoked.push(url); blobs.delete(url); } }, localStorage: { getItem() { if (storageUnavailable) throw Error('blocked'); return stored; }, setItem(_k, value) { if (storageUnavailable) throw Error('blocked'); stored = value; } }, setTimeout(fn, delay) { const id = ++nextId; timers.set(id, { fn, delay, due: now + delay }); return id; }, clearTimeout: id => timers.delete(id), requestAnimationFrame(fn) { const id = ++nextId; frames.set(id, fn); return id; }, cancelAnimationFrame: id => frames.delete(id), getComputedStyle: () => ({ paddingBottom: '496' }), performance: { now: () => now }, addEventListener(k, fn) { windowEvents[k] = fn; }, innerWidth: 1000 };
   sandbox.window = sandbox;
   vm.runInNewContext(source.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace('  })();', '  globalThis.probe={state,calculateTravel,applyPace,startPlayback,pausePlayback,finishReader,tick};})();'), sandbox);
