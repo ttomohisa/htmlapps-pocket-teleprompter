@@ -2,6 +2,11 @@
 
 All notable changes to Pocket Teleprompter are documented here.
 
+## 1.0.3 - 2026-10-09
+
+- Keep all Help content reachable in tall and short desktop windows with a keyboard-focusable scroll area and a visible close button.
+- Use the shield-check icon from the PDF Fill & Sign local-processing badge.
+
 ## 1.0.2 - 2026-10-09
 
 - Add a real English catalog screenshot and use it in the English README, preserving app behavior and the supplied icon.

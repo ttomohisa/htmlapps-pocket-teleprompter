@@ -1,7 +1,7 @@
 {
   "name": "Pocket Teleprompter",
-  "version": "1.0.2",
-  "generatedAt": "2026-10-09T06:04:01.8138350+00:00",
+  "version": "1.0.3",
+  "generatedAt": "2026-10-09T22:24:45.1425329+00:00",
   "dependencyCount": 0,
   "source": "src/index.template.html"
 }

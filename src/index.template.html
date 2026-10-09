@@ -38,6 +38,8 @@
     .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:9px 14px;border:1px solid var(--line);border-radius:11px;background:var(--surface);font-weight:750;cursor:pointer}.button:hover{border-color:var(--line-strong);background:var(--surface-hover)}.button.primary{border-color:var(--accent);background:var(--accent);color:#fff}.button.primary:hover{border-color:var(--accent-hover);background:var(--accent-hover)}.button svg{width:18px;height:18px}.start-card{padding:14px}.start-button{width:100%;min-height:50px;font-size:14px}.start-meta{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;color:var(--muted);font-size:10px;text-align:center}.start-meta span+span::before{content:"·";margin-right:8px}
     footer{width:min(1080px,100%);margin:0 auto;padding:0 clamp(14px,2.8vw,30px) 34px;color:var(--muted);font-size:11px}.footer-inner{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:16px}.footer-inner p{margin:0}
     dialog{width:min(620px,calc(100% - 28px));max-height:min(760px,calc(100dvh - 28px));padding:0;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--text);box-shadow:var(--shadow-md)}dialog::backdrop{background:rgba(15,17,14,.48);backdrop-filter:blur(3px)}.dialog-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;border-bottom:1px solid var(--line)}.dialog-header h2{margin:0;font-size:17px}.dialog-close{display:grid;place-items:center;width:36px;height:36px;border:0;border-radius:10px;background:transparent;cursor:pointer}.dialog-close:hover{background:var(--surface-hover)}.dialog-close svg{width:19px;height:19px}.dialog-body{padding:18px 20px 26px;overflow:auto;max-height:calc(100dvh - 92px)}.dialog-body h3{margin:24px 0 8px;padding-top:18px;border-top:1px solid var(--line);font-size:14px}.dialog-body h3:first-child{margin-top:0;padding-top:0;border-top:0}.dialog-body p,.dialog-body li{color:var(--muted);font-size:13px;line-height:1.72}.dialog-body p{margin:7px 0}.dialog-body ul{padding-left:20px}
+    /* Size Help within its capped dialog, keeping the close button visible. */
+    #helpDialog[open]{display:flex;flex-direction:column}#helpDialog .dialog-header{flex:0 0 auto}#helpDialog .dialog-body{flex:1 1 auto;min-height:0;max-height:none;overscroll-behavior:contain}#helpDialog .dialog-body:focus-visible{outline:3px solid color-mix(in srgb,var(--focus) 55%,transparent);outline-offset:-3px}
     .confirm-dialog{width:min(420px,calc(100% - 24px))}.confirm-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}.confirm-actions .button{width:100%}.button.danger{border-color:var(--danger);background:var(--danger);color:#fff}
     .toast{position:fixed;z-index:260;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translate(-50%,18px);max-width:min(420px,calc(100vw - 28px));padding:10px 13px;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:var(--shadow-md);font-size:12px;font-weight:650;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:translate(-50%,0)}
 
@@ -62,7 +64,7 @@
     <div class="header-inner">
       <div class="brand">
         <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6.2 4.5h11.6L20 8v9H4V8l2.2-3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="8" r="1.45" fill="currentColor"/><path d="M7.5 11.3h9M7.5 14h7" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/><path d="M9 17v2h6v-2M7.5 20h9" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="brand-copy"><h1 class="brand-name">Pocket Teleprompter <span class="version-badge" id="versionBadge">v1.0.2</span></h1><p class="brand-meta" data-i18n="brandMeta">原稿を貼って、すぐ読む。</p></div>
+        <div class="brand-copy"><h1 class="brand-name">Pocket Teleprompter <span class="version-badge" id="versionBadge">v1.0.3</span></h1><p class="brand-meta" data-i18n="brandMeta">原稿を貼って、すぐ読む。</p></div>
       </div>
       <div class="header-actions">
         <button type="button" class="language-button" id="languageButton" aria-label="英語に切り替え" title="英語に切り替え">EN</button>
@@ -75,7 +77,7 @@
   <main class="main">
     <section class="page-intro" aria-labelledby="pageTitle">
       <div><h2 id="pageTitle" data-i18n="pageTitle">原稿を貼るだけ。スマホがテレプロンプターに。</h2><p data-i18n="pageLead">動画撮影、スピーチ、プレゼン練習に。原稿は端末内に保存され、外部へ送信されません。</p></div>
-      <div class="privacy-badge"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2" stroke="currentColor" stroke-width="1.8"/><rect x="5" y="10" width="14" height="10" rx="3" stroke="currentColor" stroke-width="1.8"/></svg><span data-i18n="localOnly">完全ローカル処理</span></div>
+      <div class="privacy-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 2.8 8 7 10 4.2-2 7-5.4 7-10V6z"/><path d="m9 12 2 2 4-5"/></svg><span data-i18n="localOnly">完全ローカル処理</span></div>
     </section>
 
     <div class="workspace">
@@ -160,7 +162,7 @@
 
   <dialog id="helpDialog" aria-labelledby="helpTitle">
     <div class="dialog-header"><h2 id="helpTitle" data-i18n="helpTitle">使い方と注意事項</h2><button type="button" class="dialog-close" data-close-dialog="helpDialog" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
-    <div class="dialog-body">
+    <div class="dialog-body" tabindex="0" role="region" aria-labelledby="helpTitle">
       <!-- APP:HELP:BEGIN -->
       <h3 data-i18n="helpBasicTitle">基本操作</h3><ul><li data-i18n="helpBasic1">原稿を貼り付け、速度や文字サイズを調整して「テレプロンプターを開始」を押します。</li><li data-i18n="helpBasic2">本番画面の中央をタップすると停止・再開。左端で遅く、右端で速くできます。</li><li data-i18n="helpBasic3">「目標時間」では、原稿の最後が指定時間に来るようスクロール速度を自動計算します。</li></ul>
       <p data-i18n="helpPosition">一時停止中は「読み位置」で0〜100%の位置へ移動できます。経過時間はそのままで、目標時間モードは残り時間から速度を再計算します。100%で終了し、「最初から」でやり直せます。位置は保存されません。スライダー操作中は矢印キーで位置を調整できます。</p>
@@ -381,7 +383,7 @@
     document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&state.readerOpen&&state.playing&&state.wake)requestWakeLock()});
     window.addEventListener('resize',()=>{if(state.readerOpen)calculateTravel()});
 
-    $('versionBadge').textContent=`v${config.version||'1.0.2'}`;updateLanguage();updateSummary();
+    $('versionBadge').textContent=`v${config.version||'1.0.3'}`;updateLanguage();updateSummary();
   })();
   </script>
 </body>
