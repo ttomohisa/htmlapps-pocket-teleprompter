@@ -3,7 +3,7 @@
 ## 1. Product identity
 
 - **Name:** Pocket Teleprompter
-- **Version:** 1.0.1
+- **Version:** 1.0.2
 - **Purpose:** Turn a smartphone or browser window into an installation-free teleprompter for speeches, video recording, interviews, presentations, and rehearsal.
 - **Primary users:** Smartphone users who need a teleprompter occasionally and do not want to install an app or upload a script.
 - **Release artifacts:** `dist/index.html` and `dist/index.self-extract.html`

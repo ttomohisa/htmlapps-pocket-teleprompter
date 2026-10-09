@@ -62,7 +62,7 @@
     <div class="header-inner">
       <div class="brand">
         <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6.2 4.5h11.6L20 8v9H4V8l2.2-3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="8" r="1.45" fill="currentColor"/><path d="M7.5 11.3h9M7.5 14h7" stroke="currentColor" stroke-width="1.65" stroke-linecap="round"/><path d="M9 17v2h6v-2M7.5 20h9" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="brand-copy"><h1 class="brand-name">Pocket Teleprompter <span class="version-badge" id="versionBadge">v1.0.1</span></h1><p class="brand-meta" data-i18n="brandMeta">原稿を貼って、すぐ読む。</p></div>
+        <div class="brand-copy"><h1 class="brand-name">Pocket Teleprompter <span class="version-badge" id="versionBadge">v1.0.2</span></h1><p class="brand-meta" data-i18n="brandMeta">原稿を貼って、すぐ読む。</p></div>
       </div>
       <div class="header-actions">
         <button type="button" class="language-button" id="languageButton" aria-label="英語に切り替え" title="英語に切り替え">EN</button>
@@ -185,8 +185,8 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <style>.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}</style>
 
-  <script id="appConfig" type="application/json">{"$schema":"./schemas/app-config.schema.json","name":"Pocket Teleprompter","nameJa":"Pocket Teleprompter","slug":"pocket-teleprompter","version":"1.0.1","description":"A privacy-friendly, installation-free teleprompter that runs entirely in the browser.","descriptionJa":"原稿を貼り付けてすぐ使える、インストール不要・端末内処理のテレプロンプターです。","defaultLanguage":"auto","repository":{"owner":"ttomohisa","name":"htmlapps-pocket-teleprompter"},"build":{"output":"dist/index.html","blockRuntimeNetwork":true,"selfExtract":{"enabled":true,"output":"dist/index.self-extract.html"}}}</script>
-  <script id="buildManifest" type="application/json">{"name":"Pocket Teleprompter","version":"1.0.1","generatedAt":"2026-10-07T06:49:38.2528009+00:00","dependencyCount":0,"source":"src/index.template.html"}</script>
+  <script id="appConfig" type="application/json">{"$schema":"./schemas/app-config.schema.json","name":"Pocket Teleprompter","nameJa":"Pocket Teleprompter","slug":"pocket-teleprompter","version":"1.0.2","description":"A privacy-friendly, installation-free teleprompter that runs entirely in the browser.","descriptionJa":"原稿を貼り付けてすぐ使える、インストール不要・端末内処理のテレプロンプターです。","defaultLanguage":"auto","repository":{"owner":"ttomohisa","name":"htmlapps-pocket-teleprompter"},"build":{"output":"dist/index.html","blockRuntimeNetwork":true,"selfExtract":{"enabled":true,"output":"dist/index.self-extract.html"}}}</script>
+  <script id="buildManifest" type="application/json">{"name":"Pocket Teleprompter","version":"1.0.2","generatedAt":"2026-10-09T06:04:01.8138350+00:00","dependencyCount":0,"source":"src/index.template.html"}</script>
   <script id="embeddedAssetBundle" type="application/octet-stream">e30=</script>
   <script>
   (()=>{
@@ -381,7 +381,7 @@
     document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&state.readerOpen&&state.playing&&state.wake)requestWakeLock()});
     window.addEventListener('resize',()=>{if(state.readerOpen)calculateTravel()});
 
-    $('versionBadge').textContent=`v${config.version||'1.0.1'}`;updateLanguage();updateSummary();
+    $('versionBadge').textContent=`v${config.version||'1.0.2'}`;updateLanguage();updateSummary();
   })();
   </script>
 </body>

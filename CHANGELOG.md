@@ -2,6 +2,10 @@
 
 All notable changes to Pocket Teleprompter are documented here.
 
+## 1.0.2 - 2026-10-09
+
+- Add a real English catalog screenshot and use it in the English README, preserving app behavior and the supplied icon.
+
 ## 1.0.1 - 2026-10-07
 
 ### Added
