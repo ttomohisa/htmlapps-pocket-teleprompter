@@ -2,6 +2,14 @@
 
 All notable changes to Pocket Teleprompter are documented here.
 
+## 1.0.3 - 2026-10-09
+
+- Keep all Help content reachable in tall and short desktop windows with a keyboard-focusable scroll area and a visible close button.
+- Use the shield-check icon from the PDF Fill & Sign local-processing badge.
+- Show the correct Pause/Resume icon and localized action label, keeping the action unavailable during startup and after completion.
+- Document existing desktop keyboard shortcuts and their input/fullscreen exceptions in Japanese and English Help.
+- Name the editor, sliders, setting toggles, adjustment buttons and dialog controls using localized labels.
+
 ## 1.0.2 - 2026-10-09
 
 - Add a real English catalog screenshot and use it in the English README, preserving app behavior and the supplied icon.

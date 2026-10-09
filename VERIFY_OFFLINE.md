@@ -23,3 +23,18 @@ These are manual checks, separate from the deterministic Node runtime tests.
 - With target 3:00 and elapsed 1:00, pause and move to 75%: remaining time should stay 2:00. Rotate/resize at 50% in paused and playing states and check position and remaining time.
 - Verify the slider is absent during startup/countdown/playback, and that canceling startup then reopening cannot resume an old session.
 - Recheck UTF-8 Open/Save, text composition, mirror/alignment, optional Fullscreen/Wake Lock, and offline loading for root/readable/self-extract files.
+
+## Help and local-processing badge
+
+- Open Help in Japanese and English at 1440×1000, 1280×600, 500×700 and phone widths. Confirm the dialog stays within the viewport and the close button stays visible.
+- Scroll to the final Important notes/Cautions item and verify the entire text and bottom padding can be reached. Tab to the named Help scroll area, check its visible focus, and use PageDown/End to reach the bottom.
+- Close with the header button and Escape, then reopen repeatedly. Confirm focus returns to Help and closed dialogs stay hidden.
+- Confirm the local-processing badge uses the PDF Fill & Sign shield-check geometry in both languages.
+- Repeat Help checks for the readable and self-extract release files; the Node tests cover CSS/markup contracts, not native layout.
+
+## Accessible controls and keyboard help
+
+- In Japanese and English, verify that the editor, speed/target/text-size sliders, five settings toggles and six adjustment buttons have localized accessible names. Check Help/Clear/Replace close buttons and reader Exit/Restart labels.
+- Start, pause with the button, resume with Space, pause again and resume with the button. The icon, tooltip and accessible name must alternate between Pause and Resume without changing pace or elapsed time. During countdown and after completion the control is unavailable; restarting restores Pause.
+- Read the Help keyboard section and try Space, Left/Right, R, F and Esc in the reader. Input/range controls retain their native keyboard behavior; focused buttons use Space/Enter for their own action. In fullscreen, Esc exits fullscreen before another Esc returns to the editor.
+- Recheck the longer Help at tall/short/narrow viewports, including keyboard scrolling to its final note.
