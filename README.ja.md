@@ -1,5 +1,7 @@
 # Pocket Teleprompter
 
+ダイアログを開いている間は背景ページのスクロールが止まります。本番画面のスクロール制御は従来どおりです。
+
 ヘッダーの言語切替は EN / JA に統一し、切替先とヘルプの読み上げ・ツールチップも表示言語に合わせています。完全ローカル処理です。
 
 [![GitHub Pages](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml)

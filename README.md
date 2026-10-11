@@ -1,5 +1,7 @@
 # Pocket Teleprompter
 
+Native dialogs pause background page scrolling while open; the reader keeps its independent scroll lifecycle.
+
 Header language controls show EN / JA with localized target-language and Help labels/tooltips. Processing stays on your device.
 
 [![GitHub Pages](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml)
