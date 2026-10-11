@@ -2,6 +2,11 @@
 
 All notable changes to Pocket Teleprompter are documented here.
 
+## 1.0.4 - 2026-10-11
+
+- Pause background page scrolling while a native dialog is open, preserving the existing Help shell and reader behavior.
+- Document the temporary scroll lock in Japanese and English Help and add source/release regression checks.
+
 ## 1.0.3 - 2026-10-09
 
 - Keep all Help content reachable in tall and short desktop windows with a keyboard-focusable scroll area and a visible close button.

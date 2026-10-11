@@ -66,3 +66,19 @@ test('readable, root and compressed releases carry the source Help and badge mar
     assert.equal(ui(html), ui(source));
   }
 });
+
+
+test('native modal dialogs lock both page scroll containers only while modal', () => {
+  assert.match(declarations('html:has(dialog:modal),body:has(dialog:modal)'), /overflow:hidden(?:;|$)/);
+  assert.doesNotMatch(source, /(?:html|body)\s*\{[^}]*overflow:hidden/);
+});
+
+test('JA and EN Help explain the temporary modal background lock', () => {
+  assert.match(source, /ダイアログを開いている間は背景のスクロールが止まります。/);
+  assert.match(source, /Background scrolling is paused while a dialog is open\./);
+});
+
+test('reader keeps its independent body overflow lifecycle', () => {
+  assert.match(source, /document\.body\.style\.overflow='hidden';prepareReader\(\)/);
+  assert.match(source, /updateReaderLabels\(\);document\.body\.style\.overflow='';try/);
+});
