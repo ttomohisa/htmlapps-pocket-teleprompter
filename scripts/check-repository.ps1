@@ -8,3 +8,7 @@ foreach ($item in $required) { if (-not $html.Contains($item)) { throw "Required
 & node --test (Join-Path $Root 'tests/text-files.test.cjs') (Join-Path $Root 'tests/standalone.test.cjs') (Join-Path $Root 'tests/reader-navigation.test.cjs') (Join-Path $Root 'tests/help-layout.test.cjs') (Join-Path $Root 'tests/accessible-controls.test.cjs')
 if ($LASTEXITCODE -ne 0) { throw 'JavaScript tests failed' }
 Write-Host 'Repository checks passed' -ForegroundColor Green
+
+# Keep internal QA/implementation prose out of user-facing help.
+& node (Join-Path $Root "tests/help-copy.test.cjs")
+if ($LASTEXITCODE -ne 0) { throw "User-facing help copy regression failed." }
