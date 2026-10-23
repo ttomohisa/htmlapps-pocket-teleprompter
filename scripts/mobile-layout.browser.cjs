@@ -51,7 +51,14 @@ async function main() {
         await page.setViewportSize({width:PHONE_WIDTH, height});
         assert.equal(await page.locator('body > footer').isVisible(), false, label + ': phone resize');
         await page.setViewportSize({width,height});
-        if (file === 'dist/index.html' && [1360,320].includes(width)) await page.screenshot({path:path.join(artifacts, `${language}-${width}.png`), fullPage:true});
+        // Capture the actual viewport after resize, not a stitched full-page image of fixed controls.
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        if (width <= 820) {
+          const startBox = await page.locator('#startButton').boundingBox();
+          assert.ok(startBox && startBox.x >= 0 && startBox.x + startBox.width <= width && startBox.y >= 0 && startBox.y + startBox.height <= height, label + ': Start stays inside the resized viewport');
+        }
+        if (file === 'dist/index.html' && [1360,320].includes(width)) await page.screenshot({path:path.join(artifacts, `${language}-${width}.png`)});
 
         await page.locator(HELP).click();
         const body = page.locator('#helpDialog .dialog-body');
