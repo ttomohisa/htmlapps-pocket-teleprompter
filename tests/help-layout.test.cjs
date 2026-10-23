@@ -82,3 +82,26 @@ test('reader keeps its independent body overflow lifecycle', () => {
   assert.match(source, /document\.body\.style\.overflow='hidden';prepareReader\(\)/);
   assert.match(source, /updateReaderLabels\(\);document\.body\.style\.overflow='';try/);
 });
+
+function phoneCss(css, width) {
+  const marker = `@media(max-width:${width}px)`;
+  const start = css.indexOf(marker);
+  assert.ok(start >= 0, `Existing phone breakpoint must remain: ${width}px`);
+  const opening = css.indexOf('{', start);
+  let depth = 1;
+  for (let end = opening + 1; end < css.length; end++) {
+    if (css[end] === '{') depth++;
+    if (css[end] === '}' && --depth === 0) return css.slice(opening + 1, end);
+  }
+  assert.fail('Unclosed phone breakpoint');
+}
+
+test('compact phone layouts hide only the informational footer, not the Start action', () => {
+  const css = source.match(/<style>([\s\S]*?)<\/style>/)[1];
+  assert.match(phoneCss(css, 520), /(?:^|})footer\{[^}]*display:none(?:;|})/);
+  assert.doesNotMatch(phoneCss(css, 820), /(?:^|})footer\{[^}]*display:none/);
+  assert.doesNotMatch(css.slice(0, css.indexOf('@media')), /(?:^|})footer\{[^}]*display:none/);
+  assert.match(phoneCss(css, 820), /\.start-card\{[^}]*position:fixed/);
+  assert.doesNotMatch(phoneCss(css, 520), /\.start-card\{[^}]*display:none/);
+  assert.doesNotMatch(source.match(/<footer\b[^>]*>[\s\S]*?<\/footer>/)[0], /<(?:button|input|select)\b/);
+});

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Hide the informational footer at phone widths while preserving action controls and the wider-screen footer.
+- Standardize the English privacy badge as “Fully local processing” while retaining the Japanese label.
+
 - Clarify Japanese and English help by removing internal layout, implementation, and audit commentary while preserving usage guidance and cautions.
 
 All notable changes to Pocket Teleprompter are documented here.

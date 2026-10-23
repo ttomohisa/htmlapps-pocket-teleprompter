@@ -342,7 +342,7 @@ for (const initial of ['en', 'ja']) test(`header labels and privacy stay localiz
     assert.equal(h.el('helpButton').attrs['aria-label'], help);
     assert.equal(h.el('helpButton').attrs.title, help);
     const badge = h.document.querySelectorAll('[data-i18n]').find(el => el.dataset.i18n === 'localOnly');
-    assert.equal(badge.textContent, ja ? '完全ローカル処理' : 'Processed on device');
+    assert.equal(badge.textContent, ja ? '完全ローカル処理' : 'Fully local processing');
     assert.equal(h.el('versionBadge').textContent, 'v' + require('../app.config.json').version);
     await h.el('helpButton').click(); assert.equal(h.el('helpDialog').open, true); h.el('helpDialog').close();
     await h.el('languageButton').click();

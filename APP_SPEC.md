@@ -51,12 +51,14 @@ A user can paste a script, tune the reading experience, start a distraction-free
 
 - Script and preferences are stored only in localStorage when available.
 - No script text is sent to a server.
+- The privacy badge reads 完全ローカル処理 / Fully local processing in Japanese / English.
 - No analytics, telemetry, API call, remote font, CDN, camera, microphone, or location access.
 - The user can clear the script and locally stored state from the UI.
 
 ## 6. UX decisions
 
 - Mobile-first from 320px upward.
+- The informational page footer is hidden at the existing 520px phone breakpoint and retained on wider screens; action controls and their content clearance remain unchanged.
 - The editor remains conventional and calm; the reader becomes full-screen-like and distraction-free.
 - The primary mobile action is a sticky “Start teleprompter” button.
 - Advanced settings stay visible but compact instead of hiding basic controls behind multiple dialogs.
