@@ -21,7 +21,7 @@ async function main() {
   try {
     const cases = [];
     for (const language of ['ja', 'en']) {
-      for (const [width, height] of [[1360,900], [PHONE_WIDTH + 1,568], [PHONE_WIDTH,568], [320,568], [393,252]]) cases.push({file:'dist/index.html', language, width, height});
+      for (const [width, height] of [[1360,900], [PHONE_WIDTH + 1,568], [PHONE_WIDTH,568], [320,568],[360,640],[390,844], [393,252]]) cases.push({file:'dist/index.html', language, width, height});
     }
     // Also load the compressed and root download variants, without duplicating the full matrix.
     cases.push({file:'dist/index.self-extract.html', language:'en', width:360, height:640});
@@ -38,6 +38,10 @@ async function main() {
         await page.goto(pathToFileURL(path.resolve(file)).href);
         await page.locator(HELP).waitFor();
         if (await page.locator('html').getAttribute('lang') !== language) await page.locator(LANGUAGE).click();
+ const headerVersion=page.locator('header .version-badge');
+ assert.equal(await headerVersion.isVisible(),true,label+': header version is visible');
+ assert.equal((await headerVersion.textContent()).trim(),'v'+JSON.parse(fs.readFileSync(path.resolve(__dirname,'../app.config.json'),'utf8')).version,label+': current version');
+ assert.ok(await headerVersion.evaluate(el=>{const r=el.getBoundingClientRect();if(r.left<0||r.right>innerWidth||el.scrollWidth>el.clientWidth+1)return false;for(let p=el.parentElement;p;p=p.parentElement){if(/hidden|clip/.test(getComputedStyle(p).overflowX)){const b=p.getBoundingClientRect();if(r.left<b.left-1||r.right>b.right+1)return false;}}return true;}),label+': version is not clipped');
         assert.equal((await page.locator('[data-i18n="localOnly"]').textContent()).trim(), language === 'en' ? 'Fully local processing' : '完全ローカル処理', label + ': privacy wording');
         assert.equal(await page.locator('body > footer').isVisible(), width > PHONE_WIDTH, label + ': informational footer breakpoint');
         const badgeBox = await page.locator('.privacy-badge').boundingBox();

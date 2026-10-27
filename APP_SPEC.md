@@ -3,7 +3,7 @@
 ## 1. Product identity
 
 - **Name:** Pocket Teleprompter
-- **Version:** 1.0.4
+- **Version:** 1.0.5
 - **Purpose:** Turn a smartphone or browser window into an installation-free teleprompter for speeches, video recording, interviews, presentations, and rehearsal.
 - **Primary users:** Smartphone users who need a teleprompter occasionally and do not want to install an app or upload a script.
 - **Release artifacts:** `dist/index.html` and `dist/index.self-extract.html`
@@ -95,3 +95,7 @@ Core editor and reader must work when opened via `file://`. Wake Lock and Fullsc
 - Reader reaches 100% and pauses at the end.
 - Japanese and English both fit at 360px width.
 - Help content documents local storage, Wake Lock/Fullscreen limitations, and tap controls.
+
+## Header visibility
+
+Keep the header version visible on narrow smartphones without overlapping the app name or language/Help controls. Verify Japanese and English at 320px, 360px, 390px and desktop widths.
