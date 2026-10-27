@@ -15,4 +15,4 @@ $wrapper = @"
 (async()=>{const b='$b64';const raw=Uint8Array.from(atob(b),c=>c.charCodeAt(0));if(!('DecompressionStream'in window)){document.body.textContent='This browser does not support DecompressionStream. Use dist/index.html instead.';return;}const stream=new Blob([raw]).stream().pipeThrough(new DecompressionStream('gzip'));const html=await new Response(stream).text();document.open();document.write(html);document.close();})().catch(e=>{document.body.textContent='Failed to open Pocket Teleprompter: '+e.message});
 </script></body></html>
 "@
-[IO.File]::WriteAllText($OutputPath, $wrapper, [Text.UTF8Encoding]::new($false))
+[IO.File]::WriteAllText($OutputPath, $wrapper.Replace("`r`n","`n"), [Text.UTF8Encoding]::new($false))

@@ -1,39 +1,5 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const vm = require('node:vm');
-const path = require('node:path');
-
-// Execute the shipped inline app, with only browser DOM/file/timer boundaries faked.
-function loadApp(saved = {}, storageUnavailable = false) {
-  const source = fs.readFileSync(path.join(__dirname, '../src/index.template.html'), 'utf8');
-  const elements = new Map(), documentEvents = {}, timers = new Map(), downloads = [], blobs = new Map(), revoked = [];
-  let nextId = 0, stored = JSON.stringify({ countdown: false, fullscreen: false, wake: false, ...saved });
-  class Element {
-    constructor(id = '', tag = 'div') { this.id = id; this.tagName = tag.toUpperCase(); this._value = ''; this.textContent = ''; this.dataset = {}; this.events = {}; this.style = { setProperty() {} }; this.attrs = {}; this.files = []; this.open = false; this.scrollTop = 0; this.clientHeight = 800; this.offsetTop = 0; this.scrollHeight = 2400; const classes = new Set(); this.classList = { add: (...v) => v.forEach(x => classes.add(x)), remove: (...v) => v.forEach(x => classes.delete(x)), contains: x => classes.has(x), toggle: (x, on) => on ? classes.add(x) : classes.delete(x) }; }
-    set value(v) { this._value = this.tagName === 'TEXTAREA' ? String(v).replace(/\r\n?/g, '\n') : String(v); }
-    get value() { return this._value; }
-    setAttribute(k, v) { this.attrs[k] = v; }
-    addEventListener(k, fn) { (this.events[k] ??= []).push(fn); }
-    async fire(type, extra = {}) { for (const fn of this.events[type] || []) await fn({ target: this, currentTarget: this, preventDefault() {}, stopPropagation() {}, ...extra }); }
-    click() { if (this.tagName === 'A') { downloads.push({ blob: blobs.get(this.href), filename: this.download }); return; } return this.fire('click'); }
-    focus() { document.activeElement = this; }
-    showModal() { this.open = true; }
-    close() { this.open = false; }
-    getBoundingClientRect() { return this.tagName === 'DIALOG' && !this.open ? { left: 0, top: 0, right: 0, bottom: 0 } : { left: 10, top: 10, right: 300, bottom: 300 }; }
-    remove() { this.removed = true; }
-    append() {}
-  }
-  for (const match of source.matchAll(/<([\w-]+)\b[^>]*\bid="([^"]+)"[^>]*>/g)) elements.set(match[2], new Element(match[2], match[1]));
-  elements.get('appConfig').textContent = '{}';
-  const document = { body: new Element(), documentElement: new Element(), activeElement: null, querySelectorAll: () => [], getElementById: id => elements.get(id), createElement: tag => new Element('', tag), addEventListener: (k, fn) => documentEvents[k] = fn };
-  const sandbox = { document, navigator: { language: 'en' }, console, Blob, TextDecoder, TextEncoder, Uint8Array, ArrayBuffer, URL: { createObjectURL(blob) { const url = `blob:test-${++nextId}`; blobs.set(url, blob); return url; }, revokeObjectURL(url) { revoked.push(url); blobs.delete(url); } }, localStorage: { getItem() { if (storageUnavailable) throw Error('blocked'); return stored; }, setItem(_k, value) { if (storageUnavailable) throw Error('blocked'); stored = value; } }, setTimeout(fn) { const id = ++nextId; timers.set(id, fn); return id; }, clearTimeout: id => timers.delete(id), requestAnimationFrame: () => ++nextId, cancelAnimationFrame() {}, getComputedStyle: () => ({ paddingBottom: '496' }), performance: { now: () => 0 }, addEventListener() {}, innerWidth: 1000 };
-  sandbox.window = sandbox;
-  vm.runInNewContext(source.match(/<script>\s*([\s\S]*?)<\/script>/)[1], sandbox);
-  const el = id => { assert.ok(elements.has(id), `Missing feature control: ${id}`); return elements.get(id); };
-  return { source, el, downloads, blobs, revoked, saved: () => JSON.parse(stored), async edit(text) { el('scriptInput').value = text; await el('scriptInput').fire('input'); }, async select(file) { el('textFileInput').files = file ? [file] : []; el('textFileInput').value = file?.name || ''; await el('textFileInput').fire('change'); }, flushTimers() { const queued = [...timers.values()]; timers.clear(); queued.forEach(fn => fn()); }, async key(key) { let prevented = false; await documentEvents.keydown({ key, preventDefault() { prevented = true; } }); return prevented; } };
-}
-function file(text, name = 'speech.txt') { const bytes = Buffer.isBuffer(text) ? text : Buffer.from(text); return { name, size: bytes.length, arrayBuffer: async () => Uint8Array.from(bytes).buffer }; }
+const test=require('node:test'),assert=require('node:assert/strict');
+const {loadApp,file}=require('./helpers/reader-harness.cjs');
 function deferredFile(name = 'later.txt') { let resolve, reject; const result = { name, size: 32, arrayBuffer: () => new Promise((a, b) => { resolve = a; reject = b; }) }; return { file: result, resolve: text => resolve(Uint8Array.from(Buffer.from(text)).buffer), reject: () => reject(Error('read failed')) }; }
 
  test('opens UTF-8 BOM/CRLF, preserves paragraphs/Japanese/emoji/literal markup, and exports current text', async () => {

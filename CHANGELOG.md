@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Adopt common UI 1.0.0: truthful scoped save/read recovery, shared language, independent TXT file recovery, guarded confirmations and owned Wake Lock cleanup.
+
 ## 1.0.5 - 2026-10-27
 
 - Keep the header version visible on narrow smartphones without overlapping the app name or language/Help controls.

@@ -12,6 +12,9 @@ Header language controls show EN / JA with localized target-language and Help la
 
 A privacy-friendly, installation-free teleprompter that runs entirely in the browser. Paste a script, choose a pace, and start reading without uploading the text anywhere.
 
+
+Script and reader preferences autosave in this browser. Failed saves keep your work and offer retry or TXT export. If saved data cannot be read, writes pause until recovery; conflicting scripts require an explicit choice. Reading position stays in this tab.
+
 ## 🚀 Live demo
 
 ### [Open Pocket Teleprompter on GitHub Pages](https://ttomohisa.github.io/htmlapps-pocket-teleprompter/)

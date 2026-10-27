@@ -66,6 +66,8 @@
       .header-actions { flex: 0 0 auto; }
     }
   </style>
+<style>__BK_UI_CSS__</style><script data-bk-ui-version="1.0.0">__BK_UI_JS__</script>
+<style>[data-bk-button].reader-icon-button,[data-bk-button].reader-exit,[data-bk-button].step-button{min-width:44px;min-height:44px}</style>
 </head>
 <body>
   <header class="app-header">
@@ -75,14 +77,15 @@
         <div class="brand-copy"><h1 class="brand-name"><span class="brand-title">Pocket Teleprompter</span><span class="version-badge" id="versionBadge">v1.0.5</span></h1><p class="brand-meta" data-i18n="brandMeta">原稿を貼って、すぐ読む。</p></div>
       </div>
       <div class="header-actions">
-        <button type="button" class="language-button" id="languageButton" aria-label="英語に切り替え" title="英語に切り替え">EN</button>
-        <button type="button" class="header-icon-button" id="helpButton" aria-label="使い方と注意事項" title="使い方と注意事項"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M9.8 9.2a2.4 2.4 0 0 1 4.6.9c0 1.8-2.4 2-2.4 3.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="currentColor"/></svg></button>
+        <button data-bk-button data-bk-variant="secondary" type="button" class="language-button" data-bk-header-action id="languageButton" aria-label="英語に切り替え" title="英語に切り替え">EN</button>
+        <button data-bk-button data-bk-variant="secondary" type="button" class="header-icon-button" data-bk-header-action id="helpButton" aria-label="使い方と注意事項" title="使い方と注意事項"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M9.8 9.2a2.4 2.4 0 0 1 4.6.9c0 1.8-2.4 2-2.4 3.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17" r="1" fill="currentColor"/></svg></button>
       </div>
     </div>
   </header>
 
   <!-- APP:BEGIN -->
   <main class="main">
+    <p id="retention" data-bk-save-status role="status" aria-live="polite"></p><p id="saveRecovery" role="alert"></p><button id="retrySave" type="button" data-bk-button data-bk-variant="secondary" hidden></button><button id="useRecoveredText" type="button" data-bk-button data-bk-variant="secondary" hidden></button><button id="keepCurrentText" type="button" data-bk-button data-bk-variant="secondary" hidden></button><p id="languageNotice" role="status"></p>
     <section class="page-intro" aria-labelledby="pageTitle">
       <div><h2 id="pageTitle" data-i18n="pageTitle">原稿を貼るだけ。スマホがテレプロンプターに。</h2><p data-i18n="pageLead">動画撮影、スピーチ、プレゼン練習に。原稿は端末内に保存され、外部へ送信されません。</p></div>
       <div class="privacy-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 2.8 8 7 10 4.2-2 7-5.4 7-10V6z"/><path d="m9 12 2 2 4-5"/></svg><span data-i18n="localOnly">完全ローカル処理</span></div>
@@ -100,14 +103,14 @@
         </div>
         <div class="script-wrap">
           <div class="file-toolbar">
-            <button type="button" class="button" id="openTextButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h7l2 2h9l-3 11H3V7Zm0 0V4h7l2 3h7v2" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span data-i18n="openText">.txtを開く</span></button>
+            <button data-bk-button data-bk-variant="secondary" type="button" class="button" id="openTextButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h7l2 2h9l-3 11H3V7Zm0 0V4h7l2 3h7v2" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span data-i18n="openText">.txtを開く</span></button>
             <input type="file" id="textFileInput" accept=".txt,text/plain" hidden>
             <div class="file-name"><label for="fileNameInput" data-i18n="fileName">保存ファイル名</label><input type="text" id="fileNameInput" value="pocket-teleprompter.txt" maxlength="240" autocomplete="off" spellcheck="false"></div>
-            <button type="button" class="button" id="saveTextButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v4h16v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="saveText">.txtを保存</span></button>
+            <button data-bk-button data-bk-variant="secondary" type="button" class="button" id="saveTextButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v4h16v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="saveText">.txtを保存</span></button>
           </div>
-          <p class="file-status" id="fileStatus" role="status" aria-live="polite"></p>
+          <p class="file-status" id="fileStatus" role="status" aria-live="polite"></p><p id="fileRecovery" role="alert"></p><p id="exportScope"></p><button id="stopImport" type="button" data-bk-button data-bk-variant="secondary" hidden></button>
           <textarea class="script-input" id="scriptInput" aria-labelledby="scriptTitle" aria-describedby="scriptHelp" data-i18n-placeholder="scriptPlaceholder" placeholder="本日はご覧いただきありがとうございます。&#10;&#10;ここに原稿を貼り付けてください。"></textarea>
-          <div class="editor-actions"><span class="save-status" id="saveStatus" aria-live="polite" data-i18n="savedLocally">端末内に自動保存</span><button type="button" class="text-button danger" id="clearButton" data-i18n="clearScript">原稿を消去</button></div>
+          <div class="editor-actions"><span class="save-status" id="saveStatus" aria-live="polite">端末内に自動保存</span><button data-bk-button data-bk-variant="secondary" type="button" class="text-button danger" id="clearButton" data-i18n="clearScript">原稿を消去</button></div>
         </div>
       </section>
 
@@ -117,14 +120,14 @@
           <div class="setting-block">
             <div class="setting-copy"><strong id="paceModeLabel" data-i18n="paceMode">スクロールの決め方</strong><span id="paceModeHelp" data-i18n="paceModeHelp">通常の速度指定か、読み切りたい時間から自動計算します。</span></div>
             <div class="segmented" id="paceModeButtons" role="group" aria-labelledby="paceModeLabel"><button type="button" id="speedModeLabel" data-mode="speed" class="active" data-i18n="speedMode">速度</button><button type="button" id="durationModeLabel" data-mode="duration" data-i18n="durationMode">目標時間</button></div>
-            <div class="range-row" id="speedControls"><button class="round-small" type="button" data-adjust-speed="-0.1" data-i18n-aria-label="decreaseSpeed" aria-label="速度を下げる">−</button><input type="range" id="speedRange" aria-labelledby="speedModeLabel" aria-describedby="paceModeHelp" min="0.5" max="2" step="0.1" value="1"><button class="round-small" type="button" data-adjust-speed="0.1" data-i18n-aria-label="increaseSpeed" aria-label="速度を上げる">＋</button></div>
+            <div class="range-row" id="speedControls"><button data-bk-button data-bk-variant="secondary" class="round-small" type="button" data-adjust-speed="-0.1" data-i18n-aria-label="decreaseSpeed" aria-label="速度を下げる">−</button><input type="range" id="speedRange" aria-labelledby="speedModeLabel" aria-describedby="paceModeHelp" min="0.5" max="2" step="0.1" value="1"><button data-bk-button data-bk-variant="secondary" class="round-small" type="button" data-adjust-speed="0.1" data-i18n-aria-label="increaseSpeed" aria-label="速度を上げる">＋</button></div>
             <div class="range-value" id="speedValue">1.0×</div>
-            <div class="range-row" id="durationControls" hidden><button class="round-small" type="button" data-adjust-duration="-30" data-i18n-aria-label="decreaseDuration" aria-label="目標時間を短くする">−</button><input type="range" id="durationRange" aria-labelledby="durationModeLabel" aria-describedby="paceModeHelp" min="60" max="1200" step="30" value="180"><button class="round-small" type="button" data-adjust-duration="30" data-i18n-aria-label="increaseDuration" aria-label="目標時間を長くする">＋</button></div>
+            <div class="range-row" id="durationControls" hidden><button data-bk-button data-bk-variant="secondary" class="round-small" type="button" data-adjust-duration="-30" data-i18n-aria-label="decreaseDuration" aria-label="目標時間を短くする">−</button><input type="range" id="durationRange" aria-labelledby="durationModeLabel" aria-describedby="paceModeHelp" min="60" max="1200" step="30" value="180"><button data-bk-button data-bk-variant="secondary" class="round-small" type="button" data-adjust-duration="30" data-i18n-aria-label="increaseDuration" aria-label="目標時間を長くする">＋</button></div>
             <div class="range-value" id="durationValue" hidden>3:00</div>
           </div>
           <div class="setting-block">
             <div class="setting-copy"><strong id="fontSizeLabel" data-i18n="fontSize">文字サイズ</strong><span id="fontSizeHelp" data-i18n="fontSizeHelp">本番画面の文字サイズを調整します。</span></div>
-            <div class="range-row"><button class="round-small" type="button" data-adjust-font="-4" data-i18n-aria-label="decreaseFont" aria-label="文字を小さくする">−</button><input type="range" id="fontRange" aria-labelledby="fontSizeLabel" aria-describedby="fontSizeHelp" min="30" max="82" step="2" value="52"><button class="round-small" type="button" data-adjust-font="4" data-i18n-aria-label="increaseFont" aria-label="文字を大きくする">＋</button></div>
+            <div class="range-row"><button data-bk-button data-bk-variant="secondary" class="round-small" type="button" data-adjust-font="-4" data-i18n-aria-label="decreaseFont" aria-label="文字を小さくする">−</button><input type="range" id="fontRange" aria-labelledby="fontSizeLabel" aria-describedby="fontSizeHelp" min="30" max="82" step="2" value="52"><button data-bk-button data-bk-variant="secondary" class="round-small" type="button" data-adjust-font="4" data-i18n-aria-label="increaseFont" aria-label="文字を大きくする">＋</button></div>
             <div class="range-value"><span id="fontValue">52</span> px</div>
           </div>
           <div class="setting-block">
@@ -137,7 +140,7 @@
           <div class="setting-block toggle-row"><div class="setting-copy"><strong id="wakeLockLabel" data-i18n="wakeLock">画面を消さない</strong><span id="wakeLockHelp" data-i18n="wakeLockHelp">対応環境では再生中に画面スリープを防ぎます。</span></div><label class="switch"><input type="checkbox" id="wakeToggle" aria-labelledby="wakeLockLabel" aria-describedby="wakeLockHelp" checked><span class="switch-track"><span class="switch-thumb"></span></span></label></div>
           <div class="setting-block toggle-row"><div class="setting-copy"><strong id="fullscreenLabel" data-i18n="fullscreen">全画面を試す</strong><span id="fullscreenHelp" data-i18n="fullscreenHelp">未対応でもテレプロンプター自体は利用できます。</span></div><label class="switch"><input type="checkbox" id="fullscreenToggle" aria-labelledby="fullscreenLabel" aria-describedby="fullscreenHelp" checked><span class="switch-track"><span class="switch-thumb"></span></span></label></div>
         </section>
-        <section class="card start-card"><button type="button" class="button primary start-button" id="startButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 7 8 5-8 5V7Z" fill="currentColor"/></svg><span data-i18n="startTeleprompter">テレプロンプターを開始</span></button><div class="start-meta"><span id="modeSummary">1.0×</span><span id="fontSummary">52 px</span></div></section>
+        <section class="card start-card"><button data-bk-button data-bk-variant="primary" type="button" class="button primary start-button" id="startButton"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 7 8 5-8 5V7Z" fill="currentColor"/></svg><span data-i18n="startTeleprompter">テレプロンプターを開始</span></button><div class="start-meta"><span id="modeSummary">1.0×</span><span id="fontSummary">52 px</span></div></section>
       </aside>
     </div>
   </main>
@@ -148,12 +151,13 @@
   <div class="reader-view" id="readerView" aria-hidden="true" tabindex="-1">
     <div class="reader-scroller" id="readerScroller"><div class="reader-content" id="readerContent"></div></div>
     <div class="cue-line" aria-hidden="true"></div>
+    <p id="capabilityRecovery" role="status" aria-live="polite"></p>
     <div class="reader-topbar">
-      <button type="button" class="reader-exit" id="readerExit" data-i18n-aria-label="backToEditor" aria-label="原稿へ戻る"><svg viewBox="0 0 24 24" fill="none"><path d="m15 6-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button type="button" class="reader-icon-button" id="restartButton" data-i18n-aria-label="restart" aria-label="最初から"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7v5h5M6 11a7 7 0 1 1 1 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button data-bk-button data-bk-variant="secondary" type="button" class="reader-exit" id="readerExit" data-i18n-aria-label="backToEditor" aria-label="原稿へ戻る"><svg viewBox="0 0 24 24" fill="none"><path d="m15 6-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button data-bk-button data-bk-variant="secondary" type="button" class="reader-icon-button" id="restartButton" data-i18n-aria-label="restart" aria-label="最初から"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7v5h5M6 11a7 7 0 1 1 1 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="reader-status"><strong id="readerStateLabel" data-i18n="ready">準備完了</strong><span id="readerPaceLabel">1.0×</span></div>
       <div class="reader-time"><strong id="elapsedDisplay">0:00</strong><span> / </span><span id="remainingDisplay">—</span></div>
-      <button type="button" class="reader-icon-button" id="readerPause" aria-label="一時停止" title="一時停止" disabled><svg id="readerPauseIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path id="readerPausePath" d="M8 6h3v12H8zM13 6h3v12h-3z" fill="currentColor"/></svg></button>
+      <button data-bk-button data-bk-variant="secondary" type="button" class="reader-icon-button" id="readerPause" aria-label="一時停止" title="一時停止" disabled><svg id="readerPauseIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path id="readerPausePath" d="M8 6h3v12H8zM13 6h3v12h-3z" fill="currentColor"/></svg></button>
     </div>
     <div class="reader-progress"><span id="readerProgressBar"></span></div>
     <div class="reader-pause-card"><svg viewBox="0 0 24 24" fill="none"><path d="M8 6h3v12H8zM13 6h3v12h-3z" fill="currentColor"/></svg><strong data-i18n="paused">一時停止</strong><span data-i18n="tapToResume">中央をタップして再開</span></div>
@@ -164,14 +168,15 @@
     <div class="tap-hint" id="tapHint"><div data-i18n="slowerTap">左：遅く</div><div data-i18n="pauseTap">中央：停止 / 再開</div><div data-i18n="fasterTap">右：速く</div></div>
     <div class="reader-feedback" id="readerFeedback"></div>
     <div class="countdown" id="countdownLayer"><div class="countdown-number" id="countdownNumber">3</div></div>
-    <div class="reader-finish" id="finishLayer"><div class="finish-card"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="m8 12 2.5 2.5L16.5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h2 data-i18n="finished">最後まで到達しました</h2><p data-i18n="finishedHelp">もう一度読むか、原稿画面へ戻れます。</p><div class="finish-actions"><button class="button" type="button" id="finishRestart" data-i18n="restart">最初から</button><button class="button primary" type="button" id="finishExit" data-i18n="backToEditor">原稿へ戻る</button></div></div></div>
+    <div class="reader-finish" id="finishLayer"><div class="finish-card"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="m8 12 2.5 2.5L16.5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h2 data-i18n="finished">最後まで到達しました</h2><p data-i18n="finishedHelp">もう一度読むか、原稿画面へ戻れます。</p><div class="finish-actions"><button data-bk-button data-bk-variant="secondary" class="button" type="button" id="finishRestart" data-i18n="restart">最初から</button><button data-bk-button data-bk-variant="secondary" class="button primary" type="button" id="finishExit" data-i18n="backToEditor">原稿へ戻る</button></div></div></div>
     <div class="sr-only" id="readerLive" aria-live="polite"></div>
   </div>
 
   <dialog id="helpDialog" aria-labelledby="helpTitle">
-    <div class="dialog-header"><h2 id="helpTitle" data-i18n="helpTitle">使い方と注意事項</h2><button type="button" class="dialog-close" id="helpClose" data-close-dialog="helpDialog" data-i18n-aria-label="close" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+    <div class="dialog-header"><h2 id="helpTitle" data-i18n="helpTitle">使い方と注意事項</h2><button data-bk-button data-bk-variant="secondary" type="button" class="dialog-close" id="helpClose" data-close-dialog="helpDialog" data-i18n-aria-label="close" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
     <div class="dialog-body" tabindex="0" role="region" aria-labelledby="helpTitle">
       <!-- APP:HELP:BEGIN -->
+      <p data-i18n="uiHelp"></p>
       <h3 data-i18n="helpBasicTitle">基本操作</h3><ul><li data-i18n="helpBasic1">原稿を貼り付け、速度や文字サイズを調整して「テレプロンプターを開始」を押します。</li><li data-i18n="helpBasic2">本番画面の中央をタップすると停止・再開。左端で遅く、右端で速くできます。</li><li data-i18n="helpBasic3">「目標時間」では、原稿の最後が指定時間に来るようスクロール速度を自動計算します。</li></ul>
       <p data-i18n="helpPosition">一時停止中は「読み位置」で0〜100%の位置へ移動できます。経過時間はそのままで、目標時間モードは残り時間から速度を再計算します。100%で終了し、「最初から」でやり直せます。位置は保存されません。スライダー操作中は矢印キーで位置を調整できます。</p>
       <h3 data-i18n="helpKeyboardTitle">PCのキーボード操作</h3><p data-i18n="helpKeyboardContext">本番画面で使えます（開始準備中や、入力欄・スライダーの操作中を除く）。</p><ul><li data-i18n="helpKeyboardSpace">Space：一時停止 / 再開。</li><li data-i18n="helpKeyboardArrows">← / →：遅く / 速く。目標時間モードでは目標を30秒長く / 短くします。</li><li data-i18n="helpKeyboardRestart">R：最初から読み直します。</li><li data-i18n="helpKeyboardFullscreen">F：対応ブラウザーで全画面表示を試します。</li><li data-i18n="helpKeyboardEscape">Esc：原稿画面へ戻ります。全画面表示中は、まず全画面を解除し、もう一度Escを押します。</li></ul><p data-i18n="helpKeyboardControls">ボタンにフォーカスがあるときのSpace / Enterは、そのボタンを実行します。読み位置スライダーにフォーカスがあるときは、矢印キーで位置を調整できます。</p>
@@ -184,13 +189,13 @@
   </dialog>
 
   <dialog id="confirmDialog" class="confirm-dialog" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
-    <div class="dialog-header"><h2 id="confirmTitle" data-i18n="clearConfirmTitle">原稿を消去しますか？</h2><button type="button" class="dialog-close" id="confirmClose" data-i18n-aria-label="close" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
-    <div class="dialog-body"><p id="confirmMessage" data-i18n="clearConfirmMessage">端末内に保存された原稿も削除されます。この操作は元に戻せません。</p><div class="confirm-actions"><button type="button" class="button" id="confirmCancel" data-i18n="cancel">キャンセル</button><button type="button" class="button danger" id="confirmOk" data-i18n="clear">消去する</button></div></div>
+    <div class="dialog-header"><h2 id="confirmTitle" data-i18n="clearConfirmTitle">原稿を消去しますか？</h2><button data-bk-button data-bk-variant="secondary" type="button" class="dialog-close" id="confirmClose" data-i18n-aria-label="close" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+    <div class="dialog-body"><p id="confirmMessage" data-i18n="clearConfirmMessage">端末内に保存された原稿も削除されます。この操作は元に戻せません。</p><div class="confirm-actions"><button data-bk-button data-bk-variant="secondary" type="button" class="button" id="confirmCancel" data-i18n="cancel">キャンセル</button><button data-bk-button data-bk-variant="danger" type="button" class="button danger" id="confirmOk" data-i18n="clear">消去する</button></div></div>
   </dialog>
 
   <dialog id="replaceDialog" class="confirm-dialog" aria-labelledby="replaceTitle" aria-describedby="replaceMessage">
-    <div class="dialog-header"><h2 id="replaceTitle" data-i18n="replaceTitle">原稿を置き換えますか？</h2><button type="button" class="dialog-close" id="replaceClose" data-i18n-aria-label="close" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
-    <div class="dialog-body"><p id="replaceMessage" data-i18n="replaceMessage">現在の原稿と端末内の自動保存を、選んだファイルの内容で置き換えます。残したい原稿は先に.txtで保存してください。</p><div class="confirm-actions"><button type="button" class="button" id="replaceCancel" data-i18n="cancel" autofocus>キャンセル</button><button type="button" class="button primary" id="replaceOk" data-i18n="replace">置き換える</button></div></div>
+    <div class="dialog-header"><h2 id="replaceTitle" data-i18n="replaceTitle">原稿を置き換えますか？</h2><button data-bk-button data-bk-variant="secondary" type="button" class="dialog-close" id="replaceClose" data-i18n-aria-label="close" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+    <div class="dialog-body"><p id="replaceMessage" data-i18n="replaceMessage">現在の原稿と端末内の自動保存を、選んだファイルの内容で置き換えます。残したい原稿は先に.txtで保存してください。</p><div class="confirm-actions"><button data-bk-button data-bk-variant="secondary" type="button" class="button" id="replaceCancel" data-i18n="cancel" autofocus>キャンセル</button><button data-bk-button data-bk-variant="danger" type="button" class="button primary" id="replaceOk" data-i18n="replace">置き換える</button></div></div>
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -217,25 +222,35 @@
       }
     };
 
+    Object.assign(I18N.ja,{uiHelp:'原稿・設定を保存できない場合も、現在の画面で使い続けられます。保存を再試行するか、原稿をTXTで保存してください。保存済み原稿を読めない場合は、復旧まで書き込みを停止します。'});
+    Object.assign(I18N.en,{uiHelp:'If script/preferences cannot be saved, keep using this screen and retry or save the script as TXT. If saved script cannot be read, writes pause until recovery.'});
     const $=id=>document.getElementById(id);
     const config=JSON.parse($('appConfig').textContent||'{}');
     const storageKey='pocket-teleprompter:v1';
-    let stored={};try{stored=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch{}
+    let uiReadFailed=false,uiSaveFailed=false,uiPendingSave=false,uiSavedAt=null,uiSavedConfirmed=false,uiLanguageSessionOnly=false,uiTouched=new Set(),uiTextRevision=0,uiDiscardSavedText=false,uiRecoveredText=null,uiRecoveryChoice=null,uiClearOwner=null,uiImportBusy=false,uiFileStatus='',uiFileErrors={},uiDeliveredName='',uiWakeRequest=null,uiWakeError=false,uiFullscreenError=false,uiFullscreenRequest=null,uiFullscreenWanted=-1;
+    let stored={};let raw;try{raw=localStorage.getItem(storageKey)}catch{uiReadFailed=true}try{const value=JSON.parse(raw||'{}');stored=value&&typeof value==='object'&&!Array.isArray(value)?value:{};uiSavedConfirmed=!!raw&&value&&typeof value==='object'&&!Array.isArray(value)}catch{}
     const state={
-      lang:stored.lang||((navigator.language||'').toLowerCase().startsWith('ja')?'ja':'en'),
+      lang:BrowserKittyUI.resolveLanguage({legacyKeys:['teleprompter:legacy-lang'],storage:{getItem:key=>key==='teleprompter:legacy-lang'?stored.lang:localStorage.getItem(key)}}),
       text:typeof stored.text==='string'?stored.text:'',paceMode:stored.paceMode==='duration'?'duration':'speed',
       speed:clamp(Number(stored.speed)||1,.5,2),duration:clamp(Number(stored.duration)||180,60,1200),fontSize:clamp(Number(stored.fontSize)||52,30,82),
       align:stored.align==='center'?'center':'left',mirror:!!stored.mirror,cue:stored.cue!==false,countdown:stored.countdown!==false,wake:stored.wake!==false,fullscreen:stored.fullscreen!==false,
       readerOpen:false,starting:false,readerGeneration:0,measureRaf:0,playing:false,ended:false,raf:0,lastFrame:0,elapsedMs:0,startScroll:0,endScroll:0,readingRatio:0,travelHeight:0,viewportHeight:0,pxPerSec:36,wakeLock:null,feedbackTimer:0,tapHintTimer:0,saveTimer:0
     };
 
+    function ui(ja,en){return state.lang==='ja'?ja:en;}
+    function storedValue(){return {lang:state.lang,text:state.text,paceMode:state.paceMode,speed:state.speed,duration:state.duration,fontSize:state.fontSize,align:state.align,mirror:state.mirror,cue:state.cue,countdown:state.countdown,wake:state.wake,fullscreen:state.fullscreen};}
+    function syncSharedUi(){BrowserKittyUI.setSaveStatus($('retention'),{mode:'autosave',state:uiReadFailed||uiSaveFailed?'error':uiPendingSave?'dirty':uiSavedAt||uiSavedConfirmed?'saved':'dirty',language:state.lang,time:uiSavedAt});BrowserKittyUI.setSaveStatus($('saveStatus'),{mode:'autosave',state:uiReadFailed||uiSaveFailed?'error':uiPendingSave?'dirty':uiSavedAt||uiSavedConfirmed?'saved':'dirty',language:state.lang,time:uiSavedAt});$('retention').textContent=ui('原稿と読み上げ設定: ','Script and reader preferences: ')+$('retention').textContent;const recovery=uiReadFailed?ui('保存済みの原稿・設定を読み込めませんでした。復旧まで書き込みを停止しています。','Could not read saved script/preferences. Writes are paused until recovery.'):uiSaveFailed?ui('原稿と設定はこの画面に残っています。保存を再試行するか、原稿をTXTで保存してください。','Script and preferences remain on this screen. Retry saving or save the script as TXT.'):'';$('saveRecovery').textContent=uiRecoveredText?ui('保存済み原稿と今回の編集が異なります。どちらも保持しています。使う原稿を選んでください。','Saved script differs from current edits. Both are kept. Choose which script to use.'):recovery;$('retrySave').hidden=!(uiPendingSave||uiReadFailed)||!!uiRecoveredText;$('retrySave').textContent=uiReadFailed?ui('原稿・設定の読み込みを再試行','Retry reading script/preferences'):ui('原稿・設定の保存を再試行','Retry saving script/preferences');$('useRecoveredText').hidden=$('keepCurrentText').hidden=!uiRecoveredText;$('useRecoveredText').textContent=ui('保存済み原稿を使う','Use saved script');$('keepCurrentText').textContent=ui('現在の原稿で保存済み原稿を置き換える','Replace saved script with current text');$('languageNotice').textContent=uiLanguageSessionOnly?BrowserKittyUI.text('languageSessionOnly',state.lang):'';$('fileRecovery').textContent=Object.values(uiFileErrors).map(key=>t(key)).join(' ');$('fileStatus').textContent=uiFileStatus==='fileDownloaded'?BrowserKittyUI.text('downloadStarted',state.lang)+' — '+uiDeliveredName:uiFileStatus?t(uiFileStatus):'';$('exportScope').textContent=ui('TXT: 現在の原稿全文 ','TXT: entire current script, ')+[...state.text].length+ui('文字（UTF-8）。設定や読み位置は含みません。',' characters (UTF-8), without preferences or reading position.');$('stopImport').hidden=!uiImportBusy;$('stopImport').textContent=BrowserKittyUI.text('stopProcessing',state.lang);BrowserKittyUI.setButtonState($('openTextButton'),state.readerOpen?'unavailable':'ready');BrowserKittyUI.setButtonState($('saveTextButton'),state.text.trim()?'ready':'unavailable');BrowserKittyUI.setButtonState($('startButton'),state.starting?'busy':!state.readerOpen&&state.text.trim()?'ready':'unavailable');$('capabilityRecovery').textContent=[uiWakeRequest?ui('画面起動ロックを要求しています…','Requesting screen wake lock…'):null,uiFullscreenRequest?ui('全画面表示を要求しています…','Requesting fullscreen…'):null,uiWakeError?t('wakeUnavailable'):null,uiFullscreenError?t('fullscreenUnavailable'):null].filter(Boolean).join(' ');if(uiRecoveryChoice&&$('replaceDialog').open){$('replaceTitle').textContent=uiRecoveryChoice.keep?ui('保存済み原稿を置き換えますか？','Replace the saved script?'):ui('現在の原稿を置き換えますか？','Replace the current script?');$('replaceMessage').textContent=uiRecoveryChoice.keep?ui('現在の原稿で保存済み原稿を置き換えます。設定と言語は残ります。元に戻せません。','Replace the saved script with current text. Preferences and language remain. This cannot be undone.'):ui('現在の編集を保存済み原稿で置き換えます。今回変更した設定と言語は残ります。','Replace current edits with the saved script. New preference choices and language remain.');$('replaceOk').textContent=ui('原稿を置き換える','Replace script');}if(uiClearOwner&&$('confirmDialog').open){$('confirmMessage').textContent=ui('現在の原稿','Clear the current ')+[...state.text].length+ui('文字と、このツールの保存済み原稿を消去します。読み上げ設定と言語は残ります。元に戻せません。',' characters and this tool’s stored script. Reader preferences and language remain. This cannot be undone.');$('confirmOk').textContent=ui('原稿を消去','Clear script');}}
+    function retryRead(){if(state.readerOpen)return;cancelImport();let value;try{value=JSON.parse(localStorage.getItem(storageKey)||'{}');if(!value||typeof value!=='object'||Array.isArray(value))throw Error('invalid')}catch{uiReadFailed=true;syncSharedUi();return false;}const recovered={text:typeof value.text==='string'?value.text:'',paceMode:value.paceMode==='duration'?'duration':'speed',speed:clamp(Number(value.speed)||1,.5,2),duration:clamp(Number(value.duration)||180,60,1200),fontSize:clamp(Number(value.fontSize)||52,30,82),align:value.align==='center'?'center':'left',mirror:!!value.mirror,cue:value.cue!==false,countdown:value.countdown!==false,wake:value.wake!==false,fullscreen:value.fullscreen!==false};for(const key of Object.keys(recovered))if(key!=='text'&&!uiTouched.has(key))state[key]=recovered[key];if(uiTouched.has('text')&&!uiDiscardSavedText&&recovered.text&&recovered.text!==state.text){uiRecoveredText={text:recovered.text,preferences:recovered};updateSummary();syncSharedUi();return true;}if(!uiTouched.has('text')){if(state.text!==recovered.text)uiTextRevision++;state.text=recovered.text;$('scriptInput').value=state.text;}uiReadFailed=false;uiSavedConfirmed=true;updateSummary();syncSharedUi();return true;}
+    function chooseRecovered(keep){if(!uiRecoveredText||state.readerOpen)return;uiRecoveryChoice={keep,recovered:uiRecoveredText,revision:uiTextRevision};$('replaceDialog').showModal();syncSharedUi();$('replaceCancel').focus();}
+    function resolveRecovered(){const choice=uiRecoveryChoice;if(!choice||choice.recovered!==uiRecoveredText||choice.revision!==uiTextRevision||state.readerOpen)return;uiRecoveryChoice=null;$('replaceDialog').close();if(!choice.keep){clearTimeout(state.saveTimer);state.saveTimer=0;uiPendingSave=Object.keys(choice.recovered.preferences).some(key=>key!=='text'&&state[key]!==choice.recovered.preferences[key]);if(!uiPendingSave)uiSaveFailed=false;state.text=choice.recovered.text;$('scriptInput').value=state.text;uiTouched.add('text');uiTextRevision++;}uiReadFailed=false;uiSavedConfirmed=true;uiRecoveredText=null;if(choice.keep)save();updateSummary();syncSharedUi();$('scriptInput').focus();}
+
     const MAX_TEXT_BYTES=1048576,DEFAULT_FILE_NAME='pocket-teleprompter.txt';
     let importGeneration=0,pendingImport=null;
 
-    function fileStatus(key){$('fileStatus').textContent=key?t(key):''}
+    function fileStatus(key){if(['fileType','fileLarge','fileInvalid','fileEmpty','fileReadFailed'].includes(key))uiFileErrors.import=key;else if(key==='fileSaveFailed')uiFileErrors.export=key;else if(key==='fileOpened')delete uiFileErrors.import;else if(key==='fileDownloaded')delete uiFileErrors.export;uiFileStatus=key||'';syncSharedUi();}
     function cancelImport(announce=false){
       // A newer selection, edit, Clear, or reader start owns the editor now.
-      importGeneration++;pendingImport=null;
+      importGeneration++;pendingImport=null;uiRecoveryChoice=null;uiImportBusy=false;
       if($('replaceDialog').open)$('replaceDialog').close();
       fileStatus(announce?'fileCanceled':'');
     }
@@ -252,7 +267,7 @@
     function applyImportedText(imported){
       if(imported.generation!==importGeneration||state.readerOpen)return;
       pendingImport=null;$('replaceDialog').close();
-      state.text=imported.text;$('scriptInput').value=state.text;$('fileNameInput').value=imported.name;
+      uiTouched.add('text');uiTextRevision++;state.text=imported.text;$('scriptInput').value=state.text;$('fileNameInput').value=imported.name;
       clearTimeout(state.saveTimer);save();updateStats();fileStatus('fileOpened');$('scriptInput').focus();
     }
     async function openTextFile(file){
@@ -260,9 +275,9 @@
       if(!file||state.readerOpen)return;
       if(!/\.txt$/i.test(file.name)){fileStatus('fileType');return}
       if(file.size>MAX_TEXT_BYTES){fileStatus('fileLarge');return}
-      fileStatus('fileReading');
+      uiImportBusy=true;fileStatus('fileReading');
       let bytes;
-      try{bytes=await file.arrayBuffer()}catch{if(generation===importGeneration)fileStatus('fileReadFailed');return}
+      try{bytes=await file.arrayBuffer()}catch{if(generation===importGeneration)fileStatus('fileReadFailed');return}finally{if(generation===importGeneration){uiImportBusy=false;syncSharedUi();}}
       if(generation!==importGeneration||state.readerOpen)return;
       if(bytes.byteLength>MAX_TEXT_BYTES){fileStatus('fileLarge');return}
       let text;
@@ -270,7 +285,7 @@
       if(text.includes('\0')){fileStatus('fileInvalid');return}
       if(!text.trim()){fileStatus('fileEmpty');return}
       const imported={text,name:textFileName(file.name),generation};
-      if(state.text.trim()&&state.text!==text){pendingImport=imported;fileStatus('fileReview');$('replaceDialog').showModal()}
+      if(state.text.trim()&&state.text!==text){pendingImport=imported;fileStatus('fileReview');$('replaceDialog').showModal();$('replaceCancel').focus();}
       else applyImportedText(imported);
     }
     function saveTextFile(){
@@ -279,19 +294,19 @@
       try{
         const name=textFileName($('fileNameInput').value);
         url=URL.createObjectURL(new Blob([state.text],{type:'text/plain;charset=utf-8'}));
-        link=document.createElement('a');link.href=url;link.download=name;document.body.append(link);link.click();
-        $('fileNameInput').value=name;fileStatus('fileDownloaded');
+        link=document.createElement('a');link.href=url;link.download=name;link.hidden=true;document.body.append(link);link.click();
+        $('fileNameInput').value=name;uiDeliveredName=name;fileStatus('fileDownloaded');
       }catch{fileStatus('fileSaveFailed')}
-      finally{link?.remove();if(url)setTimeout(()=>URL.revokeObjectURL(url),1000)}
+      finally{try{link?.remove();}finally{if(url)setTimeout(()=>URL.revokeObjectURL(url),1000)}}
     }
 
     function clamp(v,min,max){return Math.min(max,Math.max(min,v))}
     function t(key){return I18N[state.lang][key]??key}
     function formatTime(sec){if(!Number.isFinite(sec)||sec<0)return '—';sec=Math.round(sec);const m=Math.floor(sec/60),s=sec%60;return `${m}:${String(s).padStart(2,'0')}`}
-    function save(){try{localStorage.setItem(storageKey,JSON.stringify({lang:state.lang,text:state.text,paceMode:state.paceMode,speed:state.speed,duration:state.duration,fontSize:state.fontSize,align:state.align,mirror:state.mirror,cue:state.cue,countdown:state.countdown,wake:state.wake,fullscreen:state.fullscreen}));$('saveStatus').textContent=t('savedNow');clearTimeout(state.saveTimer);state.saveTimer=setTimeout(()=>$('saveStatus').textContent=t('savedLocally'),1000)}catch{$('saveStatus').textContent=t('savedLocally')}}
+    function save(){clearTimeout(state.saveTimer);state.saveTimer=0;uiPendingSave=true;if(uiReadFailed){syncSharedUi();return false;}try{localStorage.setItem(storageKey,JSON.stringify(storedValue()));uiSaveFailed=false;uiPendingSave=false;uiSavedConfirmed=true;uiSavedAt=new Date().toLocaleTimeString(state.lang==='ja'?'ja-JP':'en-US',{hour:'2-digit',minute:'2-digit'});syncSharedUi();return true;}catch{uiSaveFailed=true;syncSharedUi();return false;}}
     function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),1900)}
-    function updateLanguage(){document.documentElement.lang=state.lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(I18N[state.lang][key]!=null)el.textContent=t(key)});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder)});$('languageButton').textContent=t('languageName');$('languageButton').setAttribute('aria-label',t('languageTarget'));$('languageButton').setAttribute('title',t('languageTarget'));$('helpButton').setAttribute('aria-label',t('helpTitle'));$('helpButton').setAttribute('title',t('helpTitle'));document.querySelectorAll('[data-i18n-aria-label]').forEach(el=>el.setAttribute('aria-label',t(el.dataset.i18nAriaLabel)));updateSummary();updateReaderLabels()}
-    function updateStats(){$('saveTextButton').disabled=!state.text.trim();const text=state.text;const chars=[...text].length;const lines=text?text.split(/\r?\n/).length:0;$('charCount').textContent=chars.toLocaleString();$('lineCount').textContent=lines.toLocaleString();$('estimateDisplay').textContent=estimateEditorTime()}
+    function updateLanguage(){document.documentElement.lang=state.lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(I18N[state.lang][key]!=null)el.textContent=t(key)});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder)});$('languageButton').textContent=t('languageName');$('languageButton').setAttribute('aria-label',t('languageTarget'));$('languageButton').setAttribute('title',t('languageTarget'));$('helpButton').setAttribute('aria-label',t('helpTitle'));$('helpButton').setAttribute('title',t('helpTitle'));document.querySelectorAll('[data-i18n-aria-label]').forEach(el=>el.setAttribute('aria-label',t(el.dataset.i18nAriaLabel)));updateSummary();updateReaderLabels();syncSharedUi()}
+    function updateStats(){$('saveTextButton').disabled=!state.text.trim();const text=state.text;const chars=[...text].length;const lines=text?text.split(/\r?\n/).length:0;$('charCount').textContent=chars.toLocaleString();$('lineCount').textContent=lines.toLocaleString();$('estimateDisplay').textContent=estimateEditorTime();syncSharedUi()}
     function estimateEditorTime(){if(!state.text.trim())return '—';if(state.paceMode==='duration')return formatTime(state.duration);const units=Math.max(1,estimateUnits(state.text));const sec=units/(230*state.speed)*60;return formatTime(sec)}
     function estimateUnits(text){const cjk=(text.match(/[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/g)||[]).length;const latin=text.replace(/[\u3040-\u30ff\u3400-\u9fff\uf900-\ufaff]/g,' ').trim().match(/[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g)?.length||0;return latin+cjk/2.1}
     function updateSummary(){const speedLabel=state.paceMode==='duration'?`${t('durationMode')} ${formatTime(state.duration)}`:`${state.speed.toFixed(1)}×`;$('modeSummary').textContent=speedLabel;$('fontSummary').textContent=`${state.fontSize} px`;$('speedValue').textContent=`${state.speed.toFixed(1)}×`;$('durationValue').textContent=formatTime(state.duration);$('fontValue').textContent=state.fontSize;$('speedControls').hidden=state.paceMode!=='speed';$('speedValue').hidden=state.paceMode!=='speed';$('durationControls').hidden=state.paceMode!=='duration';$('durationValue').hidden=state.paceMode!=='duration';document.querySelectorAll('#paceModeButtons button').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.paceMode));document.querySelectorAll('#alignButtons button').forEach(b=>b.classList.toggle('active',b.dataset.align===state.align));$('speedRange').value=state.speed;$('durationRange').value=state.duration;$('fontRange').value=state.fontSize;$('mirrorToggle').checked=state.mirror;$('cueToggle').checked=state.cue;$('countdownToggle').checked=state.countdown;$('wakeToggle').checked=state.wake;$('fullscreenToggle').checked=state.fullscreen;updateStats()}
@@ -299,7 +314,7 @@
       updatePositionControl();
       const pauseButton=$('readerPause');
       const action=state.starting?t('starting'):state.ended?t('finished'):state.playing?t('pause'):t('resume');
-      pauseButton.disabled=!state.readerOpen||state.starting||state.ended;
+      BrowserKittyUI.setButtonState(pauseButton,state.starting?'busy':!state.readerOpen||state.ended?'unavailable':'ready');syncSharedUi();
       pauseButton.setAttribute('aria-label',action);pauseButton.setAttribute('title',action);
       $('readerPausePath').setAttribute('d',state.playing||state.starting?'M8 6h3v12H8zM13 6h3v12h-3z':'m9 7 8 5-8 5V7Z');
       if(!state.readerOpen)return;
@@ -332,8 +347,8 @@
       if(state.readerOpen)return;cancelImport();if(!state.text.trim()){toast(t('emptyScript'));$('scriptInput').focus();return}
       const generation=++state.readerGeneration;state.readerOpen=true;state.starting=true;
       $('readerView').classList.add('open','paused');$('readerView').setAttribute('aria-hidden','false');$('readerView').focus({preventScroll:true});document.body.style.overflow='hidden';prepareReader();updateReaderLabels();showTapHint();
-      if(state.fullscreen){try{if(document.documentElement.requestFullscreen&&!document.fullscreenElement)await document.documentElement.requestFullscreen()}catch{if(generation===state.readerGeneration)toast(t('fullscreenUnavailable'))}}
-      if(!state.readerOpen||generation!==state.readerGeneration)return;
+      if(state.fullscreen)await requestReaderFullscreen();
+      if(!state.readerOpen||generation!==state.readerGeneration){if(!state.readerOpen&&document.fullscreenElement)try{await document.exitFullscreen()}catch{}return;}
       if(state.countdown)await runCountdown(generation);
       if(!state.readerOpen||generation!==state.readerGeneration)return;
       calculateTravel();state.starting=false;startPlayback();if(state.wake)requestWakeLock();
@@ -366,44 +381,48 @@
     }
     function finishReader(){state.playing=false;state.ended=true;cancelAnimationFrame(state.raf);$('readerScroller').scrollTop=state.endScroll;$('readerView').classList.remove('playing');$('readerView').classList.add('paused');$('finishLayer').classList.add('show');updateTimeDisplays();updateReaderLabels();$('readerLive').textContent=t('endReached');releaseWakeLock()}
     function restartReader(){if(!state.readerOpen||state.starting)return;state.ended=false;$('finishLayer').classList.remove('show');state.elapsedMs=0;calculateTravel(0);startPlayback()}
-    async function closeReader(){state.readerGeneration++;state.readerOpen=false;state.starting=false;state.playing=false;cancelAnimationFrame(state.raf);cancelAnimationFrame(state.measureRaf);releaseWakeLock();$('countdownLayer').classList.remove('show');$('readerView').classList.remove('open','playing','paused');$('readerView').setAttribute('aria-hidden','true');updateReaderLabels();document.body.style.overflow='';try{if(document.fullscreenElement)await document.exitFullscreen()}catch{}$('startButton').focus({preventScroll:true})}
-    async function requestWakeLock(){if(!('wakeLock'in navigator)){toast(t('wakeUnavailable'));return}try{state.wakeLock=await navigator.wakeLock.request('screen');state.wakeLock.addEventListener('release',()=>{state.wakeLock=null},{once:true})}catch{toast(t('wakeUnavailable'))}}
-    function releaseWakeLock(){try{state.wakeLock?.release()}catch{}state.wakeLock=null}
-    function changePace(direction){if(state.paceMode==='speed'){state.speed=clamp(Math.round((state.speed+direction*.1)*10)/10,.5,2);applyPace();showReaderFeedback(direction<0?t('slower'):t('faster'))}else{state.duration=clamp(state.duration+(direction<0?30:-30),60,1200);calculateTravel();showReaderFeedback(direction<0?t('targetLonger'):t('targetShorter'))}updateSummary();updateReaderLabels();save()}
+    async function closeReader(){const generation=++state.readerGeneration;uiFullscreenWanted=-1;uiFullscreenRequest=null;state.readerOpen=false;state.starting=false;state.playing=false;cancelAnimationFrame(state.raf);cancelAnimationFrame(state.measureRaf);releaseWakeLock();$('countdownLayer').classList.remove('show');$('readerView').classList.remove('open','playing','paused');$('readerView').setAttribute('aria-hidden','true');updateReaderLabels();document.body.style.overflow='';try{if(document.fullscreenElement)await document.exitFullscreen()}catch{}if(generation===state.readerGeneration&&!state.readerOpen)$('startButton').focus({preventScroll:true})}
+    async function requestReaderFullscreen(){if(!state.readerOpen)return false;const generation=state.readerGeneration;uiFullscreenWanted=generation;if(document.fullscreenElement){uiFullscreenError=false;syncSharedUi();return true;}if(uiFullscreenRequest)return false;const owner=uiFullscreenRequest={generation};syncSharedUi();try{if(!document.documentElement.requestFullscreen)throw Error('unsupported');await document.documentElement.requestFullscreen();if(state.readerOpen&&uiFullscreenWanted===state.readerGeneration){uiFullscreenError=false;return true;}if(document.fullscreenElement)try{await document.exitFullscreen()}catch{}return false;}catch{if(generation===state.readerGeneration&&state.readerOpen)uiFullscreenError=!document.fullscreenElement;return false;}finally{if(uiFullscreenRequest===owner)uiFullscreenRequest=null;syncSharedUi();}}
+    async function requestWakeLock(){if(!state.readerOpen||!state.playing||!state.wake||state.wakeLock||uiWakeRequest)return;if(!('wakeLock'in navigator)){uiWakeError=true;syncSharedUi();return;}const owner=uiWakeRequest={generation:state.readerGeneration};try{const lock=await navigator.wakeLock.request('screen');if(owner!==uiWakeRequest||owner.generation!==state.readerGeneration||!state.readerOpen||!state.playing||!state.wake){try{await lock.release()}catch{}return;}state.wakeLock=lock;uiWakeError=false;lock.addEventListener('release',()=>{if(state.wakeLock===lock)state.wakeLock=null},{once:true});}catch{if(owner===uiWakeRequest)uiWakeError=true;}finally{if(owner===uiWakeRequest)uiWakeRequest=null;syncSharedUi();}}
+    function releaseWakeLock(){uiWakeRequest=null;try{state.wakeLock?.release()}catch{}state.wakeLock=null;}
+    function changePace(direction){uiTouched.add(state.paceMode==='speed'?'speed':'duration');if(state.paceMode==='speed'){state.speed=clamp(Math.round((state.speed+direction*.1)*10)/10,.5,2);applyPace();showReaderFeedback(direction<0?t('slower'):t('faster'))}else{state.duration=clamp(state.duration+(direction<0?30:-30),60,1200);calculateTravel();showReaderFeedback(direction<0?t('targetLonger'):t('targetShorter'))}updateSummary();updateReaderLabels();save()}
     function showReaderFeedback(msg){const el=$('readerFeedback');el.textContent=msg;el.classList.add('show');clearTimeout(state.feedbackTimer);state.feedbackTimer=setTimeout(()=>el.classList.remove('show'),850)}
     function showTapHint(){$('tapHint').classList.add('show');clearTimeout(state.tapHintTimer);state.tapHintTimer=setTimeout(()=>$('tapHint').classList.remove('show'),3300)}
 
-    $('scriptInput').value=state.text;$('scriptInput').addEventListener('input',e=>{cancelImport();state.text=e.target.value;updateStats();clearTimeout(state.saveTimer);state.saveTimer=setTimeout(save,450)});
+    $('scriptInput').value=state.text;$('scriptInput').addEventListener('input',e=>{cancelImport();uiTouched.add('text');uiTextRevision++;uiDiscardSavedText=false;state.text=e.target.value;updateStats();clearTimeout(state.saveTimer);uiPendingSave=true;syncSharedUi();state.saveTimer=setTimeout(save,450)});
     $('openTextButton').addEventListener('click',()=>{cancelImport();$('textFileInput').value='';$('textFileInput').click()});
     $('textFileInput').addEventListener('change',e=>{const file=e.target.files?.[0];e.target.value='';return openTextFile(file)});
     $('saveTextButton').addEventListener('click',saveTextFile);
-    $('replaceOk').addEventListener('click',()=>{if(pendingImport)applyImportedText(pendingImport)});
+    $('replaceOk').addEventListener('click',()=>{if(uiRecoveryChoice)resolveRecovered();else if(pendingImport)applyImportedText(pendingImport)});
     ['replaceCancel','replaceClose'].forEach(id=>$(id).addEventListener('click',()=>cancelImport(true)));
     $('replaceDialog').addEventListener('cancel',()=>cancelImport(true));
     $('replaceDialog').addEventListener('click',e=>{if(e.target!==e.currentTarget||!e.currentTarget.open)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)cancelImport(true)});
-    $('languageButton').addEventListener('click',()=>{state.lang=state.lang==='ja'?'en':'ja';updateLanguage();save()});
+    $('languageButton').addEventListener('click',()=>{state.lang=state.lang==='ja'?'en':'ja';uiLanguageSessionOnly=!BrowserKittyUI.chooseLanguage(state.lang).persisted;updateLanguage()});
     $('helpButton').addEventListener('click',()=>$('helpDialog').showModal());document.querySelectorAll('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.closeDialog).close()));
     $('helpDialog').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close()});
-    $('paceModeButtons').addEventListener('click',e=>{const b=e.target.closest('button[data-mode]');if(!b)return;state.paceMode=b.dataset.mode;updateSummary();save()});
-    $('alignButtons').addEventListener('click',e=>{const b=e.target.closest('button[data-align]');if(!b)return;state.align=b.dataset.align;updateSummary();save()});
+    $('paceModeButtons').addEventListener('click',e=>{const b=e.target.closest('button[data-mode]');if(!b)return;uiTouched.add('paceMode');state.paceMode=b.dataset.mode;updateSummary();save()});
+    $('alignButtons').addEventListener('click',e=>{const b=e.target.closest('button[data-align]');if(!b)return;uiTouched.add('align');state.align=b.dataset.align;updateSummary();save()});
     document.querySelectorAll('[data-adjust-speed]').forEach(b=>b.addEventListener('click',()=>{state.speed=clamp(Math.round((state.speed+Number(b.dataset.adjustSpeed))*10)/10,.5,2);updateSummary();save()}));
     document.querySelectorAll('[data-adjust-duration]').forEach(b=>b.addEventListener('click',()=>{state.duration=clamp(state.duration+Number(b.dataset.adjustDuration),60,1200);updateSummary();save()}));
     document.querySelectorAll('[data-adjust-font]').forEach(b=>b.addEventListener('click',()=>{state.fontSize=clamp(state.fontSize+Number(b.dataset.adjustFont),30,82);updateSummary();save()}));
-    $('speedRange').addEventListener('input',e=>{state.speed=Number(e.target.value);updateSummary()});$('speedRange').addEventListener('change',save);
-    $('durationRange').addEventListener('input',e=>{state.duration=Number(e.target.value);updateSummary()});$('durationRange').addEventListener('change',save);
-    $('fontRange').addEventListener('input',e=>{state.fontSize=Number(e.target.value);updateSummary()});$('fontRange').addEventListener('change',save);
-    [['mirrorToggle','mirror'],['cueToggle','cue'],['countdownToggle','countdown'],['wakeToggle','wake'],['fullscreenToggle','fullscreen']].forEach(([id,key])=>$(id).addEventListener('change',e=>{state[key]=e.target.checked;updateSummary();save()}));
+    $('speedRange').addEventListener('input',e=>{uiTouched.add('speed');uiPendingSave=true;state.speed=Number(e.target.value);updateSummary()});$('speedRange').addEventListener('change',save);
+    $('durationRange').addEventListener('input',e=>{uiTouched.add('duration');uiPendingSave=true;state.duration=Number(e.target.value);updateSummary()});$('durationRange').addEventListener('change',save);
+    $('fontRange').addEventListener('input',e=>{uiTouched.add('fontSize');uiPendingSave=true;state.fontSize=Number(e.target.value);updateSummary()});$('fontRange').addEventListener('change',save);
+    [['mirrorToggle','mirror'],['cueToggle','cue'],['countdownToggle','countdown'],['wakeToggle','wake'],['fullscreenToggle','fullscreen']].forEach(([id,key])=>$(id).addEventListener('change',e=>{uiTouched.add(key);state[key]=e.target.checked;updateSummary();save()}));
     $('startButton').addEventListener('click',openReader);$('readerExit').addEventListener('click',closeReader);$('readerPause').addEventListener('click',e=>{e.stopPropagation();togglePlayback()});$('restartButton').addEventListener('click',e=>{e.stopPropagation();restartReader()});$('finishRestart').addEventListener('click',restartReader);$('finishExit').addEventListener('click',closeReader);
     $('readerView').addEventListener('click',e=>{if(state.starting||e.target.closest('.reader-navigation')||e.target.closest('input')||e.target.closest('button')||e.target.closest('.reader-topbar')||e.target.closest('.finish-card'))return;const x=e.clientX/window.innerWidth;if(x<.18)changePace(-1);else if(x>.82)changePace(1);else togglePlayback()});
     $('readerScroller').addEventListener('scroll',syncPausedPosition,{passive:true});
     $('readingPosition').addEventListener('input',e=>seekReader(Number(e.target.value)));
     $('readerNavigation').addEventListener('click',e=>e.stopPropagation());
-    $('clearButton').addEventListener('click',()=>{cancelImport();$('confirmDialog').showModal()});$('confirmClose').addEventListener('click',()=>$('confirmDialog').close());$('confirmCancel').addEventListener('click',()=>$('confirmDialog').close());$('confirmOk').addEventListener('click',()=>{cancelImport();$('fileNameInput').value=DEFAULT_FILE_NAME;state.text='';$('scriptInput').value='';save();updateStats();$('confirmDialog').close();toast(t('cleared'));$('scriptInput').focus()});
+    $('clearButton').addEventListener('click',()=>{cancelImport();uiClearOwner={revision:uiTextRevision,text:state.text};$('confirmDialog').showModal();syncSharedUi();$('confirmCancel').focus();});$('confirmClose').addEventListener('click',()=>$('confirmDialog').close());$('confirmCancel').addEventListener('click',()=>$('confirmDialog').close());$('confirmOk').addEventListener('click',()=>{if(!$('confirmDialog').open||!uiClearOwner||uiClearOwner.revision!==uiTextRevision||uiClearOwner.text!==state.text||state.readerOpen){$('confirmDialog').close();return;}uiClearOwner=null;cancelImport();uiTouched.add('text');uiTextRevision++;uiDiscardSavedText=true;$('fileNameInput').value=DEFAULT_FILE_NAME;state.text='';$('scriptInput').value='';save();updateStats();$('confirmDialog').close();toast(t('cleared'));$('clearButton').focus()});
     $('confirmDialog').addEventListener('cancel',()=>{});$('confirmDialog').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close()});
-    document.addEventListener('keydown',e=>{if(!state.readerOpen||e.isComposing||e.defaultPrevented||e.ctrlKey||e.metaKey||e.altKey||e.target?.closest?.('input,textarea,select,[contenteditable]'))return;if(e.target?.closest?.('button')&&(e.key===' '||e.key==='Enter'))return;if(state.starting){if(e.key==='Escape'&&!document.fullscreenElement)closeReader();return}if(e.key===' '){e.preventDefault();togglePlayback()}else if(e.key==='ArrowLeft'){e.preventDefault();changePace(-1)}else if(e.key==='ArrowRight'){e.preventDefault();changePace(1)}else if(e.key.toLowerCase()==='r'){e.preventDefault();restartReader()}else if(e.key.toLowerCase()==='f'){e.preventDefault();document.documentElement.requestFullscreen?.().catch(()=>{})}else if(e.key==='Escape'&&!document.fullscreenElement){closeReader()}});
+    document.addEventListener('keydown',e=>{if(!state.readerOpen||e.isComposing||e.defaultPrevented||e.ctrlKey||e.metaKey||e.altKey||e.target?.closest?.('input,textarea,select,[contenteditable]'))return;if(e.target?.closest?.('button')&&(e.key===' '||e.key==='Enter'))return;if(state.starting){if(e.key==='Escape'&&!document.fullscreenElement)closeReader();return}if(e.key===' '){e.preventDefault();togglePlayback()}else if(e.key==='ArrowLeft'){e.preventDefault();changePace(-1)}else if(e.key==='ArrowRight'){e.preventDefault();changePace(1)}else if(e.key.toLowerCase()==='r'){e.preventDefault();restartReader()}else if(e.key.toLowerCase()==='f'){e.preventDefault();void requestReaderFullscreen()}else if(e.key==='Escape'&&!document.fullscreenElement){closeReader()}});
     document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&state.readerOpen&&state.playing&&state.wake)requestWakeLock()});
     window.addEventListener('resize',()=>{if(state.readerOpen)calculateTravel()});
 
+    for(const[id,origin]of [['helpDialog','helpButton'],['confirmDialog','clearButton'],['replaceDialog','openTextButton']])$(id).addEventListener('close',()=>{$(origin).focus();if(id==='confirmDialog')uiClearOwner=null;if(id==='replaceDialog')uiRecoveryChoice=null;});
+    $('retrySave').addEventListener('click',()=>{if(uiReadFailed)retryRead();else if(uiPendingSave)save()});$('useRecoveredText').addEventListener('click',()=>chooseRecovered(false));$('keepCurrentText').addEventListener('click',()=>chooseRecovered(true));$('stopImport').addEventListener('click',()=>cancelImport(true));
+    window.addEventListener('pagehide',()=>{uiFullscreenWanted=-1;uiFullscreenRequest=null;state.readerGeneration++;state.readerOpen=false;state.playing=false;cancelAnimationFrame(state.raf);cancelAnimationFrame(state.measureRaf);cancelImport();releaseWakeLock();});
     $('versionBadge').textContent=`v${config.version||'1.0.4'}`;updateLanguage();updateSummary();
   })();
   </script>

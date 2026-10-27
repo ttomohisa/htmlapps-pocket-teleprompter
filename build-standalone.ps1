@@ -9,6 +9,8 @@ New-Item -ItemType Directory -Force -Path $Dist | Out-Null
 $config = Get-Content -Raw -Encoding UTF8 $ConfigPath | ConvertFrom-Json
 $deps = Get-Content -Raw -Encoding UTF8 $DepsPath | ConvertFrom-Json
 $template = Get-Content -Raw -Encoding UTF8 $TemplatePath
+. (Join-Path $Root 'scripts/embed-ui-conventions.ps1')
+$template = Expand-BrowserKittyUI -Template $template -ComponentsPath (Join-Path $Root 'components')
 
 $placeholders = @('__APP_CONFIG_JSON__','__BUILD_MANIFEST_JSON__','__EMBEDDED_ASSET_BUNDLE_BASE64__')
 foreach ($p in $placeholders) {

@@ -62,3 +62,7 @@ The editor reads explicitly selected `.txt` files through `File.arrayBuffer` and
 ## Navigation verification limits
 
 The navigation tests execute the real inline runtime with synthetic DOM, scroll geometry, event delivery and timers. They cover seeking, pause/resume, finish/restart, target pacing, resize and interrupted startup, but do not verify real browser layout, native range keyboard behavior, touch scrolling, fullscreen or Wake Lock. Use `VERIFY_OFFLINE.md` for the separate browser/device checklist.
+
+## Common UI 1.0.0
+
+Exact locked UI CSS/JS embeds at build time. Script/preferences autosave has scoped persistent error/status; read failures block writes, merge only untouched preference fields and require a captured cancel-first choice for conflicting script text. Explicit touch/revision ownership preserves same-value edits. Restoring saved script invalidates queued autosave; storage keys/data schema are unchanged. Import/export error domains remain independent and keyed for translation. Temporary anchors clean in nested finally before delayed URL release. Wake Lock owners reject/release late sentinels from closed or superseded readers.

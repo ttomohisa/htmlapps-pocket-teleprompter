@@ -99,3 +99,10 @@ Core editor and reader must work when opened via `file://`. Wake Lock and Fullsc
 ## Header visibility
 
 Keep the header version visible on narrow smartphones without overlapping the app name or language/Help controls. Verify Japanese and English at 320px, 360px, 390px and desktop widths.
+
+## Shared UI recovery
+
+- Retention names script/preferences in browser storage. Successful writes alone timestamp; failures keep work and offer Retry or Save TXT. Read failures block writes until safe read recovery; conflicting saved/current scripts require cancel-first choice. Explicit edits returning to defaults remain owned; Clear explicitly affects current/stored script and preserves reader preferences/language.
+- TXT scope is the complete script without preferences/reading position; editable filename and existing UTF-8 schema remain. Import and export errors retain independent localized recovery, and file reads can be stopped without late replacement.
+- Shared language priority is URL/shared browser/legacy preference/browser language. Startup is read-only and failed explicit preference writes show screen-only notice.
+- Pending Wake Lock ownership is invalidated by close/finish; stale locks release themselves without replacing a newer session. Reader pacing, seek/progress geometry and supported browser requirements are unchanged.

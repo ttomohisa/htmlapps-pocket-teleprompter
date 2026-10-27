@@ -61,7 +61,7 @@ test('readable, root and compressed releases carry the source Help and badge mar
   const readable = read('dist/index.html');
   const wrapper = read('dist/index.self-extract.html');
   const decoded = zlib.gunzipSync(Buffer.from(wrapper.match(/const b='([^']+)'/)[1], 'base64')).toString('utf8');
-  const ui = html => html.slice(0, html.indexOf('<script id="appConfig"'));
+  const ui = html => {const expanded=html.replace('__BK_UI_CSS__',read('components/ui-conventions.css')).replace('__BK_UI_JS__',read('components/ui-conventions.js'));return expanded.slice(0,expanded.indexOf('<script id="appConfig"'));};
   for (const html of [readable, read('pocket-teleprompter.html'), decoded]) {
     assert.equal(ui(html), ui(source));
   }

@@ -346,8 +346,8 @@ for (const initial of ['en', 'ja']) test(`header labels and privacy stay localiz
     assert.equal(h.el('versionBadge').textContent, 'v' + require('../app.config.json').version);
     await h.el('helpButton').click(); assert.equal(h.el('helpDialog').open, true); h.el('helpDialog').close();
     await h.el('languageButton').click();
-    assert.equal(h.saved().text, script); assert.equal(h.saved().lang, h.probe.state.lang);
-    const reloaded = loadApp(h.saved());
+    assert.equal(h.saved().text, script); assert.equal(h.sharedLanguage, h.probe.state.lang);
+    const reloaded = loadApp(h.saved(),false,{sharedLanguage:h.sharedLanguage});
     assert.equal(reloaded.document.documentElement.lang, h.probe.state.lang);
     assert.equal(reloaded.el('languageButton').attrs['aria-label'], h.el('languageButton').attrs['aria-label']);
   }
