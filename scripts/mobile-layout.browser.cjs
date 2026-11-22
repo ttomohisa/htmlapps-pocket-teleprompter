@@ -44,9 +44,13 @@ async function main() {
  assert.ok(await headerVersion.evaluate(el=>{const r=el.getBoundingClientRect();if(r.left<0||r.right>innerWidth||el.scrollWidth>el.clientWidth+1)return false;for(let p=el.parentElement;p;p=p.parentElement){if(/hidden|clip/.test(getComputedStyle(p).overflowX)){const b=p.getBoundingClientRect();if(r.left<b.left-1||r.right>b.right+1)return false;}}return true;}),label+': version is not clipped');
         assert.equal((await page.locator('[data-i18n="localOnly"]').textContent()).trim(), language === 'en' ? 'Fully local processing' : '完全ローカル処理', label + ': privacy wording');
         assert.equal(await page.locator('body > footer').isVisible(), width > PHONE_WIDTH, label + ': informational footer breakpoint');
-        const badgeBox = await page.locator('.privacy-badge').boundingBox();
-        const labelBox = await page.locator('[data-i18n="localOnly"]').boundingBox();
-        assert.ok(badgeBox && labelBox && badgeBox.x >= 0 && badgeBox.x + badgeBox.width <= width && labelBox.x >= badgeBox.x && labelBox.x + labelBox.width <= badgeBox.x + badgeBox.width + 1, label + ': local-processing badge fits');
+        const badge = page.locator('.privacy-badge');
+        assert.equal(await badge.isVisible(), width > 820, label + ': privacy badge visibility follows the responsive layout');
+        if (width > 820) {
+          const badgeBox = await badge.boundingBox();
+          const labelBox = await page.locator('[data-i18n="localOnly"]').boundingBox();
+          assert.ok(badgeBox && labelBox && badgeBox.x >= 0 && badgeBox.x + badgeBox.width <= width && labelBox.x >= badgeBox.x && labelBox.x + labelBox.width <= badgeBox.x + badgeBox.width + 1, label + ': visible local-processing badge fits');
+        }
         await exerciseActions(page, width, label);
         assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), label + ': page width');
         // Responsive changes must not leave the informational footer in a stale state.
