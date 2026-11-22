@@ -33,3 +33,12 @@ test('script-clearing semantics, import/export placement and mobile badge docs m
   assert.match(ja, /原稿を消去しても読み上げ設定は残ります/);
   assert.match(read('VERIFY_OFFLINE.md'), /Replace outdated images before publication/);
 });
+
+test('release job validates both assets instead of silently skipping incomplete existing releases', () => {
+  const workflow = read('.github/workflows/release.yml');
+  assert.match(workflow, /branches: \[main\]/);
+  assert.match(workflow, /gh release create/);
+  assert.match(workflow, /gh release view \$env:RELEASE_TAG --json assets/);
+  assert.match(workflow, /\$assetNames -notcontains \$expected/);
+  assert.match(workflow, /dist\/index.self-extract.html/);
+});
