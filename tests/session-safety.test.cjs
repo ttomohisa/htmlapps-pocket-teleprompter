@@ -101,5 +101,22 @@ test('slow frame contributes its full foreground time to progress, not 80ms', as
 
 test('reader CSS prevents scroll gestures while playing and restores them while paused', () => {
   const h=loadApp();
-  assert.match(h.source,/\.reader-view\.playing \.reader-scroller\{pointer-events:none;touch-action:none\}/);
+  assert.match(h.source,/\.reader-view\.playing \.reader-scroller\{pointer-events:none;touch-action:none;overflow:hidden\}/);
+});
+
+test('backgrounding during countdown cancels pending autoplay but leaves the reader resumable', async () => {
+  const h=loadApp({text:'hello',countdown:true});
+  const pending=h.el('startButton').click();
+  assert.equal(h.probe.state.starting,true);
+  h.document.visibilityState='hidden';
+  h.documentEvents.visibilitychange();
+  assert.equal(h.probe.state.starting,false);
+  assert.equal(h.probe.state.readerOpen,true);
+  assert.equal(h.probe.state.playing,false);
+  assert.equal(h.el('countdownLayer').classList.contains('show'),false);
+  await h.advanceTime(3500);await pending;
+  assert.equal(h.probe.state.playing,false);
+  h.document.visibilityState='visible';
+  await h.el('readerPause').click();
+  assert.equal(h.probe.state.playing,true);
 });

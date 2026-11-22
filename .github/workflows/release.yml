@@ -7,8 +7,13 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: release-versioned-html
+  cancel-in-progress: false
+
 jobs:
   release:
+    if: github.ref == 'refs/heads/main'
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +24,7 @@ jobs:
           node-version: 24
       - name: Build and verify the exact main revision
         shell: powershell
-        run: .\\scripts\\check-repository.ps1
+        run: ./scripts/check-repository.ps1
       - name: Read configured release version
         id: version
         shell: pwsh

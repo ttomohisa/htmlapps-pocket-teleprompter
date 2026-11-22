@@ -45,7 +45,7 @@ A user can paste a script, tune the reading experience, start a distraction-free
 - Keyboard shortcuts on desktop: Space pause/resume, Left/Right pace, R restart, F fullscreen, Esc exit.
 - Japanese and English UI in the same HTML; the header shows EN in Japanese and JA in English, with localized target-language and Help accessible names/titles.
 - Light-only application UI. The reader is a functional presentation surface, not a theme switcher.
-- Playback timers use real elapsed foreground time; the reader pauses when hidden. Manual seeking is available only while paused.
+- Playback timers use real elapsed foreground time; the reader pauses when hidden, including during countdown. Manual seeking is available only while paused.
 - Screen Wake Lock is acquired for each active playback session, released when paused/finished/closed, and stale asynchronous requests are discarded.
 - Failed local auto-save is shown as an error with a .txt export fallback; pending edits are flushed on pagehide.
 - No runtime network request.
