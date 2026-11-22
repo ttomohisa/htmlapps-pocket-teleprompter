@@ -2,6 +2,14 @@
 
 ## 1.0.6 - 2026-11-23
 
+- Simplify the script introduction and editor controls in Japanese and English.
+- Place Start above reading settings on desktop, move Open .txt beside the editor heading, and collapse text download controls beneath the editor.
+- Hide the local-processing badge on phone layouts, retaining it on desktop.
+- Lower the Target time minimum to 30 seconds (maximum 20 minutes) across editor, saved preferences, and reader shortcuts.
+- Fix the F shortcut when Fullscreen API is missing or fails.
+- Re-translate file import/export status on language changes, and show download feedback at the action.
+- Correct release-version fallback text and update README, spec, and verification guidance.
+
 - Show a clear warning if local auto-save fails, and flush pending edits when the page is hidden or closed.
 - Warn when clearing the visible script cannot update its persisted copy.
 - Reacquire Screen Wake Lock on resume/restart and safely discard stale asynchronous lock requests.
@@ -11,10 +19,8 @@
 - Add regression tests for save failure, pending writes, Wake Lock lifecycle, and low-frame-rate timing.
 - Create versioned GitHub tags and HTML Releases after merging a new version into main.
 - Include previously deployed layout and Help improvements in the versioned release.
-
 - Hide the informational footer at phone widths while preserving action controls and the wider-screen footer.
 - Standardize the English privacy badge as “Fully local processing” while retaining the Japanese label.
-
 - Clarify Japanese and English help by removing internal layout, implementation, and audit commentary while preserving usage guidance and cautions.
 
 ## 1.0.5 - 2026-10-27
