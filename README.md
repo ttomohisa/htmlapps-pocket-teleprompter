@@ -82,6 +82,10 @@ The repository includes workflows for building and publishing the standalone HTM
 3. Push to `main` or run the deploy workflow manually.
 4. The app will be available at `https://ttomohisa.github.io/htmlapps-pocket-teleprompter/`.
 
+## GitHub Release
+
+When a new version is merged into `main`, the release workflow checks the build, creates the `vMAJOR.MINOR.PATCH` tag from `app.config.json`, and publishes the readable and self-extracting HTML files to GitHub Releases. Existing tags are not replaced. If a tag exists without the expected Release assets, the workflow reports an error instead of silently skipping publication.
+
 ## Development and build
 
 ```text
