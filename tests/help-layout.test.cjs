@@ -105,3 +105,39 @@ test('compact phone layouts hide only the informational footer, not the Start ac
   assert.doesNotMatch(phoneCss(css, 520), /\.start-card\{[^}]*display:none/);
   assert.doesNotMatch(source.match(/<footer\b[^>]*>[\s\S]*?<\/footer>/)[0], /<(?:button|input|select)\b/);
 });
+
+test('hero explains the teleprompter without a headline or repeated privacy promise', () => {
+  const intro = source.match(/<div class="page-intro">([\s\S]*?)<div class="privacy-badge">/)[1];
+  assert.doesNotMatch(intro, /<h[1-6]\b|pageTitle/);
+  assert.match(intro, /data-i18n="pageLead"/);
+  assert.match(intro, /自動でスクロール/);
+  assert.doesNotMatch(intro, /外部へ送信されません/);
+  assert.match(source, /brandMeta:'原稿の自動スクロール表示'/);
+  assert.match(source, /brandMeta:'Auto-scrolling script display'/);
+});
+
+test('desktop begins above settings and the existing mobile start remains fixed', () => {
+  const aside = source.match(/<aside class="control-panel"[\s\S]*?<\/aside>/)[0];
+  assert.ok(aside.indexOf('class="card start-card"') < aside.indexOf('class="card settings-card"'));
+  const css = source.match(/<style>([\s\S]*?)<\/style>/)[1];
+  assert.match(phoneCss(css, 820), /\.start-card\{[^}]*position:fixed/);
+  assert.match(phoneCss(css, 820), /\.privacy-badge\{display:none\}/);
+});
+
+test('opening a text file stays by the editor heading while downloading is collapsed', () => {
+  const editor = source.match(/<section class="card editor-card"[\s\S]*?<\/section>/)[0];
+  const heading = editor.match(/<div class="editor-heading">([\s\S]*?)<\/div>/)[1];
+  assert.match(heading, /id="openTextButton"/);
+  assert.match(heading, /id="textFileInput"/);
+  assert.match(editor, /<details class="download-details" id="downloadDetails"><summary data-i18n="downloadScript">テキストを保存<\/summary>/);
+  assert.doesNotMatch(editor, /id="downloadDetails"[^>]*\bopen\b/);
+  assert.ok(editor.indexOf('id="downloadDetails"') > editor.indexOf('id="scriptInput"'));
+  assert.match(editor, /id="fileNameInput"/);
+  assert.match(editor, /id="saveTextButton"/);
+  assert.doesNotMatch(source, /id="paceModeHelp"|id="fontSizeHelp"|aria-describedby="(?:paceModeHelp|fontSizeHelp)"/);
+});
+
+test('unexecuted fallback header version matches the configured release', () => {
+  const config = JSON.parse(read('app.config.json'));
+  assert.ok(source.includes('id="versionBadge">v' + config.version + '</span>'));
+});

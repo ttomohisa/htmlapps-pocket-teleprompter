@@ -352,3 +352,40 @@ for (const initial of ['en', 'ja']) test(`header labels and privacy stay localiz
     assert.equal(reloaded.el('languageButton').attrs['aria-label'], h.el('languageButton').attrs['aria-label']);
   }
 });
+
+test('Target time uses a 30-second floor in saved settings, slider and reader shortcuts', async () => {
+  const h = loadApp({ text: script, paceMode: 'duration', duration: 15 });
+  const slider = h.el('durationRange');
+  assert.equal(slider.attrs.min, '30');
+  assert.equal(slider.attrs.max, '1200');
+  assert.equal(slider.attrs.step, '30');
+  assert.equal(h.probe.state.duration, 30);
+  assert.equal(h.el('durationValue').textContent, '0:30');
+  slider.value = '30';
+  await slider.fire('input');
+  await slider.fire('change');
+  assert.equal(h.saved().duration, 30);
+  await h.el('startButton').click(); h.frame();
+  assert.equal(h.el('readerPaceLabel').textContent, 'Target time 0:30');
+  await h.key('ArrowRight');
+  assert.equal(h.probe.state.duration, 30);
+  await h.key('ArrowLeft');
+  assert.equal(h.probe.state.duration, 60);
+  await h.key('ArrowRight');
+  assert.equal(h.probe.state.duration, 30);
+  assert.equal(h.saved().duration, 30);
+});
+
+test('F shortcut tolerates unavailable, synchronous and async Fullscreen API failures', async () => {
+  const h = await reader({ fullscreen: false });
+  assert.equal(await h.key('f'), true, 'F should be handled even without Fullscreen API');
+  assert.equal(h.probe.state.playing, true);
+  h.document.documentElement.requestFullscreen = () => undefined;
+  assert.equal(await h.key('f'), true, 'a fullscreen implementation returning void must be safe');
+  h.document.documentElement.requestFullscreen = () => { throw new Error('blocked'); };
+  assert.equal(await h.key('f'), true, 'synchronous fullscreen errors must be handled');
+  h.document.documentElement.requestFullscreen = () => Promise.reject(new Error('denied'));
+  assert.equal(await h.key('f'), true, 'rejected fullscreen requests must be handled');
+  await Promise.resolve();
+  assert.equal(h.probe.state.playing, true);
+});

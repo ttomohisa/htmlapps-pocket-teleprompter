@@ -1,16 +1,12 @@
 # Pocket Teleprompter
 
-Native dialogs pause background page scrolling while open; the reader keeps its independent scroll lifecycle.
-
-Header language controls show EN / JA with localized target-language and Help labels/tooltips. Processing stays on your device.
-
 [![GitHub Pages](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Single HTML](https://img.shields.io/badge/distribution-single%20HTML-0ea5e9)](https://ttomohisa.github.io/htmlapps-pocket-teleprompter/)
 
 [日本語版 README](README.ja.md)
 
-A privacy-friendly, installation-free teleprompter that runs entirely in the browser. Paste a script, choose a pace, and start reading without uploading the text anywhere.
+A browser-based teleprompter for video recordings and speeches. It displays your script in large text and scrolls automatically, with no sign-in or installation.
 
 ## 🚀 Live demo
 
@@ -24,7 +20,7 @@ The initial HTML is delivered by GitHub Pages. Script editing, scrolling, local 
 
 - Smartphone-first distraction-free teleprompter view
 - Automatic scrolling with 0.5x–2.0x speed control
-- **Target time mode** that calculates the scroll rate so the script ends at a selected duration
+- **Target time mode** (30 seconds–20 minutes) that calculates the scrolling rate for a chosen finish time
 - Horizontal mirror mode for beam-splitter teleprompter rigs
 - Adjustable text size and left/center alignment
 - Optional eye-line guide near the camera
@@ -34,7 +30,7 @@ The initial HTML is delivered by GitHub Pages. Script editing, scrolling, local 
 - Tap left/right edge to slow down/speed up
 - Elapsed time, estimated remaining time, and progress
 - Progressive Screen Wake Lock and Fullscreen support
-- Local auto-save with no account or server storage
+- Local auto-save when browser storage is available, with no account or server storage
 - Open local UTF-8 `.txt` files and save scripts with your own filename
 - Japanese and English UI in the same HTML
 - No runtime dependencies or network requests
@@ -53,11 +49,11 @@ Core functions can run from a local `file://` copy. Screen Wake Lock and Fullscr
 
 **Open .txt** accepts UTF-8 (with or without BOM) up to 1 MiB (1,048,576 bytes). Existing different text requires confirmation before replacement. Canceling or choosing an invalid, binary, or blank file keeps the current script. Windows/Mac line endings are normalized to LF; Japanese, emoji, paragraphs, and literal markup remain text.
 
-**Save .txt** downloads the current script as UTF-8. Edit the download filename beside the button; unsafe filename characters are sanitized. The filename starts with the imported basename or `pocket-teleprompter.txt`. Files stay on your device, and these operations also work without localStorage.
+Expand **Save script as text** below the editor to find the filename field and **Save .txt** button. Downloads use UTF-8; unsafe filename characters are sanitized. The filename starts with the imported basename or `pocket-teleprompter.txt`. Files stay on your device, and these operations also work without localStorage.
 
 ## Target time mode
 
-Instead of guessing a scroll speed, choose how long the whole script should take—for example **3:00**. Pocket Teleprompter measures the rendered script and calculates the scroll rate so the end reaches the eye-line at approximately that time.
+Choose a target between **30 seconds and 20 minutes**—for example **3:00**. Pocket Teleprompter measures the rendered script and calculates the scroll rate so the end reaches the eye-line at approximately that time.
 
 This controls scroll timing only; it does not analyze your voice or speaking pace.
 
@@ -85,6 +81,10 @@ The repository includes workflows for building and publishing the standalone HTM
 2. Open **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**.
 3. Push to `main` or run the deploy workflow manually.
 4. The app will be available at `https://ttomohisa.github.io/htmlapps-pocket-teleprompter/`.
+
+## GitHub Release
+
+When a new version is merged into `main`, the release workflow checks the build, creates the `vMAJOR.MINOR.PATCH` tag from `app.config.json`, and publishes the readable and self-extracting HTML files to GitHub Releases. Existing tags are not replaced. If a tag exists without the expected Release assets, the workflow reports an error instead of silently skipping publication.
 
 ## Development and build
 
@@ -118,7 +118,7 @@ The repository intentionally has no third-party runtime dependencies.
 - CSP includes `connect-src 'none'`.
 - No analytics, telemetry, remote fonts, CDN assets, camera, microphone, or location access.
 
-On a shared device, clear the script after use or clear the browser site data.
+On a shared device, clear the script after use or clear the browser site data. Clearing the script retains your reading settings.
 
 ## Limitations
 

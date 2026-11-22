@@ -112,3 +112,20 @@ test('a bubbling Replace click keeps the successful-import status after closing 
 test('long Japanese and emoji download filenames fit common byte-based filesystem limits', async () => {
   for (const character of ['あ', '😀']) { const h = loadApp({ text: 'keep' }); h.el('fileNameInput').value = character.repeat(100) + '.txt'; await h.el('saveTextButton').click(); assert.ok(Buffer.byteLength(h.downloads[0].filename) <= 240, h.downloads[0].filename); }
 });
+
+test('file import status follows live Japanese/English switching', async () => {
+  const h = loadApp();
+  await h.select(file('wrong', 'notes.pdf'));
+  assert.equal(h.el('fileStatus').textContent, 'Choose a .txt file.');
+  await h.el('languageButton').click();
+  assert.equal(h.el('fileStatus').textContent, '.txtファイルを選んでください。');
+  await h.el('languageButton').click();
+  assert.equal(h.el('fileStatus').textContent, 'Choose a .txt file.');
+});
+test('collapsed export workflow exposes download feedback in the visible toast', async () => {
+  const h = loadApp({ text: 'A draft' });
+  await h.el('saveTextButton').click();
+  assert.equal(h.downloads.length, 1);
+  assert.equal(h.el('fileStatus').textContent, 'UTF-8 text download started.');
+  assert.equal(h.el('toast').textContent, 'UTF-8 text download started.');
+});
