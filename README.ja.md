@@ -1,16 +1,12 @@
 # Pocket Teleprompter
 
-ダイアログを開いている間は背景ページのスクロールが止まります。本番画面のスクロール制御は従来どおりです。
-
-ヘッダーの言語切替は EN / JA に統一し、切替先とヘルプの読み上げ・ツールチップも表示言語に合わせています。完全ローカル処理です。
-
 [![GitHub Pages](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/ttomohisa/htmlapps-pocket-teleprompter/actions/workflows/deploy-pages.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Single HTML](https://img.shields.io/badge/distribution-single%20HTML-0ea5e9)](https://ttomohisa.github.io/htmlapps-pocket-teleprompter/)
 
 [English README](README.md)
 
-原稿を貼り付けてすぐ使える、インストール不要・端末内処理のテレプロンプターです。動画撮影、スピーチ、プレゼン練習などで、原稿を外部へアップロードせず利用できます。
+動画撮影やスピーチの原稿を大きく表示し、自動でスクロールします。登録やインストールは必要ありません。
 
 ## 🚀 デモ
 
@@ -24,7 +20,7 @@
 
 - スマートフォン向けのシンプルな本番画面
 - 0.5×〜2.0×の自動スクロール
-- **指定時間で原稿を読み切る「目標時間」モード**
+- **30秒〜20分でスクロールを終える「目標時間」モード**
 - ハーフミラー式テレプロンプター向け左右反転
 - 文字サイズ変更、左揃え・中央揃え
 - カメラ付近へ視線を保ちやすいガイド線
@@ -34,7 +30,7 @@
 - 左端・右端タップで速度調整
 - 経過時間、残り時間目安、進捗表示
 - 対応環境で画面スリープ防止・全画面表示
-- 原稿と設定をLocalStorageへ自動保存
+- LocalStorageが使える場合は原稿と設定を自動保存
 - 端末内のUTF-8 `.txt`を開く・名前を付けて保存
 - 日本語・英語切り替え
 - 外部ライブラリ・ランタイム通信なし
@@ -53,7 +49,7 @@
 
 **.txtを開く**は1 MiB（1,048,576バイト）までのUTF-8テキスト（BOMあり・なし）に対応します。現在の原稿と異なる場合は置き換える前に確認します。キャンセル、不正な文字コード、バイナリ、空のファイルでは現在の原稿を変更しません。改行コードはLFへ統一され、日本語・絵文字・段落・HTMLのような文字列も文字として保持されます。
 
-**.txtを保存**は現在の原稿をUTF-8でダウンロードします。隣の欄でファイル名を変更できます。使用できない文字は安全な名前に整えます。初期名は読み込んだファイル名、または `pocket-teleprompter.txt` です。ファイルは外部へ送信されず、LocalStorageが使えない環境でも読み込み・保存できます。
+原稿欄の下にある**テキストを保存**を開くと、ファイル名の入力欄と**.txtを保存**ボタンが表示されます。UTF-8でダウンロードし、ファイル名に使用できない文字は置き換えます。初期名は読み込んだファイル名、または `pocket-teleprompter.txt` です。ファイルは外部へ送信されず、LocalStorageが使えない環境でも読み込み・保存できます。
 
 ## 目標時間モード
 
@@ -120,7 +116,7 @@ Node.js 24を用意して `powershell.exe -NoLogo -NoProfile -ExecutionPolicy By
 - CSPに `connect-src 'none'` を設定しています。
 - 解析・テレメトリ・外部フォント・CDN・カメラ・マイク・位置情報を利用しません。
 
-共有端末では利用後に原稿を消去するか、ブラウザーのサイトデータを削除してください。
+共有端末では利用後に原稿を消去するか、ブラウザーのサイトデータを削除してください。原稿を消去しても読み上げ設定は残ります。
 
 ## 制限事項
 
