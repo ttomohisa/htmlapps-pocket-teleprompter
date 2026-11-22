@@ -40,7 +40,21 @@ jobs:
           $tagExists = git ls-remote --tags origin "refs/tags/$env:RELEASE_TAG"
           if ($LASTEXITCODE -ne 0) { throw "Could not check existing tags" }
           if ($tagExists) {
-            Write-Host "Tag $env:RELEASE_TAG already exists; leaving this published version unchanged."
+            $existingRelease = gh release view $env:RELEASE_TAG --json assets
+            if ($LASTEXITCODE -ne 0) {
+              throw "Tag $env:RELEASE_TAG exists, but its GitHub Release is missing."
+            }
+            $assetNames = @(($existingRelease | ConvertFrom-Json).assets | ForEach-Object { $_.name })
+            $expectedAssets = @(
+              "pocket-teleprompter-$($env:RELEASE_TAG).html",
+              "pocket-teleprompter-$($env:RELEASE_TAG)-self-extract.html"
+            )
+            foreach ($expected in $expectedAssets) {
+              if ($assetNames -notcontains $expected) {
+                throw "Tag $env:RELEASE_TAG exists, but its GitHub Release is missing asset $expected."
+              }
+            }
+            Write-Host "Tag $env:RELEASE_TAG and both HTML Release assets already exist; no changes made."
             exit 0
           }
           gh release create $env:RELEASE_TAG `
