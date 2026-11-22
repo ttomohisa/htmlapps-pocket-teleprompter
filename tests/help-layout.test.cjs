@@ -139,5 +139,5 @@ test('opening a text file stays by the editor heading while downloading is colla
 
 test('unexecuted fallback header version matches the configured release', () => {
   const config = JSON.parse(read('app.config.json'));
-  assert.match(source, new RegExp('id="versionBadge">v' + config.version.replace(/\\./g, '\\\\.') + '<'));
+  assert.ok(source.includes('id="versionBadge">v' + config.version + '</span>'));
 });
