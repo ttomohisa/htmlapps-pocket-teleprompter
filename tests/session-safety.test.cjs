@@ -120,3 +120,13 @@ test('backgrounding during countdown cancels pending autoplay but leaves the rea
   await h.el('readerPause').click();
   assert.equal(h.probe.state.playing,true);
 });
+
+test('Clear warns instead of claiming success if persistent storage is blocked', async () => {
+  const h=loadApp({text:'private notes'},true);
+  await h.el('clearButton').click();
+  await h.el('confirmOk').click();
+  assert.equal(h.el('scriptInput').value,'');
+  assert.match(h.el('fileStatus').textContent,/saved copy could not be updated/);
+  assert.equal(h.saved().text,'private notes');
+  assert.equal(h.el('toast').textContent,'');
+});

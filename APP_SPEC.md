@@ -47,7 +47,7 @@ A user can paste a script, tune the reading experience, start a distraction-free
 - Light-only application UI. The reader is a functional presentation surface, not a theme switcher.
 - Playback timers use real elapsed foreground time; the reader pauses when hidden, including during countdown. Manual seeking is available only while paused.
 - Screen Wake Lock is acquired for each active playback session, released when paused/finished/closed, and stale asynchronous requests are discarded.
-- Failed local auto-save is shown as an error with a .txt export fallback; pending edits are flushed on pagehide.
+- Failed local auto-save is shown as an error with a .txt export fallback; pending edits are flushed on pagehide. Clearing a script cannot claim success when persistent storage could not be updated.
 - No runtime network request.
 
 ## 5. Data and privacy

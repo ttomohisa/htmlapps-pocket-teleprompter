@@ -3,6 +3,7 @@
 ## 1.0.6 - 2026-11-23
 
 - Show a clear warning if local auto-save fails, and flush pending edits when the page is hidden or closed.
+- Warn when clearing the visible script cannot update its persisted copy.
 - Reacquire Screen Wake Lock on resume/restart and safely discard stale asynchronous lock requests.
 - Use actual frame elapsed time for scroll pacing; pause automatically when the document is hidden.
 - Allow manual scrolling/seek only while paused to keep target-time calculations coherent.
