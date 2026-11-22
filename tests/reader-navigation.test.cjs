@@ -375,3 +375,17 @@ test('Target time uses a 30-second floor in saved settings, slider and reader sh
   assert.equal(h.probe.state.duration, 30);
   assert.equal(h.saved().duration, 30);
 });
+
+test('F shortcut tolerates unavailable, synchronous and async Fullscreen API failures', async () => {
+  const h = await reader({ fullscreen: false });
+  assert.equal(await h.key('f'), true, 'F should be handled even without Fullscreen API');
+  assert.equal(h.probe.state.playing, true);
+  h.document.documentElement.requestFullscreen = () => undefined;
+  assert.equal(await h.key('f'), true, 'a fullscreen implementation returning void must be safe');
+  h.document.documentElement.requestFullscreen = () => { throw new Error('blocked'); };
+  assert.equal(await h.key('f'), true, 'synchronous fullscreen errors must be handled');
+  h.document.documentElement.requestFullscreen = () => Promise.reject(new Error('denied'));
+  assert.equal(await h.key('f'), true, 'rejected fullscreen requests must be handled');
+  await Promise.resolve();
+  assert.equal(h.probe.state.playing, true);
+});
