@@ -84,6 +84,10 @@
 3. `main` へプッシュするか、Actionsからデプロイワークフローを手動実行します。
 4. `https://ttomohisa.github.io/htmlapps-pocket-teleprompter/` で公開されます。
 
+## GitHub Release
+
+新しいバージョンを`main`へマージすると、リリース用のワークフローがビルドを検査し、`app.config.json`のバージョンでタグを作成して、通常版と自己展開版のHTMLをGitHub Releaseへ登録します。既存タグは上書きしません。タグがあっても必要な配布ファイルが不足している場合は、成功扱いにせずエラーを報告します。
+
 ## 開発とビルド
 
 ```text
