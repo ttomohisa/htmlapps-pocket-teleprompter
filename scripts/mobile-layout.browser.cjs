@@ -10,7 +10,10 @@ const HELP = "#helpButton", LANGUAGE = "#languageButton", CLOSE = "#helpClose";
 const artifacts = path.resolve('test-results/mobile-layout');
 
 async function exerciseActions(page, width, label) {
-  await page.locator('#scriptInput').fill('A synthetic local rehearsal script.');
+  const example = await page.locator('html').getAttribute('lang') === 'ja'
+    ? '本日はお越しいただき、ありがとうございます。\\n\\n最初に、今回の発表の内容を簡単にご説明します。\\n続いて、具体的な事例を紹介します。\\n\\nそれでは始めます。'
+    : "Thank you for joining me today.\\n\\nI'll begin with a brief overview of the topic.\\nThen we'll look at a few examples.\\n\\nLet's get started.";
+  await page.locator('#scriptInput').fill(example.replace(/\\n/g, '\n'));
   assert.equal(await page.locator('#startButton').isVisible(), true, label + ': Start remains available');
   if (width <= 820) assert.equal(await page.locator('.start-card').evaluate(el => getComputedStyle(el).position), 'fixed', label + ': fixed Start action');
 }
@@ -66,7 +69,7 @@ async function main() {
           const startBox = await page.locator('#startButton').boundingBox();
           assert.ok(startBox && startBox.x >= 0 && startBox.x + startBox.width <= width && startBox.y >= 0 && startBox.y + startBox.height <= height, label + ': Start stays inside the resized viewport');
         }
-        if (file === 'dist/index.html' && [1360,320].includes(width)) await page.screenshot({path:path.join(artifacts, `${language}-${width}.png`)});
+        if (file === 'dist/index.html' && [1360,320].includes(width)) { await page.waitForTimeout(1500); await page.screenshot({path:path.join(artifacts, `${language}-${width}.png`)}); }
 
         await page.locator(HELP).click();
         const body = page.locator('#helpDialog .dialog-body');
