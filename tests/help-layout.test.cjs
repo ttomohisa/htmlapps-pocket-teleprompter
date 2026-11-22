@@ -136,3 +136,8 @@ test('opening a text file stays by the editor heading while downloading is colla
   assert.match(editor, /id="saveTextButton"/);
   assert.doesNotMatch(source, /id="paceModeHelp"|id="fontSizeHelp"|aria-describedby="(?:paceModeHelp|fontSizeHelp)"/);
 });
+
+test('unexecuted fallback header version matches the configured release', () => {
+  const config = JSON.parse(read('app.config.json'));
+  assert.match(source, new RegExp('id="versionBadge">v' + config.version.replace(/\\./g, '\\\\.') + '<'));
+});
