@@ -1,15 +1,24 @@
 # Changelog
 
-## 1.0.5 - 2026-10-27
+## 1.0.6 - 2026-11-23
 
-- Keep the header version visible on narrow smartphones without overlapping the app name or language/Help controls.
-
-## Unreleased
+- Show a clear warning if local auto-save fails, and flush pending edits when the page is hidden or closed.
+- Reacquire Screen Wake Lock on resume/restart and safely discard stale asynchronous lock requests.
+- Use actual frame elapsed time for scroll pacing; pause automatically when the document is hidden.
+- Allow manual scrolling/seek only while paused to keep target-time calculations coherent.
+- Announce playback resumption to assistive technology.
+- Add regression tests for save failure, pending writes, Wake Lock lifecycle, and low-frame-rate timing.
+- Create versioned GitHub tags and HTML Releases after merging a new version into main.
+- Include previously deployed layout and Help improvements in the versioned release.
 
 - Hide the informational footer at phone widths while preserving action controls and the wider-screen footer.
 - Standardize the English privacy badge as “Fully local processing” while retaining the Japanese label.
 
 - Clarify Japanese and English help by removing internal layout, implementation, and audit commentary while preserving usage guidance and cautions.
+
+## 1.0.5 - 2026-10-27
+
+- Keep the header version visible on narrow smartphones without overlapping the app name or language/Help controls.
 
 All notable changes to Pocket Teleprompter are documented here.
 
