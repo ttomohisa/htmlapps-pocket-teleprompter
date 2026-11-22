@@ -57,7 +57,7 @@ Core functions can run from a local `file://` copy. Screen Wake Lock and Fullscr
 
 ## Target time mode
 
-Instead of guessing a scroll speed, choose how long the whole script should take—for example **3:00**. Pocket Teleprompter measures the rendered script and calculates the scroll rate so the end reaches the eye-line at approximately that time.
+Choose a target between **30 seconds and 20 minutes**—for example **3:00**. Pocket Teleprompter measures the rendered script and calculates the scroll rate so the end reaches the eye-line at approximately that time.
 
 This controls scroll timing only; it does not analyze your voice or speaking pace.
 
